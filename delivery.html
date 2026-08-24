@@ -2,275 +2,75 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Plus Medico Delivery</title>
 
 <link rel="manifest" href="./manifest.webmanifest">
 <meta name="theme-color" content="#1769AA">
 
 <style>
+*{box-sizing:border-box;font-family:Arial,sans-serif}
+body{margin:0;background:#f2f5f9;color:#222}
+header{background:#1769aa;color:#fff;padding:18px;text-align:center}
+header h1{margin:0;font-size:24px}
+.container{max-width:1000px;margin:auto;padding:15px}
 
-*{
-box-sizing:border-box;
-font-family:Arial,sans-serif;
-}
+.stats{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.stat{background:#fff;padding:15px;border-radius:10px;text-align:center;box-shadow:0 2px 8px #ddd}
+.stat span{display:block;font-size:14px}
+.stat b{display:block;font-size:21px;margin-top:5px}
 
-body{
-margin:0;
-background:#f2f5f9;
-color:#222;
-}
+.card,.summary{background:#fff;padding:18px;border-radius:12px;margin:15px 0;box-shadow:0 2px 8px #ddd}
 
-header{
-background:#1769aa;
-color:white;
-padding:18px;
-text-align:center;
-}
+.summaryGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.summaryItem{background:#f5f7fa;padding:12px;border-radius:8px;text-align:center}
+.summaryItem b{display:block;font-size:18px;margin-top:5px}
 
-header h1{
-margin:0;
-font-size:24px;
-}
+.filterGrid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
 
-.container{
-max-width:1000px;
-margin:auto;
-padding:15px;
+label{display:block;font-weight:bold;margin-top:10px}
+input,textarea,select{
+width:100%;padding:12px;margin-top:5px;
+border:1px solid #ccc;border-radius:8px;font-size:16px;
 }
+textarea{min-height:80px}
 
-.stats{
-display:grid;
-grid-template-columns:repeat(2,1fr);
-gap:10px;
-margin-bottom:15px;
-}
+button{border:0;border-radius:8px;padding:12px 15px;cursor:pointer;font-size:15px}
 
-.stat{
-background:white;
-padding:15px;
-border-radius:10px;
-text-align:center;
-box-shadow:0 2px 8px #ddd;
-}
+.save{width:100%;margin-top:15px;background:#1769aa;color:white;font-size:17px}
+.reset{background:#6c757d;color:white}
+.today{background:#1769aa;color:white}
+.yesterday{background:#555;color:white}
 
-.stat span{
-display:block;
-font-size:14px;
-}
+.search{margin-bottom:10px}
 
-.stat b{
-display:block;
-font-size:21px;
-margin-top:5px;
-}
+.changeBox{margin-top:12px;padding:12px;background:#eef7ff;border-radius:8px}
+.balanceBox{margin-top:8px;padding:12px;background:#fff3cd;border-radius:8px}
 
-.summary{
-background:white;
-padding:15px;
-border-radius:12px;
-margin-bottom:15px;
-box-shadow:0 2px 8px #ddd;
-}
+.delivery{border-top:1px solid #ddd;padding:15px 0}
+.delivery:first-child{border-top:0}
+.delivery h3{margin-top:0}
 
-.summary h2{
-margin-top:0;
-font-size:20px;
-}
+.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
 
-.summaryGrid{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:8px;
-}
+.call{background:#25d366;color:white}
+.map{background:#4285f4;color:white}
+.done{background:#198754;color:white}
+.collect{background:#ff9800;color:white}
+.delete{background:#dc3545;color:white}
 
-.summaryItem{
-background:#f5f7fa;
-padding:12px;
-border-radius:8px;
-text-align:center;
-}
+.badge{display:inline-block;padding:5px 8px;border-radius:6px;background:#eee;font-size:13px}
+.paid{background:#d1e7dd;color:#0f5132}
+.unpaid{background:#fff3cd;color:#664d03}
+.credit{background:#e2d9f3;color:#432874}
 
-.summaryItem b{
-display:block;
-font-size:18px;
-margin-top:5px;
-}
-
-.card{
-background:white;
-padding:18px;
-border-radius:12px;
-margin-bottom:15px;
-box-shadow:0 2px 8px #ddd;
-}
-
-label{
-display:block;
-font-weight:bold;
-margin-top:10px;
-}
-
-input,
-textarea,
-select{
-width:100%;
-padding:12px;
-margin-top:5px;
-border:1px solid #ccc;
-border-radius:8px;
-font-size:16px;
-background:white;
-}
-
-textarea{
-min-height:80px;
-}
-
-button{
-border:0;
-border-radius:8px;
-padding:12px 15px;
-cursor:pointer;
-font-size:15px;
-}
-
-.save{
-width:100%;
-margin-top:15px;
-background:#1769aa;
-color:white;
-font-size:17px;
-}
-
-.filterGrid{
-display:grid;
-grid-template-columns:repeat(2,1fr);
-gap:10px;
-}
-
-.filterButtons{
-display:flex;
-gap:8px;
-flex-wrap:wrap;
-margin-top:12px;
-}
-
-.reset{
-background:#6c757d;
-color:white;
-}
-
-.changeBox{
-margin-top:12px;
-padding:12px;
-background:#eef7ff;
-border-radius:8px;
-}
-
-.balanceBox{
-margin-top:8px;
-padding:12px;
-background:#fff3cd;
-border-radius:8px;
-}
-
-.search{
-margin-bottom:15px;
-}
-
-.delivery{
-border-top:1px solid #ddd;
-padding:15px 0;
-}
-
-.delivery:first-child{
-border-top:0;
-}
-
-.delivery h3{
-margin-top:0;
-}
-
-.actions{
-display:flex;
-gap:8px;
-flex-wrap:wrap;
-margin-top:12px;
-}
-
-.call{
-background:#25d366;
-color:white;
-}
-
-.map{
-background:#4285f4;
-color:white;
-}
-
-.done{
-background:#198754;
-color:white;
-}
-
-.collect{
-background:#ff9800;
-color:white;
-}
-
-.delete{
-background:#dc3545;
-color:white;
-}
-
-.badge{
-display:inline-block;
-padding:5px 8px;
-border-radius:6px;
-font-size:13px;
-background:#eee;
-}
-
-.paidBadge{
-background:#d1e7dd;
-color:#0f5132;
-}
-
-.unpaidBadge{
-background:#fff3cd;
-color:#664d03;
-}
-
-.creditBadge{
-background:#e2d9f3;
-color:#432874;
-}
-
-.loading{
-text-align:center;
-padding:20px;
-}
-
-.empty{
-text-align:center;
-padding:20px;
-color:#666;
-}
+.error{color:red;background:#ffe5e5;padding:12px;border-radius:8px}
+.empty{text-align:center;padding:20px;color:#666}
 
 @media(max-width:600px){
-
-.summaryGrid{
-grid-template-columns:repeat(2,1fr);
+.filterGrid{grid-template-columns:1fr}
+.summaryGrid{grid-template-columns:1fr}
 }
-
-.filterGrid{
-grid-template-columns:1fr;
-}
-
-}
-
 </style>
 </head>
 
@@ -287,456 +87,4 @@ grid-template-columns:1fr;
 <div class="stats">
 
 <div class="stat">
-<span>📦 Total Deliveries</span>
-<b id="count">0</b>
-</div>
-
-<div class="stat">
-<span>💰 Total Amount</span>
-<b id="total">₹0</b>
-</div>
-
-<div class="stat">
-<span>✅ Paid</span>
-<b id="paid">₹0</b>
-</div>
-
-<div class="stat">
-<span>⚠️ Unpaid</span>
-<b id="unpaid">₹0</b>
-</div>
-
-</div>
-
-
-<!-- PAYMENT SUMMARY -->
-
-<div class="summary">
-
-<h2>💳 Payment Summary</h2>
-
-<div class="summaryGrid">
-
-<div class="summaryItem">
-💵 Cash
-<b id="cashTotal">₹0</b>
-</div>
-
-<div class="summaryItem">
-📱 Online
-<b id="onlineTotal">₹0</b>
-</div>
-
-<div class="summaryItem">
-📒 Credit
-<b id="creditTotal">₹0</b>
-</div>
-
-</div>
-
-</div>
-
-
-<!-- FILTER -->
-
-<div class="card">
-
-<h2>🔎 Delivery Filter</h2>
-
-<div class="filterGrid">
-
-<div>
-
-<label>📅 Select Date</label>
-
-<input
-type="date"
-id="filterDate"
-onchange="showDeliveries()"
->
-
-</div>
-
-
-<div>
-
-<label>💳 Payment Status</label>
-
-<select
-id="filterPaymentStatus"
-onchange="showDeliveries()"
->
-
-<option value="All">
-All
-</option>
-
-<option value="Paid">
-✅ Paid
-</option>
-
-<option value="Unpaid">
-⚠️ Unpaid
-</option>
-
-</select>
-
-</div>
-
-
-<div>
-
-<label>💰 Payment Type</label>
-
-<select
-id="filterPaymentType"
-onchange="showDeliveries()"
->
-
-<option value="All">
-All
-</option>
-
-<option value="Cash">
-💵 Cash
-</option>
-
-<option value="Online">
-📱 Online
-</option>
-
-<option value="Credit">
-📒 Credit
-</option>
-
-</select>
-
-</div>
-
-
-<div>
-
-<label>🚚 Delivery Status</label>
-
-<select
-id="filterStatus"
-onchange="showDeliveries()"
->
-
-<option value="All">
-All
-</option>
-
-<option value="Pending">
-Pending
-</option>
-
-<option value="Out for Delivery">
-Out for Delivery
-</option>
-
-<option value="Delivered">
-Delivered
-</option>
-
-<option value="Cancelled">
-Cancelled
-</option>
-
-</select>
-
-</div>
-
-</div>
-
-
-<div class="filterButtons">
-
-<button
-onclick="setToday()"
->
-📅 Today
-</button>
-
-<button
-onclick="setYesterday()"
->
-⬅️ Yesterday
-</button>
-
-<button
-class="reset"
-onclick="resetFilters()"
->
-🔄 Reset Filter
-</button>
-
-</div>
-
-</div>
-
-
-<!-- NEW DELIVERY -->
-
-<div class="card">
-
-<h2>➕ New Delivery</h2>
-
-<label>Delivery Boy Name</label>
-
-<input
-id="boy"
-placeholder="Delivery boy name"
->
-
-
-<label>Customer Name</label>
-
-<input
-id="customer"
-placeholder="Customer name"
->
-
-
-<label>Customer Mobile</label>
-
-<input
-id="mobile"
-type="tel"
-placeholder="Mobile number"
->
-
-
-<label>Customer Address</label>
-
-<textarea
-id="address"
-placeholder="Customer address"
-></textarea>
-
-
-<label>Order Amount</label>
-
-<input
-id="order"
-type="number"
-placeholder="₹ Order amount"
-oninput="calculateMoney()"
->
-
-
-<label>Customer Se Received Amount</label>
-
-<input
-id="received"
-type="number"
-placeholder="₹ Received amount"
-oninput="calculateMoney()"
->
-
-
-<div class="changeBox">
-
-🔄 Change to Give:
-
-<b id="change">₹0</b>
-
-</div>
-
-
-<div class="balanceBox">
-
-⚠️ Balance / Unpaid:
-
-<b id="balance">₹0</b>
-
-</div>
-
-
-<label>Payment Type</label>
-
-<select id="paymentType">
-
-<option value="Cash">
-💵 Cash
-</option>
-
-<option value="Online">
-📱 Online
-</option>
-
-<option value="Credit">
-📒 Credit
-</option>
-
-</select>
-
-
-<label>Payment Status</label>
-
-<select id="payment">
-
-<option value="Unpaid">
-Unpaid
-</option>
-
-<option value="Paid">
-Paid
-</option>
-
-</select>
-
-
-<label>Delivery Status</label>
-
-<select id="status">
-
-<option value="Pending">
-Pending
-</option>
-
-<option value="Out for Delivery">
-Out for Delivery
-</option>
-
-<option value="Delivered">
-Delivered
-</option>
-
-<option value="Cancelled">
-Cancelled
-</option>
-
-</select>
-
-
-<button
-class="save"
-onclick="saveDelivery()"
->
-💾 Save Delivery
-</button>
-
-</div>
-
-
-<!-- DELIVERY LIST -->
-
-<div class="card">
-
-<h2>📦 Delivery List</h2>
-
-<input
-class="search"
-id="search"
-placeholder="🔎 Search customer / delivery boy / mobile"
-oninput="showDeliveries()"
->
-
-<div id="list">
-
-<div class="loading">
-Loading...
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-
-<script>
-
-/* =========================
-SUPABASE
-========================= */
-
-const SUPABASE_URL =
-"https://rnqxgovsabngikhvbeal.supabase.co";
-
-const SUPABASE_KEY =
-"sb_publishable_a8jbA7w9mCgHhM_6Q_bCRQ_CXUss_5b";
-
-
-let deliveries=[];
-
-
-/* =========================
-API
-========================= */
-
-async function api(endpoint,options={}){
-
-const response=await fetch(
-
-SUPABASE_URL+
-"/rest/v1/"+
-endpoint,
-
-{
-...options,
-
-headers:{
-
-"apikey":SUPABASE_KEY,
-
-"Authorization":
-"Bearer "+SUPABASE_KEY,
-
-"Content-Type":
-"application/json",
-
-"Prefer":
-"return=representation",
-
-...(options.headers||{})
-
-}
-
-}
-
-);
-
-const text=await response.text();
-
-if(!response.ok){
-
-throw new Error(text);
-
-}
-
-return text?
-JSON.parse(text):
-[];
-
-}
-
-
-/* =========================
-MONEY
-========================= */
-
-function calculateMoney(){
-
-const order=
-Number(
-document.getElementById("order").value
-)||0;
-
-const received=
-Number(
-document.getElementById("received").value
-)||0;
-
-
-const change=
-Math.max(received-order,0);
-
-const balance=
-Math.max(order-received,0);
-
-
-document.getElementById("change")
-.innerText=
-"₹"+change.to
+<span>
