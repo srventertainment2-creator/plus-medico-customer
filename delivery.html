@@ -2,42 +2,41 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Plus Medico Delivery</title>
-<link rel="manifest" href="./manifest.webmanifest">
 <meta name="theme-color" content="#1769AA">
+<link rel="manifest" href="./manifest.webmanifest">
 
 <style>
 *{box-sizing:border-box}
-body{margin:0;font-family:Arial;background:#f3f6f9;color:#222}
-header{background:#1769aa;color:white;text-align:center;padding:18px}
+body{margin:0;font-family:Arial,sans-serif;background:#f3f6f9;color:#222}
+header{background:#1769aa;color:#fff;text-align:center;padding:18px}
 .container{max-width:900px;margin:auto;padding:12px}
-.card{background:white;padding:16px;margin:12px 0;border-radius:12px;box-shadow:0 2px 8px #ccc}
+.card{background:#fff;padding:16px;margin:12px 0;border-radius:12px;box-shadow:0 2px 8px #ccc}
 .stats{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.stat{background:white;padding:15px;text-align:center;border-radius:10px;box-shadow:0 2px 6px #ddd}
+.stat{text-align:center;padding:15px;background:#fff;border-radius:10px;box-shadow:0 2px 6px #ddd}
 .stat b{display:block;font-size:21px;margin-top:5px}
+.summary{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.summary div{background:#f1f3f5;padding:12px;text-align:center;border-radius:8px}
 .grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+label{display:block;font-weight:bold;margin-top:10px}
 input,select,textarea{width:100%;padding:12px;margin-top:5px;border:1px solid #ccc;border-radius:8px;font-size:16px}
 textarea{min-height:80px}
-label{display:block;font-weight:bold;margin-top:10px}
 button{border:0;border-radius:8px;padding:11px 14px;margin:4px;cursor:pointer}
-.save{width:100%;background:#1769aa;color:white;font-size:17px;margin-top:15px}
-.today{background:#1769aa;color:white}
-.reset{background:#666;color:white}
+.save{width:100%;background:#1769aa;color:#fff;font-size:17px;margin-top:15px}
+.today{background:#1769aa;color:#fff}
+.reset{background:#666;color:#fff}
 .delivery{border-top:1px solid #ddd;padding:15px 0}
 .delivery:first-child{border-top:0}
 .badge{display:inline-block;padding:5px 8px;border-radius:6px;background:#eee}
 .paid{background:#d1e7dd;color:#075c35}
 .unpaid{background:#fff0c2;color:#6b5200}
-.actions{margin-top:10px}
-.call{background:#25d366;color:white}
-.map{background:#4285f4;color:white}
-.collect{background:#ff9800;color:white}
-.delete{background:#dc3545;color:white}
-.done{background:#198754;color:white}
-.summary{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
-.summary div{background:#f1f3f5;padding:12px;text-align:center;border-radius:8px}
+.call{background:#25d366;color:#fff}
+.map{background:#4285f4;color:#fff}
+.delete{background:#dc3545;color:#fff}
+.done{background:#198754;color:#fff}
 .error{background:#ffe5e5;color:#a00;padding:12px;border-radius:8px}
+.actions{margin-top:10px}
 @media(max-width:600px){
 .grid,.summary{grid-template-columns:1fr}
 }
@@ -81,30 +80,30 @@ button{border:0;border-radius:8px;padding:11px 14px;margin:4px;cursor:pointer}
 <div>
 <label>💳 Payment Status</label>
 <select id="payment">
-<option>All</option>
-<option>Paid</option>
-<option>Unpaid</option>
+<option value="All">All</option>
+<option value="Paid">Paid</option>
+<option value="Unpaid">Unpaid</option>
 </select>
 </div>
 
 <div>
 <label>💰 Payment Type</label>
 <select id="type">
-<option>All</option>
-<option>Cash</option>
-<option>Online</option>
-<option>Credit</option>
+<option value="All">All</option>
+<option value="Cash">Cash</option>
+<option value="Online">Online</option>
+<option value="Credit">Credit</option>
 </select>
 </div>
 
 <div>
 <label>🚚 Delivery Status</label>
 <select id="status">
-<option>All</option>
-<option>Pending</option>
-<option>Out for Delivery</option>
-<option>Delivered</option>
-<option>Cancelled</option>
+<option value="All">All</option>
+<option value="Pending">Pending</option>
+<option value="Out for Delivery">Out for Delivery</option>
+<option value="Delivered">Delivered</option>
+<option value="Cancelled">Cancelled</option>
 </select>
 </div>
 
@@ -115,6 +114,7 @@ button{border:0;border-radius:8px;padding:11px 14px;margin:4px;cursor:pointer}
 <button class="today" onclick="setToday()">📅 Today</button>
 <button onclick="setYesterday()">⬅️ Yesterday</button>
 <button class="reset" onclick="resetFilter()">🔄 Reset</button>
+
 </div>
 
 <div class="card">
@@ -143,20 +143,540 @@ button{border:0;border-radius:8px;padding:11px 14px;margin:4px;cursor:pointer}
 
 <label>Payment Type</label>
 <select id="newType">
-<option>Cash</option>
-<option>Online</option>
-<option>Credit</option>
+<option value="Cash">💵 Cash</option>
+<option value="Online">📱 Online</option>
+<option value="Credit">📒 Credit</option>
 </select>
 
 <label>Payment Status</label>
 <select id="newPayment">
-<option>Unpaid</option>
-<option>Paid</option>
+<option value="Unpaid">Unpaid</option>
+<option value="Paid">Paid</option>
 </select>
 
 <label>Delivery Status</label>
 <select id="newStatus">
-<option>Pending</option>
-<option>Out for Delivery</option>
-<option>Delivered</option>
-<option>
+<option value="Pending">Pending</option>
+<option value="Out for Delivery">Out for Delivery</option>
+<option value="Delivered">Delivered</option>
+<option value="Cancelled">Cancelled</option>
+</select>
+
+<button class="save" onclick="saveDelivery()">💾 Save Delivery</button>
+
+</div>
+
+<div class="card">
+<h2>📦 Delivery List</h2>
+
+<input id="search" placeholder="🔎 Search customer / delivery boy / mobile">
+
+<div id="list">Loading...</div>
+
+</div>
+
+</div>
+
+<script>
+
+const SUPABASE_URL =
+"https://rnqxgovsabngikhvbeal.supabase.co";
+
+const SUPABASE_KEY =
+"sb_publishable_a8jbA7w9mCgHhM_6Q_bCRQ_CXUss_5b";
+
+let deliveries=[];
+
+async function api(path,options={}){
+
+const response=await fetch(
+SUPABASE_URL+"/rest/v1/"+path,
+{
+...options,
+headers:{
+"apikey":SUPABASE_KEY,
+"Authorization":"Bearer "+SUPABASE_KEY,
+"Content-Type":"application/json",
+"Prefer":"return=representation"
+}
+}
+);
+
+const text=await response.text();
+
+if(!response.ok){
+throw new Error(text);
+}
+
+return text?JSON.parse(text):[];
+
+}
+
+function get(id){
+return document.getElementById(id).value.trim();
+}
+
+function updateMoney(){
+
+const amount=Number(get("amount"))||0;
+const received=Number(get("received"))||0;
+
+document.getElementById("change").textContent=
+"₹"+Math.max(received-amount,0).toFixed(2);
+
+document.getElementById("balance").textContent=
+"₹"+Math.max(amount-received,0).toFixed(2);
+
+}
+
+document.getElementById("amount").addEventListener("input",updateMoney);
+document.getElementById("received").addEventListener("input",updateMoney);
+
+async function saveDelivery(){
+
+try{
+
+const boy=get("boy");
+const customer=get("customer");
+const mobile=get("mobile");
+const address=get("address");
+const amount=Number(get("amount"))||0;
+const received=Number(get("received"))||0;
+const type=get("newType");
+const selectedPayment=get("newPayment");
+const status=get("newStatus");
+
+if(!boy||!customer||!address||amount<=0){
+
+alert("Please fill Delivery Boy, Customer, Address and Order Amount.");
+
+return;
+
+}
+
+const balance=Math.max(amount-received,0);
+const change=Math.max(received-amount,0);
+
+const paymentStatus=
+balance===0?"Paid":selectedPayment;
+
+await api("deliveries",{
+
+method:"POST",
+
+body:JSON.stringify({
+
+delivery_boy_name:boy,
+customer_name:customer,
+customer_mobile:mobile,
+customer_address:address,
+order_amount:amount,
+total_amount:amount,
+received_amount:received,
+change_amount:change,
+payment_type:type,
+payment_status:paymentStatus,
+delivery_status:status,
+delivery_date:new Date().toISOString()
+
+})
+
+});
+
+alert("✅ Delivery Saved Successfully");
+
+[
+"boy",
+"customer",
+"mobile",
+"address",
+"amount",
+"received"
+].forEach(id=>{
+document.getElementById(id).value="";
+});
+
+updateMoney();
+
+await load();
+
+}catch(error){
+
+console.error(error);
+
+alert("❌ Save Error: "+error.message);
+
+}
+
+}
+
+async function load(){
+
+try{
+
+deliveries=await api(
+"deliveries?select=*&order=delivery_date.desc"
+);
+
+show();
+
+}catch(error){
+
+console.error(error);
+
+document.getElementById("list").innerHTML=
+"<div class='error'>❌ Database Error<br><br>"+
+error.message+
+"</div>";
+
+}
+
+}
+
+function show(){
+
+const search=get("search").toLowerCase();
+const date=get("date");
+const payment=get("payment");
+const type=get("type");
+const status=get("status");
+
+const filtered=deliveries.filter(d=>{
+
+const text=(
+(d.customer_name||"")+" "+
+(d.delivery_boy_name||"")+" "+
+(d.customer_mobile||"")
+).toLowerCase();
+
+if(search && !text.includes(search))return false;
+
+if(date){
+
+const x=new Date(d.delivery_date);
+
+const localDate=
+x.getFullYear()+"-"+
+String(x.getMonth()+1).padStart(2,"0")+"-"+
+String(x.getDate()).padStart(2,"0");
+
+if(localDate!==date)return false;
+
+}
+
+if(payment!=="All" && d.payment_status!==payment)return false;
+
+if(type!=="All" && d.payment_type!==type)return false;
+
+if(status!=="All" && d.delivery_status!==status)return false;
+
+return true;
+
+});
+
+let total=0;
+let paid=0;
+let unpaid=0;
+let cash=0;
+let online=0;
+let credit=0;
+
+filtered.forEach(d=>{
+
+const amount=Number(
+d.total_amount||d.order_amount||0
+);
+
+total+=amount;
+
+if(d.payment_status==="Paid"){
+paid+=amount;
+}else{
+unpaid+=amount;
+}
+
+if(d.payment_type==="Cash")cash+=amount;
+if(d.payment_type==="Online")online+=amount;
+if(d.payment_type==="Credit")credit+=amount;
+
+});
+
+document.getElementById("count").textContent=filtered.length;
+document.getElementById("total").textContent="₹"+total.toFixed(2);
+document.getElementById("paid").textContent="₹"+paid.toFixed(2);
+document.getElementById("unpaid").textContent="₹"+unpaid.toFixed(2);
+document.getElementById("cash").textContent="₹"+cash.toFixed(2);
+document.getElementById("online").textContent="₹"+online.toFixed(2);
+document.getElementById("credit").textContent="₹"+credit.toFixed(2);
+
+if(!filtered.length){
+
+document.getElementById("list").innerHTML=
+"<p style='text-align:center'>📦 No deliveries found</p>";
+
+return;
+
+}
+
+document.getElementById("list").innerHTML=
+
+filtered.map(d=>{
+
+const amount=Number(
+d.total_amount||d.order_amount||0
+);
+
+const received=Number(
+d.received_amount||0
+);
+
+const balance=Math.max(
+amount-received,0
+);
+
+const date=d.delivery_date
+?new Date(d.delivery_date).toLocaleString("en-IN")
+:"-";
+
+return `
+
+<div class="delivery">
+
+<h3>👤 ${escapeHTML(d.customer_name)}</h3>
+
+<p>👨‍✈️ Delivery Boy:
+<b>${escapeHTML(d.delivery_boy_name)}</b></p>
+
+<p>📞 ${escapeHTML(d.customer_mobile||"-")}</p>
+
+<p>📍 ${escapeHTML(d.customer_address||"-")}</p>
+
+<p>📅 ${date}</p>
+
+<p>💰 Order Amount:
+<b>₹${amount.toFixed(2)}</b></p>
+
+<p>💵 Received:
+<b>₹${received.toFixed(2)}</b></p>
+
+<p>🔄 Change:
+<b>₹${Number(d.change_amount||0).toFixed(2)}</b></p>
+
+<p>⚠️ Balance:
+<b>₹${balance.toFixed(2)}</b></p>
+
+<p>💳 Payment Status:
+<span class="badge ${
+d.payment_status==="Paid"?"paid":"unpaid"
+}">
+${escapeHTML(d.payment_status||"Unpaid")}
+</span>
+</p>
+
+<p>💰 Payment Type:
+<b>${escapeHTML(d.payment_type||"Cash")}</b></p>
+
+<p>🚚 Delivery Status:
+<b>${escapeHTML(d.delivery_status||"Pending")}</b></p>
+
+<div class="actions">
+
+<button class="call"
+onclick="callCustomer('${escapeJS(d.customer_mobile||"")}')">
+📞 Call
+</button>
+
+<button class="map"
+onclick="openMap('${escapeJS(d.customer_address||"")}')">
+📍 Map
+</button>
+
+${
+d.delivery_status!=="Delivered"
+?
+`<button class="done"
+onclick="markDelivered('${escapeJS(d.id)}')">
+✅ Delivered
+</button>`
+:""
+}
+
+<button class="delete"
+onclick="deleteDelivery('${escapeJS(d.id)}')">
+🗑 Delete
+</button>
+
+</div>
+
+</div>
+
+`;
+
+}).join("");
+
+}
+
+function escapeHTML(value){
+
+return String(value||"")
+.replace(/&/g,"&amp;")
+.replace(/</g,"&lt;")
+.replace(/>/g,"&gt;")
+.replace(/"/g,"&quot;")
+.replace(/'/g,"&#039;");
+
+}
+
+function escapeJS(value){
+
+return String(value||"")
+.replace(/\\/g,"\\\\")
+.replace(/'/g,"\\'")
+.replace(/\n/g," ");
+
+}
+
+function callCustomer(number){
+
+if(number){
+
+window.location.href="tel:"+number;
+
+}
+
+}
+
+function openMap(address){
+
+window.open(
+"https://www.google.com/maps/search/?api=1&query="+
+encodeURIComponent(address),
+"_blank"
+);
+
+}
+
+async function markDelivered(id){
+
+try{
+
+await api(
+"deliveries?id=eq."+encodeURIComponent(id),
+{
+method:"PATCH",
+body:JSON.stringify({
+delivery_status:"Delivered"
+})
+}
+);
+
+alert("✅ Delivery marked as Delivered");
+
+await load();
+
+}catch(error){
+
+alert("❌ "+error.message);
+
+}
+
+}
+
+async function deleteDelivery(id){
+
+if(!confirm("क्या आप यह delivery delete करना चाहते हैं?")){
+return;
+}
+
+try{
+
+await api(
+"deliveries?id=eq."+encodeURIComponent(id),
+{
+method:"DELETE"
+}
+);
+
+await load();
+
+}catch(error){
+
+alert("❌ Delete Error: "+error.message);
+
+}
+
+}
+
+function setToday(){
+
+const d=new Date();
+
+document.getElementById("date").value=
+d.getFullYear()+"-"+
+String(d.getMonth()+1).padStart(2,"0")+"-"+
+String(d.getDate()).padStart(2,"0");
+
+show();
+
+}
+
+function setYesterday(){
+
+const d=new Date();
+
+d.setDate(d.getDate()-1);
+
+document.getElementById("date").value=
+d.getFullYear()+"-"+
+String(d.getMonth()+1).padStart(2,"0")+"-"+
+String(d.getDate()).padStart(2,"0");
+
+show();
+
+}
+
+function resetFilter(){
+
+document.getElementById("date").value="";
+document.getElementById("payment").value="All";
+document.getElementById("type").value="All";
+document.getElementById("status").value="All";
+document.getElementById("search").value="";
+
+show();
+
+}
+
+[
+"date",
+"payment",
+"type",
+"status",
+"search"
+].forEach(id=>{
+
+document.getElementById(id).addEventListener(
+"input",
+show
+);
+
+});
+
+if("serviceWorker" in navigator){
+
+window.addEventListener("load",()=>{
+
+navigator.serviceWorker
+.register("./sw.js")
+.catch(error=>console.log(error));
+
+});
+
+}
+
+load();
+
+</script>
+
+</body>
+</html>
