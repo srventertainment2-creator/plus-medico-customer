@@ -16,51 +16,68 @@ body{
 }
 header{
  background:#1769aa;
- color:white;
+ color:#fff;
  text-align:center;
- padding:16px
+ padding:18px
 }
+header h1{margin:0 0 6px}
 .container{
  max-width:950px;
  margin:auto;
  padding:12px
 }
 .card{
- background:white;
+ background:#fff;
  padding:16px;
  margin:12px 0;
  border-radius:12px;
  box-shadow:0 2px 8px #ccc
 }
+.hidden{display:none!important}
+
 input,select,textarea{
  width:100%;
  padding:12px;
- margin:6px 0;
+ margin:6px 0 12px;
  border:1px solid #ccc;
  border-radius:8px;
  font-size:16px
 }
 textarea{min-height:80px}
+
 button{
  border:0;
  border-radius:8px;
- padding:11px 14px;
- margin:4px;
- cursor:pointer
+ padding:12px 15px;
+ margin:4px 2px;
+ cursor:pointer;
+ font-size:15px
 }
-.primary{background:#1769aa;color:white}
-.green{background:#198754;color:white}
-.red{background:#dc3545;color:white}
-.orange{background:#ff9800;color:white}
-.gray{background:#666;color:white}
-.whatsapp{background:#25d366;color:white}
+button:active{transform:scale(.98)}
+
+.primary{background:#1769aa;color:#fff}
+.green{background:#198754;color:#fff}
+.red{background:#dc3545;color:#fff}
+.orange{background:#ff9800;color:#fff}
+.gray{background:#666;color:#fff}
+.blue{background:#4285f4;color:#fff}
+.whatsapp{background:#25d366;color:#fff}
+
+.full{width:100%}
+
+.grid{
+ display:grid;
+ grid-template-columns:1fr 1fr;
+ gap:10px
+}
+
 .stats{
  display:grid;
  grid-template-columns:1fr 1fr;
  gap:10px
 }
 .stat{
- background:white;
+ background:#fff;
  padding:15px;
  text-align:center;
  border-radius:10px;
@@ -69,8 +86,9 @@ button{
 .stat b{
  display:block;
  font-size:21px;
- margin-top:5px
+ margin-top:6px
 }
+
 .summary{
  display:grid;
  grid-template-columns:repeat(3,1fr);
@@ -82,20 +100,24 @@ button{
  text-align:center;
  border-radius:8px
 }
-.grid{
- display:grid;
- grid-template-columns:1fr 1fr;
- gap:10px
+
+label{
+ display:block;
+ font-weight:bold;
+ margin-top:4px
 }
+
 .delivery{
  border-top:1px solid #ddd;
- padding:15px 0
+ padding:16px 0
 }
 .delivery:first-child{border-top:0}
+
 .badge{
  display:inline-block;
- padding:5px 8px;
- border-radius:6px
+ padding:5px 9px;
+ border-radius:6px;
+ font-weight:bold
 }
 .paid{
  background:#d1e7dd;
@@ -105,16 +127,44 @@ button{
  background:#fff0c2;
  color:#6b5200
 }
+
 .error{
  background:#ffe5e5;
- color:#a00;
+ color:#a00000;
+ padding:12px;
+ border-radius:8px;
+ white-space:pre-wrap
+}
+
+.success{
+ background:#d1e7dd;
+ color:#075c35;
  padding:12px;
  border-radius:8px
 }
-.hidden{display:none}
-.actions{margin-top:10px}
+
+.actions{
+ margin-top:10px
+}
+
+hr{
+ border:0;
+ border-top:1px solid #ddd;
+ margin:18px 0
+}
+
+.small{
+ font-size:13px;
+ color:#666
+}
+
 @media(max-width:600px){
- .grid,.summary{grid-template-columns:1fr}
+ .grid,.summary{
+  grid-template-columns:1fr
+ }
+ .stats{
+  grid-template-columns:1fr 1fr
+ }
 }
 </style>
 </head>
@@ -123,79 +173,170 @@ button{
 
 <header>
 <h1>🚚 Plus Medico Delivery</h1>
-<div id="userInfo"></div>
+<div id="headerUser"></div>
 </header>
 
 <div class="container">
 
 <!-- LOGIN -->
 
-<div id="loginBox" class="card">
+<div id="loginScreen" class="card">
 
 <h2>🔐 Login</h2>
 
-<input id="loginEmail" type="email" placeholder="Email">
+<label>Email</label>
+<input
+ id="loginEmail"
+ type="email"
+ autocomplete="email"
+ placeholder="Enter email">
 
-<input id="loginPassword" type="password" placeholder="Password">
+<label>Password</label>
+<input
+ id="loginPassword"
+ type="password"
+ autocomplete="current-password"
+ placeholder="Enter password">
 
-<button class="primary" onclick="login()">🔐 Login</button>
+<button
+ type="button"
+ class="primary full"
+ id="loginBtn">
+🔐 Login
+</button>
 
-<button onclick="showSignup()">📝 Create Account</button>
+<button
+ type="button"
+ class="gray full"
+ id="showSignupBtn">
+📝 Create Account
+</button>
+
+<div id="loginMessage"></div>
 
 </div>
 
 
-<!-- SIGNUP -->
+<!-- SIGN UP -->
 
-<div id="signupBox" class="card hidden">
+<div id="signupScreen" class="card hidden">
 
 <h2>📝 Create Account</h2>
 
-<input id="signupEmail" type="email" placeholder="Email">
+<label>Email</label>
+<input
+ id="signupEmail"
+ type="email"
+ autocomplete="email"
+ placeholder="Enter email">
 
-<input id="signupPassword" type="password" placeholder="Password">
+<label>Password</label>
+<input
+ id="signupPassword"
+ type="password"
+ autocomplete="new-password"
+ placeholder="Minimum 6 characters">
 
-<button class="primary" onclick="signup()">Create Account</button>
+<button
+ type="button"
+ class="green full"
+ id="signupBtn">
+📝 Create Account
+</button>
 
-<button onclick="showLogin()">⬅️ Back to Login</button>
+<button
+ type="button"
+ class="gray full"
+ id="showLoginBtn">
+⬅️ Back to Login
+</button>
+
+<div id="signupMessage"></div>
 
 </div>
 
 
-<!-- FIRM -->
+<!-- FIRM SCREEN -->
 
-<div id="firmBox" class="card hidden">
-
-<h2>🏢 Your Firms</h2>
-
-<select id="firmSelect"></select>
-
-<button class="primary" onclick="selectFirm()">Open Firm</button>
-
-<hr>
-
-<h3>➕ Create New Firm</h3>
-
-<input id="firmName" placeholder="Firm name">
-
-<button class="green" onclick="createFirm()">Create Firm</button>
-
-<button class="red" onclick="logout()">🚪 Logout</button>
-
-</div>
-
-
-<!-- APP -->
-
-<div id="app" class="hidden">
+<div id="firmScreen" class="hidden">
 
 <div class="card">
 
-<h2>🏢 <span id="currentFirm"></span></h2>
+<h2>👤 Account</h2>
 
-<button class="gray" onclick="changeFirm()">🔄 Change Firm</button>
+<p id="accountEmail"></p>
 
-<button class="red" onclick="logout()">🚪 Logout</button>
+<button
+ type="button"
+ class="red"
+ id="logoutBtn1">
+🚪 Logout
+</button>
+
+</div>
+
+
+<div class="card">
+
+<h2>🏢 Select Firm</h2>
+
+<select id="firmSelect">
+<option value="">Select Firm</option>
+</select>
+
+<button
+ type="button"
+ class="primary full"
+ id="openFirmBtn">
+🏢 Open Firm
+</button>
+
+</div>
+
+
+<div class="card">
+
+<h2>➕ Create New Firm</h2>
+
+<input
+ id="newFirmName"
+ placeholder="Example: Plus Medico">
+
+<button
+ type="button"
+ class="green full"
+ id="createFirmBtn">
+➕ Create Firm
+</button>
+
+<div id="firmMessage"></div>
+
+</div>
+
+</div>
+
+
+<!-- MAIN APP -->
+
+<div id="appScreen" class="hidden">
+
+<div class="card">
+
+<h2>🏢 <span id="firmTitle"></span></h2>
+
+<button
+ type="button"
+ class="gray"
+ id="changeFirmBtn">
+🔄 Change Firm
+</button>
+
+<button
+ type="button"
+ class="red"
+ id="logoutBtn2">
+🚪 Logout
+</button>
 
 </div>
 
@@ -206,28 +347,28 @@ button{
 
 <div class="stat">
 📦 Total Deliveries
-<b id="count">0</b>
+<b id="statCount">0</b>
 </div>
 
 <div class="stat">
 💰 Total Amount
-<b id="total">₹0</b>
+<b id="statTotal">₹0.00</b>
 </div>
 
 <div class="stat">
 ✅ Paid
-<b id="paid">₹0</b>
+<b id="statPaid">₹0.00</b>
 </div>
 
 <div class="stat">
 ⚠️ Unpaid
-<b id="unpaid">₹0</b>
+<b id="statUnpaid">₹0.00</b>
 </div>
 
 </div>
 
 
-<!-- PAYMENT -->
+<!-- PAYMENT SUMMARY -->
 
 <div class="card">
 
@@ -237,17 +378,17 @@ button{
 
 <div>
 💵 Cash
-<b id="cash">₹0</b>
+<b id="sumCash">₹0.00</b>
 </div>
 
 <div>
 📱 Online
-<b id="online">₹0</b>
+<b id="sumOnline">₹0.00</b>
 </div>
 
 <div>
 📒 Credit
-<b id="credit">₹0</b>
+<b id="sumCredit">₹0.00</b>
 </div>
 
 </div>
@@ -265,46 +406,52 @@ button{
 
 <div>
 <label>📅 Date</label>
-<input type="date" id="date">
+<input type="date" id="filterDate">
 </div>
 
 <div>
 <label>💳 Payment Status</label>
-<select id="payment">
-<option>All</option>
-<option>Paid</option>
-<option>Unpaid</option>
+<select id="filterPayment">
+<option value="All">All</option>
+<option value="Paid">Paid</option>
+<option value="Unpaid">Unpaid</option>
 </select>
 </div>
 
 <div>
 <label>💰 Payment Type</label>
-<select id="type">
-<option>All</option>
-<option>Cash</option>
-<option>Online</option>
-<option>Credit</option>
+<select id="filterType">
+<option value="All">All</option>
+<option value="Cash">Cash</option>
+<option value="Online">Online</option>
+<option value="Credit">Credit</option>
 </select>
 </div>
 
 <div>
 <label>🚚 Delivery Status</label>
-<select id="status">
-<option>All</option>
-<option>Pending</option>
-<option>Out for Delivery</option>
-<option>Delivered</option>
-<option>Cancelled</option>
+<select id="filterStatus">
+<option value="All">All</option>
+<option value="Pending">Pending</option>
+<option value="Out for Delivery">Out for Delivery</option>
+<option value="Delivered">Delivered</option>
+<option value="Cancelled">Cancelled</option>
 </select>
 </div>
 
 </div>
 
-<button class="primary" onclick="setToday()">📅 Today</button>
+<button type="button" class="primary" id="todayBtn">
+📅 Today
+</button>
 
-<button onclick="setYesterday()">⬅️ Yesterday</button>
+<button type="button" id="yesterdayBtn">
+⬅️ Yesterday
+</button>
 
-<button class="gray" onclick="resetFilter()">🔄 Reset</button>
+<button type="button" class="gray" id="resetBtn">
+🔄 Reset
+</button>
 
 </div>
 
@@ -316,52 +463,77 @@ button{
 <h2>➕ New Delivery</h2>
 
 <label>Delivery Boy Name</label>
-<input id="boy" list="boyList" placeholder="Delivery boy name">
 
-<datalist id="boyList"></datalist>
+<input
+ id="deliveryBoy"
+ list="deliveryBoyList"
+ placeholder="Delivery boy name">
+
+<datalist id="deliveryBoyList"></datalist>
 
 
 <label>Customer Name</label>
-<input id="customer" list="customerList" placeholder="Customer name">
+
+<input
+ id="customerName"
+ list="customerList"
+ placeholder="Customer name">
 
 <datalist id="customerList"></datalist>
 
 
 <label>Customer Mobile</label>
-<input id="mobile" placeholder="Mobile number">
+
+<input
+ id="customerMobile"
+ type="tel"
+ placeholder="Mobile number">
 
 
 <label>Customer Address</label>
-<textarea id="address" placeholder="Customer address"></textarea>
+
+<textarea
+ id="customerAddress"
+ placeholder="Customer address"></textarea>
 
 
 <label>Order Amount</label>
-<input id="amount" type="number" placeholder="₹ Order amount">
+
+<input
+ id="orderAmount"
+ type="number"
+ min="0"
+ step="0.01"
+ placeholder="₹ Order amount">
 
 
 <label>Customer Se Received Amount</label>
-<input id="received" type="number" placeholder="₹ Received amount">
+
+<input
+ id="receivedAmount"
+ type="number"
+ min="0"
+ step="0.01"
+ placeholder="₹ Received amount">
 
 
 <p>
 🔄 Change:
-<b id="change">₹0</b>
+<b id="changeAmount">₹0.00</b>
 </p>
 
 <p>
-⚠️ Balance:
-<b id="balance">₹0</b>
+⚠️ Balance / Unpaid:
+<b id="balanceAmount">₹0.00</b>
 </p>
 
 
 <label>Payment Type</label>
 
-<select id="newType">
+<select id="newPaymentType">
 
 <option value="Cash">💵 Cash</option>
-
 <option value="Online">📱 Online</option>
-
 <option value="Credit">📒 Credit</option>
 
 </select>
@@ -369,10 +541,9 @@ button{
 
 <label>Payment Status</label>
 
-<select id="newPayment">
+<select id="newPaymentStatus">
 
 <option value="Unpaid">Unpaid</option>
-
 <option value="Paid">Paid</option>
 
 </select>
@@ -380,38 +551,41 @@ button{
 
 <label>Delivery Status</label>
 
-<select id="newStatus">
+<select id="newDeliveryStatus">
 
 <option value="Pending">Pending</option>
-
 <option value="Out for Delivery">Out for Delivery</option>
-
 <option value="Delivered">Delivered</option>
-
 <option value="Cancelled">Cancelled</option>
 
 </select>
 
 
-<button class="primary" style="width:100%" onclick="saveDelivery()">
-
+<button
+ type="button"
+ class="primary full"
+ id="saveDeliveryBtn">
 💾 Save Delivery
-
 </button>
+
+<div id="saveMessage"></div>
 
 </div>
 
 
-<!-- LIST -->
+<!-- DELIVERY LIST -->
 
 <div class="card">
 
 <h2>📦 Delivery List</h2>
 
-<input id="search"
-placeholder="🔎 Search customer / delivery boy / mobile">
+<input
+ id="searchBox"
+ placeholder="🔎 Search customer / delivery boy / mobile">
 
-<div id="list">Loading...</div>
+<div id="deliveryList">
+Loading...
+</div>
 
 </div>
 
@@ -422,20 +596,28 @@ placeholder="🔎 Search customer / delivery boy / mobile">
 
 <h2>💾 Backup & Restore</h2>
 
-<p>
-अपने firm का delivery data सुरक्षित रखने के लिए backup download करें।
+<p class="small">
+Backup इस device में JSON file के रूप में download होगा।
+इसे सुरक्षित जगह पर रखें।
 </p>
 
-<button class="primary" onclick="downloadBackup()">
+<button
+ type="button"
+ class="primary full"
+ id="downloadBackupBtn">
 ⬇️ Download Backup
 </button>
 
+<label>
+🔄 Restore Backup
+</label>
+
 <input
-type="file"
-id="restoreFile"
-accept=".json"
-onchange="restoreBackup(event)"
->
+ id="restoreFile"
+ type="file"
+ accept=".json">
+
+<div id="backupMessage"></div>
 
 </div>
 
@@ -446,6 +628,10 @@ onchange="restoreBackup(event)"
 
 <script>
 
+/* =========================
+   SUPABASE CONFIG
+========================= */
+
 const SUPABASE_URL =
 "https://rnqxgovsabngikhvbeal.supabase.co";
 
@@ -453,538 +639,1952 @@ const SUPABASE_KEY =
 "sb_publishable_a8jbA7w9mCgHhM_6Q_bCRQ_CXUss_5b";
 
 
-let user=null;
-let firms=[];
-let currentFirm=null;
-let deliveries=[];
+/* =========================
+   GLOBAL VARIABLES
+========================= */
+
+let currentUser = null;
+let currentSession = null;
+let firms = [];
+let currentFirm = null;
+let deliveries = [];
 
 
-async function api(path,options={}){
+/* =========================
+   SHORTCUT
+========================= */
 
-const session =
-JSON.parse(localStorage.getItem("supabase_session")||"null");
-
-const token =
-session?.access_token || SUPABASE_KEY;
-
-const response =
-await fetch(
-SUPABASE_URL+"/rest/v1/"+path,
-{
-...options,
-headers:{
-"apikey":SUPABASE_KEY,
-"Authorization":"Bearer "+token,
-"Content-Type":"application/json",
-"Prefer":"return=representation"
-}
-}
-);
-
-const text=await response.text();
-
-if(!response.ok)
-throw new Error(text);
-
-return text?JSON.parse(text):[];
-
+function $(id){
+ return document.getElementById(id);
 }
 
 
-async function auth(path,body){
+/* =========================
+   MESSAGE
+========================= */
 
-const response=
-await fetch(
-SUPABASE_URL+"/auth/v1/"+path,
-{
-method:"POST",
-headers:{
-"apikey":SUPABASE_KEY,
-"Content-Type":"application/json"
-},
-body:JSON.stringify(body)
-}
-);
+function message(id,text,type="error"){
 
-const data=await response.json();
+ const el=$(id);
 
-if(!response.ok)
-throw new Error(data.msg||data.message||"Authentication error");
+ if(!el)return;
 
-return data;
+ el.className=type;
+
+ el.textContent=text;
 
 }
 
 
-function showSignup(){
+/* =========================
+   AUTH API
+========================= */
 
-loginBox.classList.add("hidden");
-signupBox.classList.remove("hidden");
+async function authRequest(endpoint,body){
+
+ const response =
+ await fetch(
+ SUPABASE_URL+"/auth/v1/"+endpoint,
+ {
+  method:"POST",
+  headers:{
+   "apikey":SUPABASE_KEY,
+   "Content-Type":"application/json"
+  },
+  body:JSON.stringify(body)
+ }
+ );
+
+ const data=await response.json();
+
+ if(!response.ok){
+
+  throw new Error(
+   data.msg ||
+   data.message ||
+   data.error_description ||
+   "Authentication failed"
+  );
+
+ }
+
+ return data;
+}
+
+
+/* =========================
+   REST API
+========================= */
+
+async function rest(path,options={}){
+
+ const token =
+ currentSession?.access_token ||
+ SUPABASE_KEY;
+
+ const headers={
+  "apikey":SUPABASE_KEY,
+  "Authorization":"Bearer "+token,
+  "Content-Type":"application/json",
+  "Prefer":"return=representation"
+ };
+
+ const response=
+ await fetch(
+  SUPABASE_URL+"/rest/v1/"+path,
+  {
+   ...options,
+   headers:{
+    ...headers,
+    ...(options.headers||{})
+   }
+  }
+ );
+
+ const text=await response.text();
+
+ if(!response.ok){
+
+  throw new Error(
+   text || "Database request failed"
+  );
+
+ }
+
+ if(!text)return [];
+
+ try{
+  return JSON.parse(text);
+ }catch{
+  return [];
+ }
 
 }
 
 
-function showLogin(){
+/* =========================
+   SHOW LOGIN
+========================= */
 
-signupBox.classList.add("hidden");
-loginBox.classList.remove("hidden");
+function showLoginScreen(){
+
+ $("loginScreen").classList.remove("hidden");
+ $("signupScreen").classList.add("hidden");
+ $("firmScreen").classList.add("hidden");
+ $("appScreen").classList.add("hidden");
 
 }
 
+
+/* =========================
+   SHOW SIGNUP
+========================= */
+
+function showSignupScreen(){
+
+ $("loginScreen").classList.add("hidden");
+ $("signupScreen").classList.remove("hidden");
+ $("firmScreen").classList.add("hidden");
+ $("appScreen").classList.add("hidden");
+
+}
+
+
+/* =========================
+   SHOW FIRM
+========================= */
+
+function showFirmScreen(){
+
+ $("loginScreen").classList.add("hidden");
+ $("signupScreen").classList.add("hidden");
+ $("firmScreen").classList.remove("hidden");
+ $("appScreen").classList.add("hidden");
+
+}
+
+
+/* =========================
+   SHOW APP
+========================= */
+
+function showApp(){
+
+ $("loginScreen").classList.add("hidden");
+ $("signupScreen").classList.add("hidden");
+ $("firmScreen").classList.add("hidden");
+ $("appScreen").classList.remove("hidden");
+
+}
+
+
+/* =========================
+   SIGN UP
+========================= */
 
 async function signup(){
 
-try{
+ try{
 
-const email=
-document.getElementById("signupEmail").value.trim();
+  const email=
+   $("signupEmail").value.trim();
 
-const password=
-document.getElementById("signupPassword").value;
+  const password=
+   $("signupPassword").value;
 
-if(!email||!password){
+  if(!email){
 
-alert("Email और Password डालें");
+   message(
+    "signupMessage",
+    "Email डालें"
+   );
 
-return;
+   return;
+  }
+
+  if(password.length<6){
+
+   message(
+    "signupMessage",
+    "Password कम से कम 6 characters का होना चाहिए"
+   );
+
+   return;
+  }
+
+  $("signupBtn").disabled=true;
+
+  const data=
+   await authRequest(
+    "signup",
+    {
+     email:email,
+     password:password
+    }
+   );
+
+  if(data.access_token){
+
+   currentSession=data;
+
+   currentUser=data.user;
+
+   saveSession();
+
+   await afterLogin();
+
+  }else{
+
+   message(
+    "signupMessage",
+    "✅ Account बन गया। अब Login करें।",
+    "success"
+   );
+
+   $("signupEmail").value="";
+   $("signupPassword").value="";
+
+  }
+
+ }catch(error){
+
+  message(
+   "signupMessage",
+   "❌ "+error.message
+  );
+
+ }finally{
+
+  $("signupBtn").disabled=false;
+
+ }
 
 }
 
-const data=
-await auth("signup",{
-email,
-password
-});
 
-if(data.access_token){
-
-saveSession(data);
-
-await startApp();
-
-}else{
-
-alert(
-"Account बन गया। अब Login करें।"
-);
-
-showLogin();
-
-}
-
-}catch(e){
-
-alert("❌ "+e.message);
-
-}
-
-}
-
+/* =========================
+   LOGIN
+========================= */
 
 async function login(){
 
-try{
+ try{
 
-const email=
-document.getElementById("loginEmail").value.trim();
+  const email=
+   $("loginEmail").value.trim();
 
-const password=
-document.getElementById("loginPassword").value;
+  const password=
+   $("loginPassword").value;
 
-const data=
-await auth("token?grant_type=password",{
-email,
-password
-});
+  if(!email||!password){
 
-saveSession(data);
+   message(
+    "loginMessage",
+    "Email और Password दोनों डालें"
+   );
 
-await startApp();
+   return;
+  }
 
-}catch(e){
+  $("loginBtn").disabled=true;
 
-alert("❌ Login failed: "+e.message);
+  const data=
+   await authRequest(
+    "token?grant_type=password",
+    {
+     email:email,
+     password:password
+    }
+   );
 
-}
+  currentSession=data;
 
-}
+  currentUser=data.user;
 
+  saveSession();
 
-function saveSession(data){
+  await afterLogin();
 
-localStorage.setItem(
-"supabase_session",
-JSON.stringify(data)
-);
+ }catch(error){
 
-}
+  message(
+   "loginMessage",
+   "❌ Login failed: "+error.message
+  );
 
+ }finally{
 
-async function startApp(){
+  $("loginBtn").disabled=false;
 
-const session=
-JSON.parse(
-localStorage.getItem("supabase_session")
-);
-
-if(!session?.user){
-
-showLogin();
-
-return;
-
-}
-
-user=session.user;
-
-loginBox.classList.add("hidden");
-signupBox.classList.add("hidden");
-
-userInfo.textContent=
-"👤 "+(user.email||"");
-
-await loadFirms();
+ }
 
 }
 
+
+/* =========================
+   SAVE SESSION
+========================= */
+
+function saveSession(){
+
+ if(currentSession){
+
+  localStorage.setItem(
+   "plus_medico_session",
+   JSON.stringify(currentSession)
+  );
+
+ }
+
+}
+
+
+/* =========================
+   LOAD SESSION
+========================= */
+
+function loadSession(){
+
+ try{
+
+  const saved=
+   localStorage.getItem(
+    "plus_medico_session"
+   );
+
+  if(!saved)return false;
+
+  const data=JSON.parse(saved);
+
+  if(!data.access_token||!data.user)
+   return false;
+
+  currentSession=data;
+
+  currentUser=data.user;
+
+  return true;
+
+ }catch{
+
+  return false;
+
+ }
+
+}
+
+
+/* =========================
+   AFTER LOGIN
+========================= */
+
+async function afterLogin(){
+
+ $("headerUser").textContent=
+  "👤 "+(currentUser.email||"");
+
+ $("accountEmail").textContent=
+  "📧 "+(currentUser.email||"");
+
+ await loadFirms();
+
+}
+
+
+/* =========================
+   LOAD FIRMS
+========================= */
 
 async function loadFirms(){
 
-try{
+ try{
 
-firms=
-await api(
-"firms?select=*&order=created_at.desc"
-);
+  firms=
+   await rest(
+    "firms?select=*&order=created_at.desc"
+   );
 
-firmSelect.innerHTML="";
+  const select=$("firmSelect");
 
-if(!firms.length){
+  select.innerHTML=
+   '<option value="">Select Firm</option>';
 
-firmBox.classList.remove("hidden");
+  firms.forEach(f=>{
 
-return;
+   const option=
+    document.createElement("option");
+
+   option.value=f.id;
+
+   option.textContent=f.name;
+
+   select.appendChild(option);
+
+  });
+
+  showFirmScreen();
+
+ }catch(error){
+
+  showFirmScreen();
+
+  message(
+   "firmMessage",
+   "❌ Firm loading error:\n"+
+   error.message
+  );
+
+ }
 
 }
 
-firms.forEach(f=>{
 
-const option=
-document.createElement("option");
-
-option.value=f.id;
-
-option.textContent=f.name;
-
-firmSelect.appendChild(option);
-
-});
-
-firmBox.classList.remove("hidden");
-
-}catch(e){
-
-alert("❌ Firm loading error: "+e.message);
-
-}
-
-}
-
+/* =========================
+   CREATE FIRM
+========================= */
 
 async function createFirm(){
 
-try{
+ try{
 
-const name=
-document.getElementById("firmName").value.trim();
+  const name=
+   $("newFirmName").value.trim();
 
-if(!name){
+  if(!name){
 
-alert("Firm name डालें");
+   message(
+    "firmMessage",
+    "Firm name डालें"
+   );
 
-return;
+   return;
+  }
+
+  $("createFirmBtn").disabled=true;
+
+  const result=
+   await rest(
+    "rpc/create_firm",
+    {
+     method:"POST",
+     body:JSON.stringify({
+      firm_name:name
+     })
+    }
+   );
+
+  $("newFirmName").value="";
+
+  message(
+   "firmMessage",
+   "✅ Firm created successfully",
+   "success"
+  );
+
+  await loadFirms();
+
+  const created=
+   Array.isArray(result)
+   ?result[0]
+   :result;
+
+  if(created?.id){
+
+   currentFirm=created;
+
+   $("firmSelect").value=
+    created.id;
+
+   await openCurrentFirm();
+
+  }
+
+ }catch(error){
+
+  message(
+   "firmMessage",
+   "❌ Firm create error:\n"+
+   error.message
+  );
+
+ }finally{
+
+  $("createFirmBtn").disabled=false;
+
+ }
 
 }
 
-const result=
-await api(
-"rpc/create_firm",
-{
-method:"POST",
-body:JSON.stringify({
-firm_name:name
-})
-}
-);
 
-alert("✅ Firm created");
+/* =========================
+   OPEN FIRM
+========================= */
 
-document.getElementById("firmName").value="";
+async function openFirm(){
 
-await loadFirms();
+ const id=
+  $("firmSelect").value;
 
-}catch(e){
+ if(!id){
 
-alert("❌ "+e.message);
+  message(
+   "firmMessage",
+   "पहले Firm select करें"
+  );
 
-}
+  return;
+ }
 
-}
+ currentFirm=
+  firms.find(f=>String(f.id)===String(id));
 
+ if(!currentFirm){
 
-async function selectFirm(){
+  message(
+   "firmMessage",
+   "Firm नहीं मिली"
+  );
 
-const id=
-document.getElementById("firmSelect").value;
+  return;
+ }
 
-currentFirm=
-firms.find(f=>f.id===id);
-
-if(!currentFirm)return;
-
-firmBox.classList.add("hidden");
-
-app.classList.remove("hidden");
-
-currentFirm.textContent=
-currentFirm.name;
-
-await loadDeliveries();
+ await openCurrentFirm();
 
 }
 
+
+async function openCurrentFirm(){
+
+ if(!currentFirm)return;
+
+ $("firmTitle").textContent=
+  currentFirm.name;
+
+ showApp();
+
+ await loadDeliveries();
+
+}
+
+
+/* =========================
+   CHANGE FIRM
+========================= */
 
 function changeFirm(){
 
-app.classList.add("hidden");
+ currentFirm=null;
 
-firmBox.classList.remove("hidden");
-
-}
-
-
-async function logout(){
-
-localStorage.removeItem("supabase_session");
-
-location.reload();
+ showFirmScreen();
 
 }
 
 
-function value(id){
+/* =========================
+   LOGOUT
+========================= */
 
-return document.getElementById(id).value.trim();
+function logout(){
+
+ localStorage.removeItem(
+  "plus_medico_session"
+ );
+
+ currentSession=null;
+ currentUser=null;
+ currentFirm=null;
+
+ location.reload();
 
 }
 
+
+/* =========================
+   MONEY CALCULATION
+========================= */
 
 function updateMoney(){
 
-const amount=
-Number(value("amount"))||0;
+ const amount=
+  Number($("orderAmount").value)||0;
 
-const received=
-Number(value("received"))||0;
+ const received=
+  Number($("receivedAmount").value)||0;
 
-change.textContent=
-"₹"+Math.max(received-amount,0).toFixed(2);
+ const change=
+  Math.max(received-amount,0);
 
-balance.textContent=
-"₹"+Math.max(amount-received,0).toFixed(2);
+ const balance=
+  Math.max(amount-received,0);
+
+ $("changeAmount").textContent=
+  "₹"+change.toFixed(2);
+
+ $("balanceAmount").textContent=
+  "₹"+balance.toFixed(2);
 
 }
 
 
-amount.addEventListener("input",updateMoney);
-received.addEventListener("input",updateMoney);
-
+/* =========================
+   SAVE DELIVERY
+========================= */
 
 async function saveDelivery(){
 
-try{
+ try{
 
-if(!currentFirm){
+  if(!currentFirm){
 
-alert("Firm select करें");
+   message(
+    "saveMessage",
+    "पहले Firm select करें"
+   );
 
-return;
+   return;
+  }
+
+  const boy=
+   $("deliveryBoy").value.trim();
+
+  const customer=
+   $("customerName").value.trim();
+
+  const mobile=
+   $("customerMobile").value.trim();
+
+  const address=
+   $("customerAddress").value.trim();
+
+  const amount=
+   Number($("orderAmount").value)||0;
+
+  const received=
+   Number($("receivedAmount").value)||0;
+
+  const type=
+   $("newPaymentType").value;
+
+  let payment=
+   $("newPaymentStatus").value;
+
+  const status=
+   $("newDeliveryStatus").value;
+
+  if(!boy){
+
+   message(
+    "saveMessage",
+    "Delivery Boy Name डालें"
+   );
+
+   return;
+  }
+
+  if(!customer){
+
+   message(
+    "saveMessage",
+    "Customer Name डालें"
+   );
+
+   return;
+  }
+
+  if(!address){
+
+   message(
+    "saveMessage",
+    "Customer Address डालें"
+   );
+
+   return;
+  }
+
+  if(amount<=0){
+
+   message(
+    "saveMessage",
+    "Order Amount सही डालें"
+   );
+
+   return;
+  }
+
+  if(received>amount){
+
+   message(
+    "saveMessage",
+    "Received amount Order Amount से ज्यादा नहीं हो सकता"
+   );
+
+   return;
+  }
+
+  if(received>=amount)
+   payment="Paid";
+
+  const change=
+   Math.max(received-amount,0);
+
+  $("saveDeliveryBtn").disabled=true;
+
+  await rest(
+   "deliveries",
+   {
+    method:"POST",
+    body:JSON.stringify({
+
+     firm_id:currentFirm.id,
+
+     delivery_boy_name:boy,
+
+     customer_name:customer,
+
+     customer_mobile:mobile,
+
+     customer_address:address,
+
+     order_amount:amount,
+
+     total_amount:amount,
+
+     received_amount:received,
+
+     change_amount:change,
+
+     payment_type:type,
+
+     payment_status:payment,
+
+     delivery_status:status,
+
+     delivery_date:
+      new Date().toISOString()
+
+    })
+   }
+  );
+
+  message(
+   "saveMessage",
+   "✅ Delivery Saved Successfully",
+   "success"
+  );
+
+  clearDeliveryForm();
+
+  await loadDeliveries();
+
+ }catch(error){
+
+  message(
+   "saveMessage",
+   "❌ Save Error:\n"+
+   error.message
+  );
+
+ }finally{
+
+  $("saveDeliveryBtn").disabled=false;
+
+ }
 
 }
 
-const boy=value("boy");
-const customer=value("customer");
-const mobile=value("mobile");
-const address=value("address");
 
-const amountValue=
-Number(value("amount"))||0;
+/* =========================
+   CLEAR FORM
+========================= */
 
-const receivedValue=
-Number(value("received"))||0;
+function clearDeliveryForm(){
 
-if(!boy||!customer||!address||amountValue<=0){
+ $("deliveryBoy").value="";
+ $("customerName").value="";
+ $("customerMobile").value="";
+ $("customerAddress").value="";
+ $("orderAmount").value="";
+ $("receivedAmount").value="";
 
-alert(
-"Delivery Boy, Customer, Address और Amount भरें"
-);
+ $("newPaymentType").value="Cash";
+ $("newPaymentStatus").value="Unpaid";
+ $("newDeliveryStatus").value="Pending";
 
-return;
-
-}
-
-const balance=
-Math.max(amountValue-receivedValue,0);
-
-const change=
-Math.max(receivedValue-amountValue,0);
-
-let paymentStatus=
-value("newPayment");
-
-if(balance===0)
-paymentStatus="Paid";
-
-await api(
-"deliveries",
-{
-method:"POST",
-body:JSON.stringify({
-
-firm_id:currentFirm.id,
-
-delivery_boy_name:boy,
-
-customer_name:customer,
-
-customer_mobile:mobile,
-
-customer_address:address,
-
-order_amount:amountValue,
-
-total_amount:amountValue,
-
-received_amount:receivedValue,
-
-change_amount:change,
-
-payment_type:value("newType"),
-
-payment_status:paymentStatus,
-
-delivery_status:value("newStatus"),
-
-delivery_date:new Date().toISOString()
-
-})
-}
-);
-
-alert("✅ Delivery Saved");
-
-[
-"boy",
-"customer",
-"mobile",
-"address",
-"amount",
-"received"
-].forEach(id=>{
-document.getElementById(id).value="";
-});
-
-updateMoney();
-
-await loadDeliveries();
-
-}catch(e){
-
-alert("❌ Save Error: "+e.message);
+ updateMoney();
 
 }
 
-}
 
+/* =========================
+   LOAD DELIVERIES
+========================= */
 
 async function loadDeliveries(){
 
-if(!currentFirm)return;
+ if(!currentFirm)return;
 
-try{
+ try{
 
-deliveries=
-await api(
-"deliveries?firm_id=eq."+currentFirm.id+
-"&select=*&order=delivery_date.desc"
+  deliveries=
+   await rest(
+    "deliveries?firm_id=eq."+
+    encodeURIComponent(currentFirm.id)+
+    "&select=*&order=delivery_date.desc"
+   );
+
+  render();
+
+  updateSuggestions();
+
+ }catch(error){
+
+  $("deliveryList").innerHTML=
+   '<div class="error">❌ Database Error\n\n'+
+   escapeHTML(error.message)+
+   '</div>';
+
+ }
+
+}
+
+
+/* =========================
+   FILTER
+========================= */
+
+function getFilteredDeliveries(){
+
+ const search=
+  $("searchBox").value.trim().toLowerCase();
+
+ const date=
+  $("filterDate").value;
+
+ const payment=
+  $("filterPayment").value;
+
+ const type=
+  $("filterType").value;
+
+ const status=
+  $("filterStatus").value;
+
+
+ return deliveries.filter(d=>{
+
+  const text=
+   (
+    (d.customer_name||"")+
+    " "+
+    (d.delivery_boy_name||"")+
+    " "+
+    (d.customer_mobile||"")+
+    " "+
+    (d.customer_address||"")
+   ).toLowerCase();
+
+  if(search&&!text.includes(search))
+   return false;
+
+
+  if(date){
+
+   const dt=
+    new Date(d.delivery_date);
+
+   const localDate=
+    dt.getFullYear()+"-"+
+    String(dt.getMonth()+1).padStart(2,"0")+"-"+
+    String(dt.getDate()).padStart(2,"0");
+
+   if(localDate!==date)
+    return false;
+
+  }
+
+
+  if(
+   payment!=="All" &&
+   d.payment_status!==payment
+  )
+   return false;
+
+
+  if(
+   type!=="All" &&
+   d.payment_type!==type
+  )
+   return false;
+
+
+  if(
+   status!=="All" &&
+   d.delivery_status!==status
+  )
+   return false;
+
+
+  return true;
+
+ });
+
+}
+
+
+/* =========================
+   RENDER
+========================= */
+
+function render(){
+
+ const filtered=
+  getFilteredDeliveries();
+
+ let total=0;
+ let paidAmount=0;
+ let unpaidAmount=0;
+ let cash=0;
+ let online=0;
+ let credit=0;
+
+
+ filtered.forEach(d=>{
+
+  const amount=
+   Number(
+    d.total_amount||
+    d.order_amount||
+    0
+   );
+
+  total+=amount;
+
+  if(d.payment_status==="Paid")
+   paidAmount+=amount;
+  else
+   unpaidAmount+=amount;
+
+  if(d.payment_type==="Cash")
+   cash+=amount;
+
+  if(d.payment_type==="Online")
+   online+=amount;
+
+  if(d.payment_type==="Credit")
+   credit+=amount;
+
+ });
+
+
+ $("statCount").textContent=
+  filtered.length;
+
+ $("statTotal").textContent=
+  "₹"+total.toFixed(2);
+
+ $("statPaid").textContent=
+  "₹"+paidAmount.toFixed(2);
+
+ $("statUnpaid").textContent=
+  "₹"+unpaidAmount.toFixed(2);
+
+ $("sumCash").textContent=
+  "₹"+cash.toFixed(2);
+
+ $("sumOnline").textContent=
+  "₹"+online.toFixed(2);
+
+ $("sumCredit").textContent=
+  "₹"+credit.toFixed(2);
+
+
+ if(!filtered.length){
+
+  $("deliveryList").innerHTML=
+   "<p style='text-align:center'>📦 No deliveries found</p>";
+
+  return;
+
+ }
+
+
+ $("deliveryList").innerHTML=
+  filtered.map(makeDeliveryHTML).join("");
+
+}
+
+
+/* =========================
+   DELIVERY HTML
+========================= */
+
+function makeDeliveryHTML(d){
+
+ const amount=
+  Number(
+   d.total_amount||
+   d.order_amount||
+   0
+  );
+
+ const received=
+  Number(d.received_amount||0);
+
+ const balance=
+  Math.max(amount-received,0);
+
+ const change=
+  Number(d.change_amount||0);
+
+ const date=
+  d.delivery_date
+  ?new Date(d.delivery_date)
+   .toLocaleString("en-IN")
+  :"-";
+
+
+ const paymentClass=
+  d.payment_status==="Paid"
+  ?"paid"
+  :"unpaid";
+
+
+ return `
+
+ <div class="delivery">
+
+ <h3>
+ 👤 ${escapeHTML(d.customer_name||"-")}
+ </h3>
+
+ <p>
+ 👨‍✈️ Delivery Boy:
+ <b>${escapeHTML(d.delivery_boy_name||"-")}</b>
+ </p>
+
+ <p>
+ 📞 ${escapeHTML(d.customer_mobile||"-")}
+ </p>
+
+ <p>
+ 📍 ${escapeHTML(d.customer_address||"-")}
+ </p>
+
+ <p>
+ 📅 ${escapeHTML(date)}
+ </p>
+
+ <p>
+ 💰 Order Amount:
+ <b>₹${amount.toFixed(2)}</b>
+ </p>
+
+ <p>
+ 💵 Received:
+ <b>₹${received.toFixed(2)}</b>
+ </p>
+
+ <p>
+ 🔄 Change:
+ <b>₹${change.toFixed(2)}</b>
+ </p>
+
+ <p>
+ ⚠️ Balance:
+ <b>₹${balance.toFixed(2)}</b>
+ </p>
+
+ <p>
+ 💳 Payment Status:
+ <span class="badge ${paymentClass}">
+ ${escapeHTML(d.payment_status||"Unpaid")}
+ </span>
+ </p>
+
+ <p>
+ 💰 Payment Type:
+ <b>${escapeHTML(d.payment_type||"-")}</b>
+ </p>
+
+ <p>
+ 🚚 Delivery Status:
+ <b>${escapeHTML(d.delivery_status||"-")}</b>
+ </p>
+
+
+ <div class="actions">
+
+ <button
+ class="whatsapp"
+ onclick="callCustomer('${escapeJS(d.customer_mobile||"")}')">
+ 📞 Call
+ </button>
+
+ <button
+ class="blue"
+ onclick="openMap('${escapeJS(d.customer_address||"")}')">
+ 📍 Map
+ </button>
+
+
+ ${
+  balance>0
+  ?
+  `<button
+   class="green"
+   onclick="collectPayment('${escapeJS(d.id)}')">
+   💳 Paid / Collect
+   </button>`
+  :""
+ }
+
+
+ ${
+  d.delivery_status!=="Delivered"
+  ?
+  `<button
+   class="green"
+   onclick="markDelivered('${escapeJS(d.id)}')">
+   ✅ Delivered
+   </button>`
+  :""
+ }
+
+
+ <button
+ class="red"
+ onclick="deleteDelivery('${escapeJS(d.id)}')">
+ 🗑 Delete
+ </button>
+
+ </div>
+
+ </div>
+
+ `;
+
+}
+
+
+/* =========================
+   COLLECT PAYMENT
+========================= */
+
+async function collectPayment(id){
+
+ const delivery=
+  deliveries.find(
+   d=>String(d.id)===String(id)
+  );
+
+ if(!delivery)return;
+
+ const amount=
+  Number(
+   delivery.total_amount||
+   delivery.order_amount||
+   0
+  );
+
+ const oldReceived=
+  Number(delivery.received_amount||0);
+
+ const balance=
+  Math.max(amount-oldReceived,0);
+
+ if(balance<=0){
+
+  alert("यह delivery already Paid है");
+
+  return;
+
+ }
+
+
+ const paymentType=
+  prompt(
+   "Payment Type चुनें:\n\n"+
+   "1 = Cash\n"+
+   "2 = Online\n"+
+   "3 = Credit"
+  );
+
+
+ let type="";
+
+ if(paymentType==="1")
+  type="Cash";
+
+ else if(paymentType==="2")
+  type="Online";
+
+ else if(paymentType==="3")
+  type="Credit";
+
+ else{
+
+  alert("❌ सही option चुनें");
+
+  return;
+
+ }
+
+
+ const entered=
+  prompt(
+   "Received Amount डालें\n"+
+   "Balance: ₹"+
+   balance.toFixed(2)
+  );
+
+
+ const received=
+  Number(entered);
+
+ if(!received||received<=0){
+
+  alert("❌ सही amount डालें");
+
+  return;
+
+ }
+
+
+ if(received>balance){
+
+  alert(
+   "Received amount balance से ज्यादा है"
+  );
+
+  return;
+
+ }
+
+
+ const finalReceived=
+  oldReceived+received;
+
+ const finalBalance=
+  Math.max(
+   amount-finalReceived,
+   0
+  );
+
+ const finalStatus=
+  finalBalance===0
+  ?"Paid"
+  :"Unpaid";
+
+
+ try{
+
+  await rest(
+   "deliveries?id=eq."+
+   encodeURIComponent(id),
+   {
+    method:"PATCH",
+    body:JSON.stringify({
+
+     received_amount:
+      finalReceived,
+
+     payment_type:
+      type,
+
+     payment_status:
+      finalStatus,
+
+     change_amount:0
+
+    })
+   }
+  );
+
+  alert(
+   finalStatus==="Paid"
+   ?"✅ Payment Paid"
+   :"✅ Payment Updated"
+  );
+
+  await loadDeliveries();
+
+ }catch(error){
+
+  alert(
+   "❌ Payment Error:\n"+
+   error.message
+  );
+
+ }
+
+}
+
+
+/* =========================
+   MARK DELIVERED
+========================= */
+
+async function markDelivered(id){
+
+ try{
+
+  await rest(
+   "deliveries?id=eq."+
+   encodeURIComponent(id),
+   {
+    method:"PATCH",
+    body:JSON.stringify({
+     delivery_status:"Delivered"
+    })
+   }
+  );
+
+  await loadDeliveries();
+
+ }catch(error){
+
+  alert(
+   "❌ "+error.message
+  );
+
+ }
+
+}
+
+
+/* =========================
+   DELETE
+========================= */
+
+async function deleteDelivery(id){
+
+ if(!confirm(
+  "क्या आप यह delivery delete करना चाहते हैं?"
+ ))
+  return;
+
+
+ try{
+
+  await rest(
+   "deliveries?id=eq."+
+   encodeURIComponent(id),
+   {
+    method:"DELETE"
+   }
+  );
+
+  await loadDeliveries();
+
+ }catch(error){
+
+  alert(
+   "❌ Delete Error:\n"+
+   error.message
+  );
+
+ }
+
+}
+
+
+/* =========================
+   CALL
+========================= */
+
+function callCustomer(number){
+
+ if(number)
+  window.location.href=
+   "tel:"+number;
+
+}
+
+
+/* =========================
+   MAP
+========================= */
+
+function openMap(address){
+
+ if(!address)return;
+
+ window.open(
+  "https://www.google.com/maps/search/?api=1&query="+
+  encodeURIComponent(address),
+  "_blank"
+ );
+
+}
+
+
+/* =========================
+   SUGGESTIONS
+========================= */
+
+function updateSuggestions(){
+
+ const boys=
+  [...new Set(
+   deliveries
+   .map(d=>d.delivery_boy_name)
+   .filter(Boolean)
+  )];
+
+ const customers=
+  [...new Set(
+   deliveries
+   .map(d=>d.customer_name)
+   .filter(Boolean)
+  )];
+
+
+ $("deliveryBoyList").innerHTML=
+  boys.map(
+   x=>`<option value="${escapeHTML(x)}">`
+  ).join("");
+
+
+ $("customerList").innerHTML=
+  customers.map(
+   x=>`<option value="${escapeHTML(x)}">`
+  ).join("");
+
+}
+
+
+/* =========================
+   CUSTOMER AUTO FILL
+========================= */
+
+$("customerName").addEventListener(
+ "change",
+ function(){
+
+  const name=
+   this.value.trim().toLowerCase();
+
+  const found=
+   deliveries.find(
+    d=>
+     (d.customer_name||"")
+     .trim()
+     .toLowerCase()===name
+   );
+
+  if(found){
+
+   $("customerMobile").value=
+    found.customer_mobile||"";
+
+   $("customerAddress").value=
+    found.customer_address||"";
+
+  }
+
+ }
 );
 
-show();
 
-updateSuggestions();
+/* =========================
+   FILTER BUTTONS
+========================= */
 
-}catch(e){
+function setToday(){
 
-list.innerHTML=
-"<div class='error'>"+e.message+"</div>";
+ const d=new Date();
 
-}
+ $("filterDate").value=
+  d.getFullYear()+"-"+
+  String(d.getMonth()+1).padStart(2,"0")+"-"+
+  String(d.getDate()).padStart(2,"0");
 
-}
-
-
-function show(){
-
-const search=
-value("search").toLowerCase();
-
-const date=value("date");
-
-const payment=value("payment");
-
-const type=value("type");
-
-const status=value("status");
-
-
-const filtered=
-deliveries.filter(d=>{
-
-const text=
-(
-(d.customer_name||"")+" "+
-(d.delivery_boy_name||"")+" "+
-(d.customer_mobile||"")
-).toLowerCase();
-
-if(search&&!text.includes(search))
-return false;
-
-
-if(date){
-
-const x=
-new Date(d.delivery_date);
-
-const local=
-x.getFullYear()+"-"+
-String(x.getMonth()+1).padStart(2,"0")+"-"+
-String(x.getDate()).padStart(2,"0");
-
-if(local!==date)
-return false;
+ render();
 
 }
 
 
-if(payment!=="All"&&
-d.payment_status!==payment)
-return false;
+function setYesterday(){
+
+ const d=new Date();
+
+ d.setDate(d.getDate()-1);
+
+ $("filterDate").value=
+  d.getFullYear()+"-"+
+  String(d.getMonth()+1).padStart(2,"0")+"-"+
+  String(d.getDate()).padStart(2,"0");
+
+ render();
+
+}
 
 
-if(type!=="All"&&
-d.payment_type!==type)
-return false;
+function resetFilters(){
+
+ $("filterDate").value="";
+ $("filterPayment").value="All";
+ $("filterType").value="All";
+ $("filterStatus").value="All";
+ $("searchBox").value="";
+
+ render();
+
+}
 
 
-if(status!
+/* =========================
+   BACKUP
+========================= */
+
+function downloadBackup(){
+
+ if(!currentFirm){
+
+  message(
+   "backupMessage",
+   "पहले Firm select करें"
+  );
+
+  return;
+ }
+
+
+ const backup={
+
+  backup_version:1,
+
+  firm:{
+   id:currentFirm.id,
+   name:currentFirm.name
+  },
+
+  deliveries:deliveries,
+
+  created_at:
+   new Date().toISOString()
+
+ };
+
+
+ const blob=
+  new Blob(
+   [
+    JSON.stringify(
+     backup,
+     null,
+     2
+    )
+   ],
+   {
+    type:"application/json"
+   }
+  );
+
+
+ const url=
+  URL.createObjectURL(blob);
+
+ const a=
+  document.createElement("a");
+
+ a.href=url;
+
+ a.download=
+  safeFileName(
+   currentFirm.name
+  )+
+  "_delivery_backup.json";
+
+ document.body.appendChild(a);
+
+ a.click();
+
+ a.remove();
+
+ URL.revokeObjectURL(url);
+
+
+ message(
+  "backupMessage",
+  "✅ Backup downloaded successfully",
+  "success"
+ );
+
+}
+
+
+/* =========================
+   RESTORE
+========================= */
+
+async function restoreBackup(event){
+
+ const file=
+  event.target.files[0];
+
+ if(!file)return;
+
+ if(!currentFirm){
+
+  alert("पहले Firm select करें");
+
+  event.target.value="";
+
+  return;
+
+ }
+
+
+ try{
+
+  const text=
+   await file.text();
+
+  const backup=
+   JSON.parse(text);
+
+
+  if(
+   !backup||
+   !Array.isArray(backup.deliveries)
+  ){
+
+   throw new Error(
+    "Invalid backup file"
+   );
+
+  }
+
+
+  if(
+   backup.firm?.name &&
+   backup.firm.name!==currentFirm.name
+  ){
+
+   if(!confirm(
+    "यह backup दूसरी firm का लग रहा है.\n\n"+
+    "फिर भी restore करना है?"
+   )){
+
+    event.target.value="";
+
+    return;
+
+   }
+
+  }
+
+
+  if(!confirm(
+   backup.deliveries.length+
+   " deliveries restore होंगी.\n\nContinue?"
+  )){
+
+   event.target.value="";
+
+   return;
+
+  }
+
+
+  let added=0;
+
+
+  for(
+   const original of backup.deliveries
+  ){
+
+   const d={
+    ...original
+   };
+
+
+   delete d.id;
+   delete d.created_at;
+   delete d.updated_at;
+
+
+   d.firm_id=
+    currentFirm.id;
+
+
+   await rest(
+    "deliveries",
+    {
+     method:"POST",
+     body:JSON.stringify(d)
+    }
+   );
+
+
+   added++;
+
+  }
+
+
+  message(
+   "backupMessage",
+   "✅ "+added+
+   " deliveries restored successfully",
+   "success"
+  );
+
+
+  event.target.value="";
+
+  await loadDeliveries();
+
+
+ }catch(error){
+
+  message(
+   "backupMessage",
+   "❌ Restore Error:\n"+
+   error.message
+  );
+
+  event.target.value="";
+
+ }
+
+}
+
+
+/* =========================
+   SAFE FILE NAME
+========================= */
+
+function safeFileName(name){
+
+ return String(name||"firm")
+  .replace(/[^a-z0-9_-]+/gi,"_");
+
+}
+
+
+/* =========================
+   ESCAPE HTML
+========================= */
+
+function escapeHTML(value){
+
+ return String(value||"")
+  .replace(/&/g,"&amp;")
+  .replace(/</g,"&lt;")
+  .replace(/>/g,"&gt;")
+  .replace(/"/g,"&quot;")
+  .replace(/'/g,"&#039;");
+
+}
+
+
+/* =========================
+   ESCAPE JS
+========================= */
+
+function escapeJS(value){
+
+ return String(value||"")
+  .replace(/\\/g,"\\\\")
+  .replace(/'/g,"\\'")
+  .replace(/\r/g,"")
+  .replace(/\n/g," ");
+
+}
+
+
+/* =========================
+   EVENTS
+========================= */
+
+$("showSignupBtn").addEventListener(
+ "click",
+ showSignupScreen
+);
+
+$("showLoginBtn").addEventListener(
+ "click",
+ showLoginScreen
+);
+
+$("signupBtn").addEventListener(
+ "click",
+ signup
+);
+
+$("loginBtn").addEventListener(
+ "click",
+ login
+);
+
+$("createFirmBtn").addEventListener(
+ "click",
+ createFirm
+);
+
+$("openFirmBtn").addEventListener(
+ "click",
+ openFirm
+);
+
+$("changeFirmBtn").addEventListener(
+ "click",
+ changeFirm
+);
+
+$("logoutBtn1").addEventListener(
+ "click",
+ logout
+);
+
+$("logoutBtn2").addEventListener(
+ "click",
+ logout
+);
+
+$("saveDeliveryBtn").addEventListener(
+ "click",
+ saveDelivery
+);
+
+$("orderAmount").addEventListener(
+ "input",
+ updateMoney
+);
+
+$("receivedAmount").addEventListener(
+ "input",
+ updateMoney
+);
+
+$("todayBtn").addEventListener(
+ "click",
+ setToday
+);
+
+$("yesterdayBtn").addEventListener(
+ "click",
+ setYesterday
+);
+
+$("resetBtn").addEventListener(
+ "click",
+ resetFilters
+);
+
+$("searchBox").addEventListener(
+ "input",
+ render
+);
+
+$("filterDate").addEventListener(
+ "change",
+ render
+);
+
+$("filterPayment").addEventListener(
+ "change",
+ render
+);
+
+$("filterType").addEventListener(
+ "change",
+ render
+);
+
+$("filterStatus").addEventListener(
+ "change",
+ render
+);
+
+$("downloadBackupBtn").addEventListener(
+ "click",
+ downloadBackup
+);
+
+$("restoreFile").addEventListener(
+ "change",
+ restoreBackup
+);
+
+
+/* =========================
+   START
+========================= */
+
+(async function(){
+
+ const loggedIn=
+  loadSession();
+
+ if(loggedIn){
+
+  try{
+
+   await afterLogin();
+
+  }catch(error){
+
+   console.error(error);
+
+   localStorage.removeItem(
+    "plus_medico_session"
+   );
+
+   showLoginScreen();
+
+  }
+
+ }else{
+
+  showLoginScreen();
+
+ }
+
+})();
+
+</script>
+
+</body>
+</html>
