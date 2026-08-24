@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Plus Medico Delivery</title>
+
+<style>
+*{box-sizing:border-box;font-family:Arial}
+body{margin:0;background:#f2f5f9;color:#222}
+header{background:#1769aa;color:white;padding:18px;text-align:center}
+.container{max-width:900px;margin:auto;padding:15px}
+.card{background:white;padding:18px;border-radius:12px;margin-bottom:15px;box-shadow:0 2px 8px #ddd}
+input,textarea,select{width:100%;padding:12px;margin:6px 0 12px;border:1px solid #ccc;border-radius:8px;font-size:16px}
+button{border:0;padding:12px 16px;border-radius:8px;cursor:pointer}
+.save{width:100%;background:#1769aa;color:white;font-size:17px}
+.delivery{border-top:1px solid #ddd;padding-top:15px;margin-top:15px}
+.actions{display:flex;gap:8px;flex-wrap:wrap}
+.call{background:#25d366;color:white}
+.map{background:#4285f4;color:white}
+.done{background:#198754;color:white}
+.del{background:#dc3545;color:white}
+.stats{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.stat{background:white;padding:15px;border-radius:10px;text-align:center}
+.stat b{display:block;font-size:22px;margin-top:5px}
+.change{background:#eef7ff;padding:12px;border-radius:8px;margin-bottom:12px}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>🚚 Plus Medico Delivery</h1>
+</header>
+
+<div class="container">
+
+<div class="stats">
+<div class="stat">Total Deliveries<b id="count">0</b></div>
+<div class="stat">Total Amount<b id="total">₹0</b></div>
+<div class="stat">Paid<b id="paid">₹0</b></div>
+<div class="stat">Unpaid<b id="unpaid">₹0</b></div>
+</div>
+
+<div class="card">
+<h2>➕ New Delivery</h2>
+
+<label>Delivery Boy Name</label>
+<input id="boy" placeholder="Delivery boy name">
+
+<label>Customer Name</label>
+<input id="customer" placeholder="Customer name">
+
+<label>Customer Mobile</label>
+<input id="mobile" type="tel" placeholder="Mobile number">
+
+<label>Customer Address</label>
+<textarea id="address" placeholder="Customer address"></textarea>
+
+<label>Order Amount</label>
+<input id="order" type="number" placeholder="₹ Order amount" oninput="calculate()">
+
+<label>Customer Se Received Amount</label>
+<input id="received" type="number" placeholder="₹ Received amount" oninput="calculate()">
+
+<div class="change">
+🔄 Change to Give: <b id="change">₹0</b>
+</div>
+
+<label>Payment</label>
+<select id="payment">
+<option value="Unpaid">Unpaid</option>
+<option value="Paid">Paid</option>
+</select>
+
+<label>Delivery Status</label>
+<select id="status">
+<option>Pending</option>
+<option>Out for Delivery</option>
+<option>Delivered</option>
+<option>Cancelled</option>
+</select>
+
+<button class="save" onclick="saveDelivery()">💾 Save Delivery</button>
+</div>
+
+<div class="card">
+<h2>📦 Delivery List</h2>
+<div id="list">Loading...</div>
+</div>
+
+</div>
+
+<script>
+
+const SUPABASE_URL =
+"https://rnqxgovsabngikhvbeal.supabase.co";
+
+const SUPABASE_KEY =
+"sb_publishable_a8jbA7w9mCgHhM_6Q_bCRQ_CXUss_5b";
+
+
+function calculate(){
+
+let order =
+Number(document.getElementById("order").value)||0;
+
+let received =
+Number(document.getElementById("received").value)||0;
+
+let change =
+Math.max(received-order,0);
+
+document.getElementById("change").innerText =
+"₹"+change.toFixed(2);
+
+}
+
+
+async function api(url,options={}){
+
+let response=await fetch(
+SUPABASE_URL+"/rest/v1/"+url,
+{
+...options,
+headers:{
+"apikey":SUPABASE_KEY,
+"Content-Type":"application/json",
+"Prefer":"return=representation",
+...(options.headers||{})
+}
+});
+
+if(!response.ok){
+
+let error=await response.text();
+
+throw new Error(error);
+}
+
+let text=await response.text();
+
+return text?JSON.parse(text):[];
+
+}
+
+
+async function saveDelivery(){
+
+try{
+
+let boy=document.getElementById("boy").value.trim();
+let customer=document.getElementById("customer").value.trim();
+let mobile=document.getElementById("mobile").value.trim();
+let address=document.getElementById("address").value.trim();
+
+let order=Number(document.getElementById("order").value)||0;
+let received=Number(document.getElementById("received").value)||0;
+
+let change=Math.max(received-order,0);
+
+let payment=document.getElementById("payment").value;
+let status=document.getElementById("status").value;
+
+if(!boy||!customer||!address){
+
+alert("Delivery Boy, Customer Name aur Address bharein.");
+return;
+
+}
+
+await api("deliveries",{
+method:"POST",
+body:JSON.stringify({
+
+delivery_boy_name:boy,
+customer_name:customer,
+customer_mobile:mobile,
+customer_address:address,
+order_amount:order,
+received_amount:received,
+change_amount:change,
+total_amount:order,
+payment_status:payment,
+delivery_status:status,
+delivery_date:new Date().toISOString()
+
+})
+});
+
+alert("✅ Delivery Saved");
+
+document.getElementById("boy").value="";
+document.getElementById("customer").value="";
+document.getElementById("mobile").value="";
+document.getElementById("address").value="";
+document.getElementById("order").value="";
+document.getElementById("received").value="";
+document.getElementById("change").innerText="₹0";
+
+loadDeliveries();
+
+}catch(error){
+
+alert("Error: "+error.message);
+
+}
+
+}
+
+
+async function loadDeliveries(){
+
+try{
+
+let data=await api(
+"deliveries?select=*&order=delivery_date.desc"
+);
+
+let html="";
+
+let total=0;
+let paid=0;
+let unpaid=0;
+
+data.forEach(d=>{
+
+let amount=Number(d.total_amount)||0;
+
+total+=amount;
+
+if(d.payment_status==="Paid")
+paid+=amount;
+else
+unpaid+=amount;
+
+html+=`
+
+<div class="delivery">
+
+<h3>👤 ${escapeHtml(d.customer_name)}</h3>
+
+<p>👨‍✈️ Delivery Boy: <b>${escapeHtml(d.delivery_boy_name)}</b></p>
+
+<p>📞 ${escapeHtml(d.customer_mobile||"-")}</p>
+
+<p>📍 ${escapeHtml(d.customer_address)}</p>
+
+<p>💰 Order Amount: <b>₹${amount.toFixed(2)}</b></p>
+
+<p>💵 Received: <b>₹${Number(d.received_amount||0).toFixed(2)}</b></p>
+
+<p>🔄 Change: <b>₹${Number(d.change_amount||0).toFixed(2)}</b></p>
+
+<p>💳 Payment: <b>${escapeHtml(d.payment_status)}</b></p>
+
+<p>🚚 Status: <b>${escapeHtml(d.delivery_status)}</b></p>
+
+<div class="actions">
+
+${
+d.customer_mobile
+?
+`<button class="call"
+onclick="location.href='tel:${escapeAttribute(d.customer_mobile)}'">
+📞 Call
+</button>`
+:""
+}
+
+<button class="map"
+onclick="openMap('${escapeAttribute(d.customer_address)}')">
+📍 Map
+</button>
+
+${
+d.delivery_status!=="Delivered"
+?
+`<button class="done"
+onclick="markDelivered('${d.id}')">
+✅ Delivered
+</button>`
+:""
+}
+
+<button class="del"
+onclick="deleteDelivery('${d.id}')">
+🗑 Delete
+  </button>
