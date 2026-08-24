@@ -6,210 +6,271 @@
 
 <title>Plus Medico Delivery</title>
 
+<link rel="manifest" href="./manifest.webmanifest">
+<meta name="theme-color" content="#1769AA">
+
 <style>
+
 *{
-  box-sizing:border-box;
-  font-family:Arial,sans-serif;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
 }
 
 body{
-  margin:0;
-  background:#f2f5f9;
-  color:#222;
+margin:0;
+background:#f2f5f9;
+color:#222;
 }
 
 header{
-  background:#1769aa;
-  color:white;
-  padding:18px;
-  text-align:center;
+background:#1769aa;
+color:white;
+padding:18px;
+text-align:center;
 }
 
 header h1{
-  margin:0;
-  font-size:24px;
+margin:0;
+font-size:24px;
 }
 
 .container{
-  max-width:900px;
-  margin:auto;
-  padding:15px;
+max-width:1000px;
+margin:auto;
+padding:15px;
 }
 
 .stats{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:10px;
-  margin-bottom:15px;
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:10px;
+margin-bottom:15px;
 }
 
 .stat{
-  background:white;
-  padding:15px;
-  border-radius:10px;
-  text-align:center;
-  box-shadow:0 2px 8px #ddd;
+background:white;
+padding:15px;
+border-radius:10px;
+text-align:center;
+box-shadow:0 2px 8px #ddd;
 }
 
 .stat span{
-  display:block;
-  font-size:14px;
+display:block;
+font-size:14px;
 }
 
 .stat b{
-  display:block;
-  font-size:22px;
-  margin-top:5px;
+display:block;
+font-size:21px;
+margin-top:5px;
 }
 
-.paymentSummary{
-  background:white;
-  padding:15px;
-  border-radius:10px;
-  margin-bottom:15px;
-  box-shadow:0 2px 8px #ddd;
+.summary{
+background:white;
+padding:15px;
+border-radius:12px;
+margin-bottom:15px;
+box-shadow:0 2px 8px #ddd;
 }
 
-.paymentSummary h3{
-  margin-top:0;
+.summary h2{
+margin-top:0;
+font-size:20px;
 }
 
-.summaryRow{
-  display:flex;
-  justify-content:space-between;
-  padding:7px 0;
-  border-bottom:1px solid #eee;
+.summaryGrid{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:8px;
+}
+
+.summaryItem{
+background:#f5f7fa;
+padding:12px;
+border-radius:8px;
+text-align:center;
+}
+
+.summaryItem b{
+display:block;
+font-size:18px;
+margin-top:5px;
 }
 
 .card{
-  background:white;
-  padding:18px;
-  border-radius:12px;
-  margin-bottom:15px;
-  box-shadow:0 2px 8px #ddd;
+background:white;
+padding:18px;
+border-radius:12px;
+margin-bottom:15px;
+box-shadow:0 2px 8px #ddd;
 }
 
 label{
-  display:block;
-  font-weight:bold;
-  margin-top:10px;
+display:block;
+font-weight:bold;
+margin-top:10px;
 }
 
 input,
 textarea,
 select{
-  width:100%;
-  padding:12px;
-  margin-top:5px;
-  border:1px solid #ccc;
-  border-radius:8px;
-  font-size:16px;
+width:100%;
+padding:12px;
+margin-top:5px;
+border:1px solid #ccc;
+border-radius:8px;
+font-size:16px;
+background:white;
 }
 
 textarea{
-  min-height:80px;
+min-height:80px;
 }
 
 button{
-  border:0;
-  border-radius:8px;
-  padding:12px 15px;
-  cursor:pointer;
-  font-size:15px;
+border:0;
+border-radius:8px;
+padding:12px 15px;
+cursor:pointer;
+font-size:15px;
 }
 
 .save{
-  width:100%;
-  margin-top:15px;
-  background:#1769aa;
-  color:white;
-  font-size:17px;
+width:100%;
+margin-top:15px;
+background:#1769aa;
+color:white;
+font-size:17px;
+}
+
+.filterGrid{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:10px;
+}
+
+.filterButtons{
+display:flex;
+gap:8px;
+flex-wrap:wrap;
+margin-top:12px;
+}
+
+.reset{
+background:#6c757d;
+color:white;
 }
 
 .changeBox{
-  margin-top:12px;
-  padding:12px;
-  background:#eef7ff;
-  border-radius:8px;
+margin-top:12px;
+padding:12px;
+background:#eef7ff;
+border-radius:8px;
 }
 
 .balanceBox{
-  margin-top:8px;
-  padding:12px;
-  background:#fff3cd;
-  border-radius:8px;
+margin-top:8px;
+padding:12px;
+background:#fff3cd;
+border-radius:8px;
 }
 
 .search{
-  margin-bottom:15px;
+margin-bottom:15px;
 }
 
 .delivery{
-  border-top:1px solid #ddd;
-  padding:15px 0;
+border-top:1px solid #ddd;
+padding:15px 0;
+}
+
+.delivery:first-child{
+border-top:0;
 }
 
 .delivery h3{
-  margin-top:0;
+margin-top:0;
 }
 
 .actions{
-  display:flex;
-  gap:8px;
-  flex-wrap:wrap;
-  margin-top:12px;
+display:flex;
+gap:8px;
+flex-wrap:wrap;
+margin-top:12px;
 }
 
 .call{
-  background:#25d366;
-  color:white;
+background:#25d366;
+color:white;
 }
 
 .map{
-  background:#4285f4;
-  color:white;
+background:#4285f4;
+color:white;
 }
 
 .done{
-  background:#198754;
-  color:white;
+background:#198754;
+color:white;
 }
 
 .collect{
-  background:#ff9800;
-  color:white;
+background:#ff9800;
+color:white;
 }
 
 .delete{
-  background:#dc3545;
-  color:white;
+background:#dc3545;
+color:white;
 }
 
 .badge{
-  display:inline-block;
-  padding:5px 8px;
-  border-radius:6px;
-  font-size:13px;
-  background:#eee;
+display:inline-block;
+padding:5px 8px;
+border-radius:6px;
+font-size:13px;
+background:#eee;
+}
+
+.paidBadge{
+background:#d1e7dd;
+color:#0f5132;
+}
+
+.unpaidBadge{
+background:#fff3cd;
+color:#664d03;
+}
+
+.creditBadge{
+background:#e2d9f3;
+color:#432874;
 }
 
 .loading{
-  text-align:center;
-  padding:20px;
-}
-
-.error{
-  color:#dc3545;
-  background:#fff0f0;
-  padding:12px;
-  border-radius:8px;
+text-align:center;
+padding:20px;
 }
 
 .empty{
-  text-align:center;
-  padding:20px;
-  color:#666;
+text-align:center;
+padding:20px;
+color:#666;
 }
+
+@media(max-width:600px){
+
+.summaryGrid{
+grid-template-columns:repeat(2,1fr);
+}
+
+.filterGrid{
+grid-template-columns:1fr;
+}
+
+}
+
 </style>
 </head>
 
@@ -250,23 +311,166 @@ button{
 
 <!-- PAYMENT SUMMARY -->
 
-<div class="paymentSummary">
+<div class="summary">
 
-<h3>💳 Payment Summary</h3>
+<h2>💳 Payment Summary</h2>
 
-<div class="summaryRow">
-<span>💵 Cash</span>
+<div class="summaryGrid">
+
+<div class="summaryItem">
+💵 Cash
 <b id="cashTotal">₹0</b>
 </div>
 
-<div class="summaryRow">
-<span>📱 Online</span>
+<div class="summaryItem">
+📱 Online
 <b id="onlineTotal">₹0</b>
 </div>
 
-<div class="summaryRow">
-<span>📒 Credit</span>
+<div class="summaryItem">
+📒 Credit
 <b id="creditTotal">₹0</b>
+</div>
+
+</div>
+
+</div>
+
+
+<!-- FILTER -->
+
+<div class="card">
+
+<h2>🔎 Delivery Filter</h2>
+
+<div class="filterGrid">
+
+<div>
+
+<label>📅 Select Date</label>
+
+<input
+type="date"
+id="filterDate"
+onchange="showDeliveries()"
+>
+
+</div>
+
+
+<div>
+
+<label>💳 Payment Status</label>
+
+<select
+id="filterPaymentStatus"
+onchange="showDeliveries()"
+>
+
+<option value="All">
+All
+</option>
+
+<option value="Paid">
+✅ Paid
+</option>
+
+<option value="Unpaid">
+⚠️ Unpaid
+</option>
+
+</select>
+
+</div>
+
+
+<div>
+
+<label>💰 Payment Type</label>
+
+<select
+id="filterPaymentType"
+onchange="showDeliveries()"
+>
+
+<option value="All">
+All
+</option>
+
+<option value="Cash">
+💵 Cash
+</option>
+
+<option value="Online">
+📱 Online
+</option>
+
+<option value="Credit">
+📒 Credit
+</option>
+
+</select>
+
+</div>
+
+
+<div>
+
+<label>🚚 Delivery Status</label>
+
+<select
+id="filterStatus"
+onchange="showDeliveries()"
+>
+
+<option value="All">
+All
+</option>
+
+<option value="Pending">
+Pending
+</option>
+
+<option value="Out for Delivery">
+Out for Delivery
+</option>
+
+<option value="Delivered">
+Delivered
+</option>
+
+<option value="Cancelled">
+Cancelled
+</option>
+
+</select>
+
+</div>
+
+</div>
+
+
+<div class="filterButtons">
+
+<button
+onclick="setToday()"
+>
+📅 Today
+</button>
+
+<button
+onclick="setYesterday()"
+>
+⬅️ Yesterday
+</button>
+
+<button
+class="reset"
+onclick="resetFilters()"
+>
+🔄 Reset Filter
+</button>
+
 </div>
 
 </div>
@@ -279,18 +483,40 @@ button{
 <h2>➕ New Delivery</h2>
 
 <label>Delivery Boy Name</label>
-<input id="boy" placeholder="Delivery boy name">
+
+<input
+id="boy"
+placeholder="Delivery boy name"
+>
+
 
 <label>Customer Name</label>
-<input id="customer" placeholder="Customer name">
+
+<input
+id="customer"
+placeholder="Customer name"
+>
+
 
 <label>Customer Mobile</label>
-<input id="mobile" type="tel" placeholder="Mobile number">
+
+<input
+id="mobile"
+type="tel"
+placeholder="Mobile number"
+>
+
 
 <label>Customer Address</label>
-<textarea id="address" placeholder="Customer address"></textarea>
+
+<textarea
+id="address"
+placeholder="Customer address"
+></textarea>
+
 
 <label>Order Amount</label>
+
 <input
 id="order"
 type="number"
@@ -298,7 +524,9 @@ placeholder="₹ Order amount"
 oninput="calculateMoney()"
 >
 
+
 <label>Customer Se Received Amount</label>
+
 <input
 id="received"
 type="number"
@@ -306,14 +534,22 @@ placeholder="₹ Received amount"
 oninput="calculateMoney()"
 >
 
+
 <div class="changeBox">
+
 🔄 Change to Give:
+
 <b id="change">₹0</b>
+
 </div>
 
+
 <div class="balanceBox">
+
 ⚠️ Balance / Unpaid:
+
 <b id="balance">₹0</b>
+
 </div>
 
 
@@ -321,19 +557,32 @@ oninput="calculateMoney()"
 
 <select id="paymentType">
 
-<option value="Cash">💵 Cash</option>
-<option value="Online">📱 Online</option>
-<option value="Credit">📒 Credit</option>
+<option value="Cash">
+💵 Cash
+</option>
+
+<option value="Online">
+📱 Online
+</option>
+
+<option value="Credit">
+📒 Credit
+</option>
 
 </select>
 
 
 <label>Payment Status</label>
 
-<select id="paymentStatus">
+<select id="payment">
 
-<option value="Unpaid">Unpaid</option>
-<option value="Paid">Paid</option>
+<option value="Unpaid">
+Unpaid
+</option>
+
+<option value="Paid">
+Paid
+</option>
 
 </select>
 
@@ -342,15 +591,29 @@ oninput="calculateMoney()"
 
 <select id="status">
 
-<option value="Pending">Pending</option>
-<option value="Out for Delivery">Out for Delivery</option>
-<option value="Delivered">Delivered</option>
-<option value="Cancelled">Cancelled</option>
+<option value="Pending">
+Pending
+</option>
+
+<option value="Out for Delivery">
+Out for Delivery
+</option>
+
+<option value="Delivered">
+Delivered
+</option>
+
+<option value="Cancelled">
+Cancelled
+</option>
 
 </select>
 
 
-<button class="save" onclick="saveDelivery()">
+<button
+class="save"
+onclick="saveDelivery()"
+>
 💾 Save Delivery
 </button>
 
@@ -371,7 +634,11 @@ oninput="showDeliveries()"
 >
 
 <div id="list">
-<div class="loading">Loading...</div>
+
+<div class="loading">
+Loading...
+</div>
+
 </div>
 
 </div>
@@ -382,7 +649,7 @@ oninput="showDeliveries()"
 <script>
 
 /* =========================
-   SUPABASE
+SUPABASE
 ========================= */
 
 const SUPABASE_URL =
@@ -391,867 +658,85 @@ const SUPABASE_URL =
 const SUPABASE_KEY =
 "sb_publishable_a8jbA7w9mCgHhM_6Q_bCRQ_CXUss_5b";
 
-let deliveries = [];
+
+let deliveries=[];
 
 
 /* =========================
-   API
+API
 ========================= */
 
-async function api(endpoint, options = {}){
+async function api(endpoint,options={}){
 
-  const response = await fetch(
-    SUPABASE_URL + "/rest/v1/" + endpoint,
-    {
-      ...options,
-      headers:{
-        "apikey":SUPABASE_KEY,
-        "Authorization":"Bearer " + SUPABASE_KEY,
-        "Content-Type":"application/json",
-        "Prefer":"return=representation",
-        ...(options.headers || {})
-      }
-    }
-  );
+const response=await fetch(
 
-  const text = await response.text();
+SUPABASE_URL+
+"/rest/v1/"+
+endpoint,
 
-  if(!response.ok){
-    throw new Error(text || "Supabase error");
-  }
+{
+...options,
 
-  return text ? JSON.parse(text) : [];
+headers:{
+
+"apikey":SUPABASE_KEY,
+
+"Authorization":
+"Bearer "+SUPABASE_KEY,
+
+"Content-Type":
+"application/json",
+
+"Prefer":
+"return=representation",
+
+...(options.headers||{})
+
+}
+
+}
+
+);
+
+const text=await response.text();
+
+if(!response.ok){
+
+throw new Error(text);
+
+}
+
+return text?
+JSON.parse(text):
+[];
+
 }
 
 
 /* =========================
-   MONEY
+MONEY
 ========================= */
 
 function calculateMoney(){
 
-  const order =
-    Number(document.getElementById("order").value) || 0;
+const order=
+Number(
+document.getElementById("order").value
+)||0;
 
-  const received =
-    Number(document.getElementById("received").value) || 0;
+const received=
+Number(
+document.getElementById("received").value
+)||0;
 
-  const change =
-    Math.max(received - order,0);
 
-  const balance =
-    Math.max(order - received,0);
+const change=
+Math.max(received-order,0);
 
-  document.getElementById("change").innerText =
-    "₹" + change.toFixed(2);
+const balance=
+Math.max(order-received,0);
 
-  document.getElementById("balance").innerText =
-    "₹" + balance.toFixed(2);
-}
 
-
-/* =========================
-   SAVE
-========================= */
-
-async function saveDelivery(){
-
-  try{
-
-    const boy =
-      document.getElementById("boy").value.trim();
-
-    const customer =
-      document.getElementById("customer").value.trim();
-
-    const mobile =
-      document.getElementById("mobile").value.trim();
-
-    const address =
-      document.getElementById("address").value.trim();
-
-    const order =
-      Number(document.getElementById("order").value) || 0;
-
-    const received =
-      Number(document.getElementById("received").value) || 0;
-
-    const change =
-      Math.max(received - order,0);
-
-    const balance =
-      Math.max(order - received,0);
-
-    let paymentStatus =
-      document.getElementById("paymentStatus").value;
-
-    const paymentType =
-      document.getElementById("paymentType").value;
-
-    const status =
-      document.getElementById("status").value;
-
-
-    if(!boy){
-      alert("Delivery Boy Name bharein");
-      return;
-    }
-
-    if(!customer){
-      alert("Customer Name bharein");
-      return;
-    }
-
-    if(!address){
-      alert("Customer Address bharein");
-      return;
-    }
-
-    if(order <= 0){
-      alert("Order Amount bharein");
-      return;
-    }
-
-
-    /* Automatic payment */
-
-    if(received >= order){
-      paymentStatus = "Paid";
-    }else{
-      paymentStatus = "Unpaid";
-    }
-
-
-    const data = {
-
-      delivery_boy_name:boy,
-
-      customer_name:customer,
-
-      customer_mobile:mobile,
-
-      customer_address:address,
-
-      order_amount:order,
-
-      received_amount:received,
-
-      change_amount:change,
-
-      total_amount:order,
-
-      payment_type:paymentType,
-
-      payment_status:paymentStatus,
-
-      delivery_status:status,
-
-      delivery_date:new Date().toISOString()
-
-    };
-
-
-    await api(
-      "deliveries",
-      {
-        method:"POST",
-        body:JSON.stringify(data)
-      }
-    );
-
-
-    alert("✅ Delivery Saved Successfully");
-
-
-    clearForm();
-
-    await loadDeliveries();
-
-  }
-
-  catch(error){
-
-    console.error(error);
-
-    alert(
-      "❌ Save Error:\n" +
-      error.message
-    );
-
-  }
-
-}
-
-
-/* =========================
-   CLEAR FORM
-========================= */
-
-function clearForm(){
-
-  document.getElementById("boy").value = "";
-
-  document.getElementById("customer").value = "";
-
-  document.getElementById("mobile").value = "";
-
-  document.getElementById("address").value = "";
-
-  document.getElementById("order").value = "";
-
-  document.getElementById("received").value = "";
-
-  document.getElementById("change").innerText = "₹0";
-
-  document.getElementById("balance").innerText = "₹0";
-
-  document.getElementById("paymentType").value = "Cash";
-
-  document.getElementById("paymentStatus").value = "Unpaid";
-
-  document.getElementById("status").value = "Pending";
-
-}
-
-
-/* =========================
-   LOAD
-========================= */
-
-async function loadDeliveries(){
-
-  const list =
-    document.getElementById("list");
-
-  list.innerHTML =
-    '<div class="loading">⏳ Loading deliveries...</div>';
-
-  try{
-
-    /*
-      IMPORTANT:
-      Do not filter by payment or status.
-      This loads ALL records.
-    */
-
-    const data =
-      await api(
-        "deliveries?select=*&order=delivery_date.desc"
-      );
-
-    deliveries =
-      Array.isArray(data) ? data : [];
-
-    showDeliveries();
-
-  }
-
-  catch(error){
-
-    console.error(error);
-
-    list.innerHTML =
-      '<div class="error">' +
-      '❌ Delivery load error<br><br>' +
-      safe(error.message) +
-      '</div>';
-
-  }
-
-}
-
-
-/* =========================
-   SHOW
-========================= */
-
-function showDeliveries(){
-
-  const search =
-    (
-      document.getElementById("search").value || ""
-    )
-    .toLowerCase()
-    .trim();
-
-
-  const filtered =
-    deliveries.filter(function(d){
-
-      return (
-
-        String(d.customer_name || "")
-        .toLowerCase()
-        .includes(search)
-
-        ||
-
-        String(d.delivery_boy_name || "")
-        .toLowerCase()
-        .includes(search)
-
-        ||
-
-        String(d.customer_mobile || "")
-        .toLowerCase()
-        .includes(search)
-
-      );
-
-    });
-
-
-  let total = 0;
-  let paid = 0;
-  let unpaid = 0;
-
-  let cash = 0;
-  let online = 0;
-  let credit = 0;
-
-
-  filtered.forEach(function(d){
-
-    const amount =
-      Number(
-        d.total_amount ||
-        d.order_amount ||
-        0
-      );
-
-    total += amount;
-
-
-    if(
-      String(d.payment_status)
-      .toLowerCase() === "paid"
-    ){
-
-      paid += amount;
-
-    }else{
-
-      unpaid += amount;
-
-    }
-
-
-    const type =
-      String(
-        d.payment_type || "Cash"
-      ).toLowerCase();
-
-
-    if(type === "online"){
-      online += amount;
-    }
-    else if(type === "credit"){
-      credit += amount;
-    }
-    else{
-      cash += amount;
-    }
-
-  });
-
-
-  document.getElementById("count").innerText =
-    filtered.length;
-
-  document.getElementById("total").innerText =
-    "₹" + total.toFixed(2);
-
-  document.getElementById("paid").innerText =
-    "₹" + paid.toFixed(2);
-
-  document.getElementById("unpaid").innerText =
-    "₹" + unpaid.toFixed(2);
-
-  document.getElementById("cashTotal").innerText =
-    "₹" + cash.toFixed(2);
-
-  document.getElementById("onlineTotal").innerText =
-    "₹" + online.toFixed(2);
-
-  document.getElementById("creditTotal").innerText =
-    "₹" + credit.toFixed(2);
-
-
-  if(filtered.length === 0){
-
-    document.getElementById("list").innerHTML =
-      '<div class="empty">' +
-      'No deliveries found.' +
-      '</div>';
-
-    return;
-
-  }
-
-
-  let html = "";
-
-
-  filtered.forEach(function(d){
-
-    const amount =
-      Number(
-        d.total_amount ||
-        d.order_amount ||
-        0
-      );
-
-    const received =
-      Number(d.received_amount || 0);
-
-    const change =
-      Number(d.change_amount || 0);
-
-    const balance =
-      Math.max(amount - received,0);
-
-
-    const paymentType =
-      d.payment_type || "Cash";
-
-    const paymentStatus =
-      d.payment_status || "Unpaid";
-
-    const deliveryStatus =
-      d.delivery_status || "Pending";
-
-
-    html += `
-
-    <div class="delivery">
-
-      <h3>
-        👤 ${safe(d.customer_name)}
-      </h3>
-
-      <p>
-        👨‍✈️ Delivery Boy:
-        <b>${safe(d.delivery_boy_name)}</b>
-      </p>
-
-      <p>
-        📞 ${safe(d.customer_mobile || "-")}
-      </p>
-
-      <p>
-        📍 ${safe(d.customer_address)}
-      </p>
-
-      <p>
-        💰 Order Amount:
-        <b>₹${amount.toFixed(2)}</b>
-      </p>
-
-      <p>
-        💵 Received:
-        <b>₹${received.toFixed(2)}</b>
-      </p>
-
-      <p>
-        🔄 Change:
-        <b>₹${change.toFixed(2)}</b>
-      </p>
-
-      <p>
-        ⚠️ Balance:
-        <b>₹${balance.toFixed(2)}</b>
-      </p>
-
-      <p>
-        💳 Payment Type:
-        <span class="badge">
-          ${safe(paymentType)}
-        </span>
-      </p>
-
-      <p>
-        💳 Payment Status:
-        <span class="badge">
-          ${safe(paymentStatus)}
-        </span>
-      </p>
-
-      <p>
-        🚚 Status:
-        <span class="badge">
-          ${safe(deliveryStatus)}
-        </span>
-      </p>
-
-
-      <div class="actions">
-
-        ${
-          d.customer_mobile
-          ?
-          `
-          <button
-            class="call"
-            onclick="callCustomer('${attr(d.customer_mobile)}')"
-          >
-            📞 Call
-          </button>
-          `
-          :
-          ""
-        }
-
-
-        <button
-          class="map"
-          onclick="openMap('${attr(d.customer_address)}')"
-        >
-          📍 Map
-        </button>
-
-
-        ${
-          balance > 0
-          ?
-          `
-          <button
-            class="collect"
-            onclick="collectBalance('${attr(d.id)}',${amount},${received})"
-          >
-            💰 Collect Balance ₹${balance.toFixed(2)}
-          </button>
-          `
-          :
-          ""
-        }
-
-
-        ${
-          deliveryStatus !== "Delivered"
-          ?
-          `
-          <button
-            class="done"
-            onclick="markDelivered('${attr(d.id)}')"
-          >
-            ✅ Delivered
-          </button>
-          `
-          :
-          ""
-        }
-
-
-        <button
-          class="delete"
-          onclick="deleteDelivery('${attr(d.id)}')"
-        >
-          🗑 Delete
-        </button>
-
-      </div>
-
-    </div>
-
-    `;
-
-  });
-
-
-  document.getElementById("list").innerHTML =
-    html;
-
-}
-
-
-/* =========================
-   COLLECT BALANCE
-========================= */
-
-async function collectBalance(id,amount,oldReceived){
-
-  const balance =
-    Math.max(amount - oldReceived,0);
-
-  if(balance <= 0){
-
-    alert("No balance pending.");
-
-    return;
-
-  }
-
-
-  const answer =
-    prompt(
-      "Pending Balance: ₹" +
-      balance.toFixed(2) +
-      "\n\nCustomer se kitna amount receive hua?",
-      balance
-    );
-
-
-  if(answer === null){
-    return;
-  }
-
-
-  const newPayment =
-    Number(answer);
-
-
-  if(
-    isNaN(newPayment) ||
-    newPayment <= 0
-  ){
-
-    alert("Valid amount enter karein.");
-
-    return;
-
-  }
-
-
-  const newReceived =
-    Math.min(
-      oldReceived + newPayment,
-      amount
-    );
-
-
-  const newBalance =
-    Math.max(
-      amount - newReceived,
-      0
-    );
-
-
-  const newChange =
-    Math.max(
-      newReceived - amount,
-      0
-    );
-
-
-  const newStatus =
-    newBalance <= 0
-    ? "Paid"
-    : "Unpaid";
-
-
-  try{
-
-    await api(
-
-      "deliveries?id=eq." +
-      encodeURIComponent(id),
-
-      {
-        method:"PATCH",
-
-        body:JSON.stringify({
-
-          received_amount:newReceived,
-
-          change_amount:newChange,
-
-          payment_status:newStatus
-
-        })
-
-      }
-
-    );
-
-
-    alert(
-      "✅ Balance collected successfully"
-    );
-
-
-    await loadDeliveries();
-
-  }
-
-  catch(error){
-
-    alert(
-      "❌ Error:\n" +
-      error.message
-    );
-
-  }
-
-}
-
-
-/* =========================
-   DELIVERED
-========================= */
-
-async function markDelivered(id){
-
-  try{
-
-    await api(
-
-      "deliveries?id=eq." +
-      encodeURIComponent(id),
-
-      {
-        method:"PATCH",
-
-        body:JSON.stringify({
-
-          delivery_status:"Delivered"
-
-        })
-
-      }
-
-    );
-
-
-    alert(
-      "✅ Delivery marked as Delivered"
-    );
-
-
-    await loadDeliveries();
-
-  }
-
-  catch(error){
-
-    alert(
-      "❌ " + error.message
-    );
-
-  }
-
-}
-
-
-/* =========================
-   DELETE
-========================= */
-
-async function deleteDelivery(id){
-
-  if(
-    !confirm(
-      "Are you sure you want to delete this delivery?"
-    )
-  ){
-
-    return;
-
-  }
-
-
-  try{
-
-    await api(
-
-      "deliveries?id=eq." +
-      encodeURIComponent(id),
-
-      {
-        method:"DELETE"
-      }
-
-    );
-
-
-    alert(
-      "✅ Delivery deleted"
-    );
-
-
-    await loadDeliveries();
-
-  }
-
-  catch(error){
-
-    alert(
-      "❌ " + error.message
-    );
-
-  }
-
-}
-
-
-/* =========================
-   CALL
-========================= */
-
-function callCustomer(number){
-
-  window.location.href =
-    "tel:" + number;
-
-}
-
-
-/* =========================
-   MAP
-========================= */
-
-function openMap(address){
-
-  window.open(
-
-    "https://www.google.com/maps/search/?api=1&query=" +
-    encodeURIComponent(address),
-
-    "_blank"
-
-  );
-
-}
-
-
-/* =========================
-   SECURITY
-========================= */
-
-function safe(value){
-
-  return String(value || "")
-
-    .replace(/&/g,"&amp;")
-
-    .replace(/</g,"&lt;")
-
-    .replace(/>/g,"&gt;")
-
-    .replace(/"/g,"&quot;")
-
-    .replace(/'/g,"&#039;");
-
-}
-
-
-function attr(value){
-
-  return String(value || "")
-
-    .replace(/\\/g,"\\\\")
-
-    .replace(/'/g,"\\'");
-
-}
-
-
-/* =========================
-   START
-========================= */
-
-loadDeliveries();
-
-</script>
-
-</body>
-</html>
+document.getElementById("change")
+.innerText=
+"₹"+change.to
