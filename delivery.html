@@ -2,74 +2,44 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Plus Medico Delivery</title>
-
 <link rel="manifest" href="./manifest.webmanifest">
 <meta name="theme-color" content="#1769AA">
 
 <style>
-*{box-sizing:border-box;font-family:Arial,sans-serif}
-body{margin:0;background:#f2f5f9;color:#222}
-header{background:#1769aa;color:#fff;padding:18px;text-align:center}
-header h1{margin:0;font-size:24px}
-.container{max-width:1000px;margin:auto;padding:15px}
-
-.stats{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
-.stat{background:#fff;padding:15px;border-radius:10px;text-align:center;box-shadow:0 2px 8px #ddd}
-.stat span{display:block;font-size:14px}
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial;background:#f3f6f9;color:#222}
+header{background:#1769aa;color:white;text-align:center;padding:18px}
+.container{max-width:900px;margin:auto;padding:12px}
+.card{background:white;padding:16px;margin:12px 0;border-radius:12px;box-shadow:0 2px 8px #ccc}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.stat{background:white;padding:15px;text-align:center;border-radius:10px;box-shadow:0 2px 6px #ddd}
 .stat b{display:block;font-size:21px;margin-top:5px}
-
-.card,.summary{background:#fff;padding:18px;border-radius:12px;margin:15px 0;box-shadow:0 2px 8px #ddd}
-
-.summaryGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
-.summaryItem{background:#f5f7fa;padding:12px;border-radius:8px;text-align:center}
-.summaryItem b{display:block;font-size:18px;margin-top:5px}
-
-.filterGrid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
-
-label{display:block;font-weight:bold;margin-top:10px}
-input,textarea,select{
-width:100%;padding:12px;margin-top:5px;
-border:1px solid #ccc;border-radius:8px;font-size:16px;
-}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+input,select,textarea{width:100%;padding:12px;margin-top:5px;border:1px solid #ccc;border-radius:8px;font-size:16px}
 textarea{min-height:80px}
-
-button{border:0;border-radius:8px;padding:12px 15px;cursor:pointer;font-size:15px}
-
-.save{width:100%;margin-top:15px;background:#1769aa;color:white;font-size:17px}
-.reset{background:#6c757d;color:white}
+label{display:block;font-weight:bold;margin-top:10px}
+button{border:0;border-radius:8px;padding:11px 14px;margin:4px;cursor:pointer}
+.save{width:100%;background:#1769aa;color:white;font-size:17px;margin-top:15px}
 .today{background:#1769aa;color:white}
-.yesterday{background:#555;color:white}
-
-.search{margin-bottom:10px}
-
-.changeBox{margin-top:12px;padding:12px;background:#eef7ff;border-radius:8px}
-.balanceBox{margin-top:8px;padding:12px;background:#fff3cd;border-radius:8px}
-
+.reset{background:#666;color:white}
 .delivery{border-top:1px solid #ddd;padding:15px 0}
 .delivery:first-child{border-top:0}
-.delivery h3{margin-top:0}
-
-.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
-
+.badge{display:inline-block;padding:5px 8px;border-radius:6px;background:#eee}
+.paid{background:#d1e7dd;color:#075c35}
+.unpaid{background:#fff0c2;color:#6b5200}
+.actions{margin-top:10px}
 .call{background:#25d366;color:white}
 .map{background:#4285f4;color:white}
-.done{background:#198754;color:white}
 .collect{background:#ff9800;color:white}
 .delete{background:#dc3545;color:white}
-
-.badge{display:inline-block;padding:5px 8px;border-radius:6px;background:#eee;font-size:13px}
-.paid{background:#d1e7dd;color:#0f5132}
-.unpaid{background:#fff3cd;color:#664d03}
-.credit{background:#e2d9f3;color:#432874}
-
-.error{color:red;background:#ffe5e5;padding:12px;border-radius:8px}
-.empty{text-align:center;padding:20px;color:#666}
-
+.done{background:#198754;color:white}
+.summary{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.summary div{background:#f1f3f5;padding:12px;text-align:center;border-radius:8px}
+.error{background:#ffe5e5;color:#a00;padding:12px;border-radius:8px}
 @media(max-width:600px){
-.filterGrid{grid-template-columns:1fr}
-.summaryGrid{grid-template-columns:1fr}
+.grid,.summary{grid-template-columns:1fr}
 }
 </style>
 </head>
@@ -82,9 +52,111 @@ button{border:0;border-radius:8px;padding:12px 15px;cursor:pointer;font-size:15p
 
 <div class="container">
 
-<!-- DASHBOARD -->
-
 <div class="stats">
+<div class="stat">📦 Total Deliveries<b id="count">0</b></div>
+<div class="stat">💰 Total Amount<b id="total">₹0</b></div>
+<div class="stat">✅ Paid<b id="paid">₹0</b></div>
+<div class="stat">⚠️ Unpaid<b id="unpaid">₹0</b></div>
+</div>
 
-<div class="stat">
-<span>
+<div class="card">
+<h2>💳 Payment Summary</h2>
+<div class="summary">
+<div>💵 Cash<b id="cash">₹0</b></div>
+<div>📱 Online<b id="online">₹0</b></div>
+<div>📒 Credit<b id="credit">₹0</b></div>
+</div>
+</div>
+
+<div class="card">
+<h2>🔎 Delivery Filter</h2>
+
+<div class="grid">
+
+<div>
+<label>📅 Date</label>
+<input type="date" id="date">
+</div>
+
+<div>
+<label>💳 Payment Status</label>
+<select id="payment">
+<option>All</option>
+<option>Paid</option>
+<option>Unpaid</option>
+</select>
+</div>
+
+<div>
+<label>💰 Payment Type</label>
+<select id="type">
+<option>All</option>
+<option>Cash</option>
+<option>Online</option>
+<option>Credit</option>
+</select>
+</div>
+
+<div>
+<label>🚚 Delivery Status</label>
+<select id="status">
+<option>All</option>
+<option>Pending</option>
+<option>Out for Delivery</option>
+<option>Delivered</option>
+<option>Cancelled</option>
+</select>
+</div>
+
+</div>
+
+<br>
+
+<button class="today" onclick="setToday()">📅 Today</button>
+<button onclick="setYesterday()">⬅️ Yesterday</button>
+<button class="reset" onclick="resetFilter()">🔄 Reset</button>
+</div>
+
+<div class="card">
+<h2>➕ New Delivery</h2>
+
+<label>Delivery Boy Name</label>
+<input id="boy" placeholder="Delivery boy name">
+
+<label>Customer Name</label>
+<input id="customer" placeholder="Customer name">
+
+<label>Customer Mobile</label>
+<input id="mobile" placeholder="Mobile number">
+
+<label>Customer Address</label>
+<textarea id="address" placeholder="Customer address"></textarea>
+
+<label>Order Amount</label>
+<input id="amount" type="number" placeholder="₹ Order amount">
+
+<label>Customer Se Received Amount</label>
+<input id="received" type="number" placeholder="₹ Received amount">
+
+<p>🔄 Change to Give: <b id="change">₹0</b></p>
+<p>⚠️ Balance / Unpaid: <b id="balance">₹0</b></p>
+
+<label>Payment Type</label>
+<select id="newType">
+<option>Cash</option>
+<option>Online</option>
+<option>Credit</option>
+</select>
+
+<label>Payment Status</label>
+<select id="newPayment">
+<option>Unpaid</option>
+<option>Paid</option>
+</select>
+
+<label>Delivery Status</label>
+<select id="newStatus">
+<option>Pending</option>
+<option>Out for Delivery</option>
+<option>Delivered</option>
+<option>
