@@ -1,4 +1,5 @@
-<!DOCTYPE html>
+<link rel="manifest" href="./manifest.webmanifest">
+<meta name="theme-color" content="#1769AA"><!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -7,7 +8,13 @@
 
 <style>
 *{box-sizing:border-box}
-body{margin:0;font-family:Arial,sans-serif;background:#f4fbfa;color:#123}
+<script>
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", function () {
+    navigator.serviceWorker.register("./sw.js");
+  });
+}
+</script>body{margin:0;font-family:Arial,sans-serif;background:#f4fbfa;color:#123}
 header{background:#087f73;color:white;text-align:center;padding:20px}
 header h1{margin:0;font-size:28px}
 header p{margin:6px 0}
