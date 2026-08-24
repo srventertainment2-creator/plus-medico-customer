@@ -1,388 +1,377 @@
-<link rel="manifest" href="./manifest.webmanifest">
-<meta name="theme-color" content="#1769AA"><!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="hi">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PLUS MEDICO</title>
+
+<title>Plus Medico Delivery</title>
+
+<link rel="manifest" href="./manifest.webmanifest">
+<meta name="theme-color" content="#1769AA">
 
 <style>
-*{box-sizing:border-box}
-<script>
-if ("serviceWorker" in navigator) {
-  window.addEventListener("load", function () {
-    navigator.serviceWorker.register("./sw.js");
-  });
+*{
+  box-sizing:border-box;
+  font-family:Arial,sans-serif;
 }
-</script>body{margin:0;font-family:Arial,sans-serif;background:#f4fbfa;color:#123}
-header{background:#087f73;color:white;text-align:center;padding:20px}
-header h1{margin:0;font-size:28px}
-header p{margin:6px 0}
-.top{background:white;padding:12px;text-align:center;position:sticky;top:0;z-index:10;box-shadow:0 2px 8px #ddd}
-.btn{display:inline-block;padding:10px 16px;margin:4px;border-radius:8px;text-decoration:none;color:white;font-weight:bold;border:0}
-.call{background:#087f73}
-.whatsapp{background:#159447}
-.cartBtn{background:#333;cursor:pointer}
-.info{background:white;text-align:center;padding:15px}
-.info p{margin:6px}
-.search{background:white;padding:15px}
-.search input{width:100%;padding:14px;border:1px solid #ccc;border-radius:10px;font-size:16px}
-.products{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:15px;padding:15px;max-width:1100px;margin:auto}
-.product{background:white;padding:15px;border-radius:12px;box-shadow:0 2px 8px #ddd}
-.product img{width:100%;height:160px;object-fit:contain;background:#f5f5f5;border-radius:8px}
-.product h2{font-size:19px;margin:10px 0 5px}
-.brand{color:#666}
-.category{color:#087f73;font-weight:bold;font-size:14px;margin-top:5px}
-.price{font-size:22px;font-weight:bold;margin:10px 0}
-.stock{color:#168a45;font-weight:bold}
-.add{width:100%;padding:12px;border:0;border-radius:8px;background:#087f73;color:white;font-weight:bold;margin-top:12px;cursor:pointer}
-.cart{display:none;background:white;padding:18px;max-width:600px;margin:15px auto;border-radius:12px;box-shadow:0 2px 10px #ccc}
-.cart h2{margin-top:0}
-.cartItem{border-bottom:1px solid #ddd;padding:12px 0}
-.qty button{padding:6px 11px;margin:3px;border:0;border-radius:5px;cursor:pointer}
-.remove{background:#d9534f;color:white}
-.total{font-size:22px;font-weight:bold;margin:15px 0}
-.customer input,.customer textarea{width:100%;padding:12px;margin:6px 0;border:1px solid #ccc;border-radius:8px;font-size:15px}
-.orderNow{width:100%;padding:14px;background:#159447;color:white;border:0;border-radius:8px;font-weight:bold;font-size:16px;cursor:pointer}
-.empty{text-align:center;padding:20px}
-footer{margin-top:25px;background:#087f73;color:white;text-align:center;padding:20px}
+
+body{
+  margin:0;
+  background:#f2f5f9;
+  color:#222;
+}
+
+header{
+  background:#1769aa;
+  color:white;
+  padding:18px;
+  text-align:center;
+}
+
+header h1{
+  margin:0;
+  font-size:24px;
+}
+
+.container{
+  max-width:900px;
+  margin:auto;
+  padding:15px;
+}
+
+.stats{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:10px;
+  margin-bottom:15px;
+}
+
+.stat{
+  background:white;
+  padding:15px;
+  border-radius:10px;
+  text-align:center;
+  box-shadow:0 2px 8px #ddd;
+}
+
+.stat span{
+  display:block;
+  font-size:14px;
+}
+
+.stat b{
+  display:block;
+  font-size:22px;
+  margin-top:5px;
+}
+
+.card{
+  background:white;
+  padding:18px;
+  border-radius:12px;
+  margin-bottom:15px;
+  box-shadow:0 2px 8px #ddd;
+}
+
+label{
+  display:block;
+  font-weight:bold;
+  margin-top:10px;
+}
+
+input,
+textarea,
+select{
+  width:100%;
+  padding:12px;
+  margin-top:5px;
+  border:1px solid #ccc;
+  border-radius:8px;
+  font-size:16px;
+}
+
+textarea{
+  min-height:80px;
+}
+
+button{
+  border:0;
+  border-radius:8px;
+  padding:12px 15px;
+  cursor:pointer;
+  font-size:15px;
+}
+
+.save{
+  width:100%;
+  margin-top:15px;
+  background:#1769aa;
+  color:white;
+  font-size:17px;
+}
+
+.changeBox{
+  margin-top:12px;
+  padding:12px;
+  background:#eef7ff;
+  border-radius:8px;
+}
+
+.balanceBox{
+  margin-top:8px;
+  padding:12px;
+  background:#fff3cd;
+  border-radius:8px;
+}
+
+.collectBox{
+  margin-top:10px;
+  padding:12px;
+  background:#e8f7ee;
+  border-radius:8px;
+}
+
+.search{
+  margin-bottom:15px;
+}
+
+.delivery{
+  border-top:1px solid #ddd;
+  padding:15px 0;
+}
+
+.delivery h3{
+  margin-top:0;
+}
+
+.actions{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  margin-top:12px;
+}
+
+.call{
+  background:#25d366;
+  color:white;
+}
+
+.map{
+  background:#4285f4;
+  color:white;
+}
+
+.done{
+  background:#198754;
+  color:white;
+}
+
+.collect{
+  background:#ff9800;
+  color:white;
+}
+
+.delete{
+  background:#dc3545;
+  color:white;
+}
+
+.badge{
+  display:inline-block;
+  padding:5px 8px;
+  border-radius:6px;
+  font-size:13px;
+  background:#eee;
+}
+
+.summary{
+  background:white;
+  padding:15px;
+  border-radius:10px;
+  margin-bottom:15px;
+  box-shadow:0 2px 8px #ddd;
+}
+
+.summary h3{
+  margin-top:0;
+}
+
+.summaryRow{
+  display:flex;
+  justify-content:space-between;
+  padding:7px 0;
+  border-bottom:1px solid #eee;
+}
+
+.loading{
+  text-align:center;
+  padding:20px;
+}
 </style>
 </head>
 
 <body>
 
 <header>
-<h1>PLUS MEDICO</h1>
-<p>Your Trusted Medical Store</p>
+  <h1>🚚 Plus Medico Delivery</h1>
 </header>
 
-<div class="top">
-<a class="btn call" href="tel:+917448662222">📞 Call</a>
-<a class="btn whatsapp" href="https://wa.me/917448662222" target="_blank">💬 WhatsApp</a>
-<button class="btn cartBtn" onclick="toggleCart()">🛒 Cart (<span id="cartCount">0</span>)</button>
-</div>
+<div class="container">
 
-<div class="info">
-<strong>PLUS MEDICO</strong>
-<p>Lulla Nagar, Kubera Park, Kondhwa, Pune</p>
-<p>📞 7448 66 2222</p>
-<p>✅ Genuine Products &nbsp; 🚚 Home Delivery &nbsp; 🟢 Open Daily</p>
-</div>
+  <!-- DASHBOARD -->
 
-<div class="search">
-<input id="search" type="search" placeholder="Search medicines, vitamins, devices...">
-</div>
+  <div class="stats">
 
-<div id="products" class="products">
-<div class="empty">Loading products...</div>
-</div>
+    <div class="stat">
+      <span>📦 Total Deliveries</span>
+      <b id="count">0</b>
+    </div>
 
-<div id="cart" class="cart">
-<h2>🛒 Your Cart</h2>
+    <div class="stat">
+      <span>💰 Total Amount</span>
+      <b id="total">₹0</b>
+    </div>
 
-<div id="cartItems"></div>
+    <div class="stat">
+      <span>✅ Paid</span>
+      <b id="paid">₹0</b>
+    </div>
 
-<div class="total">
-Total: ₹<span id="cartTotal">0</span>
-</div>
+    <div class="stat">
+      <span>⚠️ Unpaid</span>
+      <b id="unpaid">₹0</b>
+    </div>
 
-<div class="customer">
-<h3>Customer Details</h3>
+  </div>
 
-<input id="customerName" placeholder="Your Name">
 
-<input id="customerPhone" type="tel" placeholder="Mobile Number">
+  <!-- PAYMENT SUMMARY -->
 
-<textarea id="customerAddress" rows="3" placeholder="Delivery Address"></textarea>
-</div>
+  <div class="summary">
 
-<button class="orderNow" onclick="placeOrder()">
-💬 Place Multi-Product Order on WhatsApp
-</button>
-</div>
+    <h3>💳 Payment Summary</h3>
 
-<footer>
-PLUS MEDICO<br>
-Lulla Nagar, Kubera Park, Kondhwa, Pune<br>
-📞 7448 66 2222
-</footer>
+    <div class="summaryRow">
+      <span>💵 Cash</span>
+      <b id="cashTotal">₹0</b>
+    </div>
 
-<script>
+    <div class="summaryRow">
+      <span>📱 Online</span>
+      <b id="onlineTotal">₹0</b>
+    </div>
 
-const SUPABASE_URL="https://qoxigoihzffmdmdflwnm.supabase.co";
+    <div class="summaryRow">
+      <span>📒 Credit</span>
+      <b id="creditTotal">₹0</b>
+    </div>
 
-const SUPABASE_KEY="sb_publishable_A2mTyIPD2762DJLFjDxc9w_8LxRqvXh";
+  </div>
 
-let products=[];
-let cart=[];
 
-async function loadProducts(){
+  <!-- NEW DELIVERY -->
 
-try{
+  <div class="card">
 
-const response=await fetch(
-SUPABASE_URL+"/rest/v1/products?select=*",
-{
-headers:{
-"apikey":SUPABASE_KEY,
-"Authorization":"Bearer "+SUPABASE_KEY
-}
-}
-);
+    <h2>➕ New Delivery</h2>
 
-if(!response.ok) throw new Error("Database error");
+    <label>Delivery Boy Name</label>
+    <input id="boy" placeholder="Delivery boy name">
 
-products=await response.json();
+    <label>Customer Name</label>
+    <input id="customer" placeholder="Customer name">
 
-displayProducts(products);
+    <label>Customer Mobile</label>
+    <input id="mobile" type="tel" placeholder="Mobile number">
 
-}catch(error){
+    <label>Customer Address</label>
+    <textarea id="address" placeholder="Customer address"></textarea>
 
-console.error(error);
+    <label>Order Amount</label>
+    <input
+      id="order"
+      type="number"
+      placeholder="₹ Order amount"
+      oninput="calculateMoney()"
+    >
 
-document.getElementById("products").innerHTML=
-'<div class="empty"><h3>Products could not be loaded</h3><p>Please refresh the page.</p></div>';
+    <label>Customer Se Received Amount</label>
+    <input
+      id="received"
+      type="number"
+      placeholder="₹ Received amount"
+      oninput="calculateMoney()"
+    >
 
-}
+    <div class="changeBox">
+      🔄 Change to Give:
+      <b id="change">₹0</b>
+    </div>
 
-}
+    <div class="balanceBox">
+      ⚠️ Balance / Unpaid:
+      <b id="balance">₹0</b>
+    </div>
 
-function displayProducts(list){
 
-if(!list.length){
+    <label>Payment Type</label>
 
-document.getElementById("products").innerHTML=
-'<div class="empty">No products found</div>';
+    <select id="paymentType">
 
-return;
+      <option value="Cash">
+        💵 Cash
+      </option>
 
-}
+      <option value="Online">
+        📱 Online
+      </option>
 
-document.getElementById("products").innerHTML=list.map(product=>{
+      <option value="Credit">
+        📒 Credit
+      </option>
 
-const price=Number(product.selling_price||product.mrp||0);
-const image=product.image_url||"";
+    </select>
 
-return `
-<div class="product">
 
-${image?`<img src="${image}" alt="${product.name}">`:""}
+    <label>Payment Status</label>
 
-<h2>${product.name||"Product"}</h2>
+    <select id="payment">
 
-<div class="brand">${product.brand||""}</div>
+      <option value="Unpaid">
+        Unpaid
+      </option>
 
-<div class="category">${product.category||""}</div>
+      <option value="Paid">
+        Paid
+      </option>
 
-<div class="price">₹${price}</div>
+    </select>
 
-<div class="stock">● ${product.stock_status||"In Stock"}</div>
 
-<button class="add" onclick="addToCart('${product.id}')">
-🛒 Add to Cart
-</button>
+    <label>Delivery Status</label>
 
-</div>
-`;
+    <select id="status">
 
-}).join("");
+      <option value="Pending">
+        Pending
+      </option>
 
-}
+      <option value="Out for Delivery">
+        Out for Delivery
+      </option>
 
-function addToCart(id){
+      <option value="Delivered">
+        Delivered
+      </option>
 
-const product=products.find(p=>String(p.id)===String(id));
+      <option value="Cancelled">
+        Cancelled
+      </option>
 
-if(!product)return;
+    </select>
 
-const existing=cart.find(item=>String(item.id)===String(id));
 
-if(existing){
-existing.quantity++;
-}else{
-cart.push({...product,quantity:1});
-}
-
-updateCart();
-
-}
-
-function updateCart(){
-
-const count=cart.reduce((sum,item)=>sum+item.quantity,0);
-
-document.getElementById("cartCount").textContent=count;
-
-const cartItems=document.getElementById("cartItems");
-
-if(cart.length===0){
-
-cartItems.innerHTML='<div class="empty">Your cart is empty</div>';
-
-document.getElementById("cartTotal").textContent="0";
-
-return;
-}
-
-let total=0;
-
-cartItems.innerHTML=cart.map((item,index)=>{
-
-const price=Number(item.selling_price||item.mrp||0);
-const itemTotal=price*item.quantity;
-
-total+=itemTotal;
-
-return `
-<div class="cartItem">
-
-<strong>${item.name}</strong><br>
-
-₹${price} × ${item.quantity} = <strong>₹${itemTotal}</strong>
-
-<div class="qty">
-
-<button onclick="changeQty(${index},-1)">➖</button>
-
-<button>${item.quantity}</button>
-
-<button onclick="changeQty(${index},1)">➕</button>
-
-<button class="remove" onclick="removeItem(${index})">Remove</button>
-
-</div>
-
-</div>
-`;
-
-}).join("");
-
-document.getElementById("cartTotal").textContent=total;
-
-}
-
-function changeQty(index,change){
-
-cart[index].quantity+=change;
-
-if(cart[index].quantity<=0){
-cart.splice(index,1);
-}
-
-updateCart();
-
-}
-
-function removeItem(index){
-
-cart.splice(index,1);
-
-updateCart();
-
-}
-
-function toggleCart(){
-
-const cartBox=document.getElementById("cart");
-
-if(cartBox.style.display==="block"){
-cartBox.style.display="none";
-}else{
-
-cartBox.style.display="block";
-
-updateCart();
-
-window.scrollTo({
-top:cartBox.offsetTop-70,
-behavior:"smooth"
-});
-
-}
-
-}
-
-document.getElementById("search").addEventListener("input",function(){
-
-const query=this.value.toLowerCase().trim();
-
-const filtered=products.filter(product=>{
-
-const name=String(product.name||"").toLowerCase();
-const brand=String(product.brand||"").toLowerCase();
-const category=String(product.category||"").toLowerCase();
-
-return name.includes(query)||brand.includes(query)||category.includes(query);
-
-});
-
-displayProducts(filtered);
-
-});
-
-function placeOrder(){
-
-if(cart.length===0){
-alert("Please add products to cart first.");
-return;
-}
-
-const name=document.getElementById("customerName").value.trim();
-const phone=document.getElementById("customerPhone").value.trim();
-const address=document.getElementById("customerAddress").value.trim();
-
-if(!name){
-alert("Please enter your name.");
-return;
-}
-
-if(!phone){
-alert("Please enter your mobile number.");
-return;
-}
-
-if(!address){
-alert("Please enter delivery address.");
-return;
-}
-
-let message="Hello PLUS MEDICO,%0A%0A";
-message+="*New Multi-Product Order*%0A%0A";
-
-message+="Customer: "+encodeURIComponent(name)+"%0A";
-message+="Mobile: "+encodeURIComponent(phone)+"%0A";
-message+="Address: "+encodeURIComponent(address)+"%0A%0A";
-
-message+="*Order Details:*%0A";
-
-let total=0;
-
-cart.forEach((item,index)=>{
-
-const price=Number(item.selling_price||item.mrp||0);
-const itemTotal=price*item.quantity;
-
-total+=itemTotal;
-
-message+=(index+1)+". "+
-encodeURIComponent(item.name)+
-" × "+item.quantity+
-" = ₹"+itemTotal+"%0A";
-
-});
-
-message+="%0A*Total: ₹"+total+"*";
-
-window.open(
-"https://wa.me/917448662222?text="+message,
-"_blank"
-);
-
-}
-
-loadProducts();
-
-</script>
-
-</body>
-</html>
+    <button
+      class="save"
+      onclick="saveDelivery()"
+    >
