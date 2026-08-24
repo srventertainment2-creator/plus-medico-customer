@@ -1,0 +1,13 @@
+{
+  "background_color": "rgb(255, 255, 255)",
+  "dir": "ltr",
+  "display": "standalone",
+  "name": "Plus Medico Delivery",
+  "orientation": "any",
+  "scope": "/",
+  "short_name": "Delivery",
+  "start_url": "/",
+  "theme_color": "#1869ab",
+  "id": "/plus-medico-customer/",
+  "description": "Plus Medico Delivery Management App"
+}
