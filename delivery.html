@@ -4,41 +4,242 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Plus Medico Delivery</title>
+
 <meta name="theme-color" content="#1769AA">
 <link rel="manifest" href="./manifest.webmanifest">
 
 <style>
 *{box-sizing:border-box}
-body{margin:0;font-family:Arial,sans-serif;background:#f3f6f9;color:#222}
-header{background:#1769aa;color:#fff;text-align:center;padding:18px}
-.container{max-width:900px;margin:auto;padding:12px}
-.card{background:#fff;padding:16px;margin:12px 0;border-radius:12px;box-shadow:0 2px 8px #ccc}
-.stats{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.stat{text-align:center;padding:15px;background:#fff;border-radius:10px;box-shadow:0 2px 6px #ddd}
-.stat b{display:block;font-size:21px;margin-top:5px}
-.summary{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
-.summary div{background:#f1f3f5;padding:12px;text-align:center;border-radius:8px}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-label{display:block;font-weight:bold;margin-top:10px}
-input,select,textarea{width:100%;padding:12px;margin-top:5px;border:1px solid #ccc;border-radius:8px;font-size:16px}
-textarea{min-height:80px}
-button{border:0;border-radius:8px;padding:11px 14px;margin:4px;cursor:pointer}
-.save{width:100%;background:#1769aa;color:#fff;font-size:17px;margin-top:15px}
-.today{background:#1769aa;color:#fff}
-.reset{background:#666;color:#fff}
-.delivery{border-top:1px solid #ddd;padding:15px 0}
-.delivery:first-child{border-top:0}
-.badge{display:inline-block;padding:5px 8px;border-radius:6px;background:#eee}
-.paid{background:#d1e7dd;color:#075c35}
-.unpaid{background:#fff0c2;color:#6b5200}
-.call{background:#25d366;color:#fff}
-.map{background:#4285f4;color:#fff}
-.delete{background:#dc3545;color:#fff}
-.done{background:#198754;color:#fff}
-.error{background:#ffe5e5;color:#a00;padding:12px;border-radius:8px}
-.actions{margin-top:10px}
+
+body{
+margin:0;
+font-family:Arial,sans-serif;
+background:#f3f6f9;
+color:#222
+}
+
+header{
+background:#1769aa;
+color:#fff;
+text-align:center;
+padding:18px
+}
+
+header h1{
+margin:0;
+font-size:25px
+}
+
+.container{
+max-width:900px;
+margin:auto;
+padding:12px
+}
+
+.card{
+background:#fff;
+padding:16px;
+margin:12px 0;
+border-radius:12px;
+box-shadow:0 2px 8px #ccc
+}
+
+.stats{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:10px
+}
+
+.stat{
+text-align:center;
+padding:15px;
+background:#fff;
+border-radius:10px;
+box-shadow:0 2px 6px #ddd
+}
+
+.stat b{
+display:block;
+font-size:21px;
+margin-top:5px
+}
+
+.summary{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:8px
+}
+
+.summary div{
+background:#f1f3f5;
+padding:12px;
+text-align:center;
+border-radius:8px
+}
+
+.summary b{
+display:block;
+margin-top:5px
+}
+
+.grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:10px
+}
+
+label{
+display:block;
+font-weight:bold;
+margin-top:10px
+}
+
+input,select,textarea{
+width:100%;
+padding:12px;
+margin-top:5px;
+border:1px solid #ccc;
+border-radius:8px;
+font-size:16px;
+background:white
+}
+
+textarea{
+min-height:80px;
+resize:vertical
+}
+
+button{
+border:0;
+border-radius:8px;
+padding:11px 14px;
+margin:4px;
+cursor:pointer;
+font-size:14px
+}
+
+.save{
+width:100%;
+background:#1769aa;
+color:#fff;
+font-size:17px;
+margin-top:15px
+}
+
+.today{
+background:#1769aa;
+color:#fff
+}
+
+.reset{
+background:#666;
+color:#fff
+}
+
+.delivery{
+border-top:1px solid #ddd;
+padding:15px 0
+}
+
+.delivery:first-child{
+border-top:0
+}
+
+.badge{
+display:inline-block;
+padding:5px 8px;
+border-radius:6px;
+background:#eee
+}
+
+.paid{
+background:#d1e7dd;
+color:#075c35
+}
+
+.unpaid{
+background:#fff0c2;
+color:#6b5200
+}
+
+.call{
+background:#25d366;
+color:#fff
+}
+
+.map{
+background:#4285f4;
+color:#fff
+}
+
+.delete{
+background:#dc3545;
+color:#fff
+}
+
+.done{
+background:#198754;
+color:#fff
+}
+
+.edit{
+background:#ff9800;
+color:#fff
+}
+
+.saveProfile{
+background:#1769aa;
+color:#fff
+}
+
+.error{
+background:#ffe5e5;
+color:#a00;
+padding:12px;
+border-radius:8px
+}
+
+.actions{
+margin-top:10px
+}
+
+.profile{
+background:#f7f9fb;
+border:1px solid #ddd;
+padding:12px;
+border-radius:9px;
+margin-top:8px
+}
+
+.profile button{
+font-size:13px
+}
+
+.small{
+font-size:13px;
+color:#666
+}
+
+.success{
+background:#d1e7dd;
+color:#075c35;
+padding:10px;
+border-radius:8px;
+margin-top:10px;
+display:none
+}
+
 @media(max-width:600px){
-.grid,.summary{grid-template-columns:1fr}
+
+.grid,
+.summary{
+grid-template-columns:1fr
+}
+
+.stats{
+grid-template-columns:1fr 1fr
+}
+
 }
 </style>
 </head>
@@ -51,23 +252,65 @@ button{border:0;border-radius:8px;padding:11px 14px;margin:4px;cursor:pointer}
 
 <div class="container">
 
+<!-- STATS -->
+
 <div class="stats">
-<div class="stat">📦 Total Deliveries<b id="count">0</b></div>
-<div class="stat">💰 Total Amount<b id="total">₹0</b></div>
-<div class="stat">✅ Paid<b id="paid">₹0</b></div>
-<div class="stat">⚠️ Unpaid<b id="unpaid">₹0</b></div>
+
+<div class="stat">
+📦 Total Deliveries
+<b id="count">0</b>
 </div>
 
+<div class="stat">
+💰 Total Amount
+<b id="total">₹0</b>
+</div>
+
+<div class="stat">
+✅ Paid
+<b id="paid">₹0</b>
+</div>
+
+<div class="stat">
+⚠️ Unpaid
+<b id="unpaid">₹0</b>
+</div>
+
+</div>
+
+
+<!-- PAYMENT SUMMARY -->
+
 <div class="card">
+
 <h2>💳 Payment Summary</h2>
+
 <div class="summary">
-<div>💵 Cash<b id="cash">₹0</b></div>
-<div>📱 Online<b id="online">₹0</b></div>
-<div>📒 Credit<b id="credit">₹0</b></div>
-</div>
+
+<div>
+💵 Cash
+<b id="cash">₹0</b>
 </div>
 
+<div>
+📱 Online
+<b id="online">₹0</b>
+</div>
+
+<div>
+📒 Credit
+<b id="credit">₹0</b>
+</div>
+
+</div>
+
+</div>
+
+
+<!-- FILTER -->
+
 <div class="card">
+
 <h2>🔎 Delivery Filter</h2>
 
 <div class="grid">
@@ -79,105 +322,266 @@ button{border:0;border-radius:8px;padding:11px 14px;margin:4px;cursor:pointer}
 
 <div>
 <label>💳 Payment Status</label>
+
 <select id="payment">
+
 <option value="All">All</option>
 <option value="Paid">Paid</option>
 <option value="Unpaid">Unpaid</option>
+
 </select>
 </div>
 
 <div>
+
 <label>💰 Payment Type</label>
+
 <select id="type">
+
 <option value="All">All</option>
 <option value="Cash">Cash</option>
 <option value="Online">Online</option>
 <option value="Credit">Credit</option>
+
 </select>
+
 </div>
 
 <div>
+
 <label>🚚 Delivery Status</label>
+
 <select id="status">
+
 <option value="All">All</option>
 <option value="Pending">Pending</option>
 <option value="Out for Delivery">Out for Delivery</option>
 <option value="Delivered">Delivered</option>
 <option value="Cancelled">Cancelled</option>
+
 </select>
+
 </div>
 
 </div>
 
 <br>
 
-<button class="today" onclick="setToday()">📅 Today</button>
-<button onclick="setYesterday()">⬅️ Yesterday</button>
-<button class="reset" onclick="resetFilter()">🔄 Reset</button>
+<button class="today" onclick="setToday()">
+📅 Today
+</button>
+
+<button onclick="setYesterday()">
+⬅️ Yesterday
+</button>
+
+<button class="reset" onclick="resetFilter()">
+🔄 Reset
+</button>
 
 </div>
 
+
+<!-- NEW DELIVERY -->
+
 <div class="card">
+
 <h2>➕ New Delivery</h2>
 
-<label>Delivery Boy Name</label>
-<input id="boy" placeholder="Delivery boy name">
 
-<label>Customer Name</label>
-<input id="customer" placeholder="Customer name">
+<label>👨‍✈️ Delivery Boy Name</label>
 
-<label>Customer Mobile</label>
-<input id="mobile" placeholder="Mobile number">
+<input
+id="boy"
+list="boyList"
+placeholder="Delivery boy name"
+autocomplete="off">
 
-<label>Customer Address</label>
-<textarea id="address" placeholder="Customer address"></textarea>
+<datalist id="boyList"></datalist>
 
-<label>Order Amount</label>
-<input id="amount" type="number" placeholder="₹ Order amount">
 
-<label>Customer Se Received Amount</label>
-<input id="received" type="number" placeholder="₹ Received amount">
+<label>👤 Customer Name</label>
 
-<p>🔄 Change to Give: <b id="change">₹0</b></p>
-<p>⚠️ Balance / Unpaid: <b id="balance">₹0</b></p>
+<input
+id="customer"
+list="customerList"
+placeholder="Customer name"
+autocomplete="off">
 
-<label>Payment Type</label>
+<datalist id="customerList"></datalist>
+
+
+<div class="small">
+💡 Saved customer name select/type करते ही Mobile और Address automatic आएगा।
+</div>
+
+
+<label>📞 Customer Mobile</label>
+
+<input
+id="mobile"
+type="tel"
+placeholder="Mobile number">
+
+
+<label>📍 Customer Address</label>
+
+<textarea
+id="address"
+placeholder="Customer address"></textarea>
+
+
+<!-- PROFILE SAVE BUTTONS -->
+
+<button
+class="saveProfile"
+onclick="saveCustomerProfile()">
+
+💾 Save / Update Customer Details
+
+</button>
+
+<button
+class="edit"
+onclick="showCustomerProfiles()">
+
+✏️ Manage Customers
+
+</button>
+
+
+<button
+class="saveProfile"
+onclick="saveBoyProfile()">
+
+👨‍✈️ Save / Update Delivery Boy
+
+</button>
+
+<button
+class="edit"
+onclick="showBoyProfiles()">
+
+✏️ Manage Delivery Boys
+
+</button>
+
+
+<div id="profileMessage" class="success"></div>
+
+
+<label>💰 Order Amount</label>
+
+<input
+id="amount"
+type="number"
+placeholder="₹ Order amount">
+
+
+<label>💵 Customer Se Received Amount</label>
+
+<input
+id="received"
+type="number"
+placeholder="₹ Received amount">
+
+
+<p>
+🔄 Change to Give:
+<b id="change">₹0</b>
+</p>
+
+<p>
+⚠️ Balance / Unpaid:
+<b id="balance">₹0</b>
+</p>
+
+
+<label>💳 Payment Type</label>
+
 <select id="newType">
+
 <option value="Cash">💵 Cash</option>
 <option value="Online">📱 Online</option>
 <option value="Credit">📒 Credit</option>
+
 </select>
 
-<label>Payment Status</label>
+
+<label>💳 Payment Status</label>
+
 <select id="newPayment">
+
 <option value="Unpaid">Unpaid</option>
 <option value="Paid">Paid</option>
+
 </select>
 
-<label>Delivery Status</label>
+
+<label>🚚 Delivery Status</label>
+
 <select id="newStatus">
+
 <option value="Pending">Pending</option>
 <option value="Out for Delivery">Out for Delivery</option>
 <option value="Delivered">Delivered</option>
 <option value="Cancelled">Cancelled</option>
+
 </select>
 
-<button class="save" onclick="saveDelivery()">💾 Save Delivery</button>
+
+<button
+class="save"
+onclick="saveDelivery()">
+
+💾 Save Delivery
+
+</button>
 
 </div>
+
+
+<!-- SAVED PROFILES -->
+
+<div
+class="card"
+id="profilesCard"
+style="display:none">
+
+<h2 id="profilesTitle">
+👤 Saved Details
+</h2>
+
+<div id="profilesList"></div>
+
+</div>
+
+
+<!-- DELIVERY LIST -->
 
 <div class="card">
+
 <h2>📦 Delivery List</h2>
 
-<input id="search" placeholder="🔎 Search customer / delivery boy / mobile">
+<input
+id="search"
+placeholder="🔎 Search customer / delivery boy / mobile">
 
-<div id="list">Loading...</div>
-
+<div id="list">
+Loading...
 </div>
 
 </div>
+
+</div>
+
 
 <script>
+
+
+/* ================================
+   SUPABASE
+================================ */
 
 const SUPABASE_URL =
 "https://rnqxgovsabngikhvbeal.supabase.co";
@@ -185,7 +589,13 @@ const SUPABASE_URL =
 const SUPABASE_KEY =
 "sb_publishable_a8jbA7w9mCgHhM_6Q_bCRQ_CXUss_5b";
 
+
 let deliveries=[];
+
+
+/* ================================
+   SUPABASE API
+================================ */
 
 async function api(path,options={}){
 
@@ -193,44 +603,648 @@ const response=await fetch(
 SUPABASE_URL+"/rest/v1/"+path,
 {
 ...options,
+
 headers:{
 "apikey":SUPABASE_KEY,
 "Authorization":"Bearer "+SUPABASE_KEY,
 "Content-Type":"application/json",
 "Prefer":"return=representation"
 }
+
 }
 );
 
 const text=await response.text();
 
 if(!response.ok){
+
 throw new Error(text);
+
 }
 
 return text?JSON.parse(text):[];
 
 }
 
+
+/* ================================
+   HELPERS
+================================ */
+
 function get(id){
-return document.getElementById(id).value.trim();
+
+return document
+.getElementById(id)
+.value
+.trim();
+
 }
+
+
+function escapeHTML(value){
+
+return String(value||"")
+.replace(/&/g,"&amp;")
+.replace(/</g,"&lt;")
+.replace(/>/g,"&gt;")
+.replace(/"/g,"&quot;")
+.replace(/'/g,"&#039;");
+
+}
+
+
+function escapeJS(value){
+
+return String(value||"")
+.replace(/\\/g,"\\\\")
+.replace(/'/g,"\\'")
+.replace(/\n/g," ");
+
+}
+
+
+/* ================================
+   LOCAL SAVED CUSTOMER PROFILES
+================================ */
+
+function getCustomers(){
+
+try{
+
+return JSON.parse(
+localStorage.getItem("plusMedicoCustomers")||"[]"
+);
+
+}catch(e){
+
+return [];
+
+}
+
+}
+
+
+function saveCustomers(list){
+
+localStorage.setItem(
+"plusMedicoCustomers",
+JSON.stringify(list)
+);
+
+}
+
+
+function getBoys(){
+
+try{
+
+return JSON.parse(
+localStorage.getItem("plusMedicoBoys")||"[]"
+);
+
+}catch(e){
+
+return [];
+
+}
+
+}
+
+
+function saveBoys(list){
+
+localStorage.setItem(
+"plusMedicoBoys",
+JSON.stringify(list)
+);
+
+}
+
+
+/* ================================
+   LOAD PROFILE LISTS
+================================ */
+
+function loadProfileLists(){
+
+const customers=getCustomers();
+
+const customerList=
+document.getElementById("customerList");
+
+customerList.innerHTML=
+customers.map(c=>
+`<option value="${escapeHTML(c.name)}">
+`
+).join("");
+
+
+const boys=getBoys();
+
+const boyList=
+document.getElementById("boyList");
+
+boyList.innerHTML=
+boys.map(b=>
+`<option value="${escapeHTML(b.name)}">
+`
+).join("");
+
+}
+
+
+/* ================================
+   CUSTOMER AUTO FILL
+================================ */
+
+document
+.getElementById("customer")
+.addEventListener("input",function(){
+
+const name=this.value.trim().toLowerCase();
+
+const customers=getCustomers();
+
+const customer=customers.find(c=>
+String(c.name).toLowerCase()===name
+);
+
+if(customer){
+
+document.getElementById("mobile").value=
+customer.mobile||"";
+
+document.getElementById("address").value=
+customer.address||"";
+
+if(customer.boy){
+
+document.getElementById("boy").value=
+customer.boy;
+
+}
+
+}
+
+});
+
+
+/* ================================
+   SAVE / UPDATE CUSTOMER
+================================ */
+
+function saveCustomerProfile(){
+
+const name=get("customer");
+const mobile=get("mobile");
+const address=get("address");
+const boy=get("boy");
+
+if(!name){
+
+alert("पहले Customer Name डालें।");
+
+return;
+
+}
+
+let customers=getCustomers();
+
+const index=customers.findIndex(c=>
+c.name.toLowerCase()===name.toLowerCase()
+);
+
+const profile={
+name:name,
+mobile:mobile,
+address:address,
+boy:boy
+};
+
+if(index>=0){
+
+customers[index]=profile;
+
+showMessage(
+"✅ Customer details updated successfully"
+);
+
+}else{
+
+customers.push(profile);
+
+showMessage(
+"✅ Customer details saved successfully"
+);
+
+}
+
+saveCustomers(customers);
+
+loadProfileLists();
+
+}
+
+
+/* ================================
+   SAVE / UPDATE DELIVERY BOY
+================================ */
+
+function saveBoyProfile(){
+
+const name=get("boy");
+
+if(!name){
+
+alert("पहले Delivery Boy Name डालें।");
+
+return;
+
+}
+
+let boys=getBoys();
+
+const exists=boys.find(b=>
+b.name.toLowerCase()===name.toLowerCase()
+);
+
+if(!exists){
+
+boys.push({
+name:name
+});
+
+saveBoys(boys);
+
+showMessage(
+"✅ Delivery Boy saved successfully"
+);
+
+}else{
+
+showMessage(
+"✅ Delivery Boy already saved"
+);
+
+}
+
+loadProfileLists();
+
+}
+
+
+/* ================================
+   MESSAGE
+================================ */
+
+function showMessage(text){
+
+const box=
+document.getElementById("profileMessage");
+
+box.textContent=text;
+
+box.style.display="block";
+
+setTimeout(()=>{
+
+box.style.display="none";
+
+},3000);
+
+}
+
+
+/* ================================
+   MANAGE CUSTOMERS
+================================ */
+
+function showCustomerProfiles(){
+
+const customers=getCustomers();
+
+const card=
+document.getElementById("profilesCard");
+
+const title=
+document.getElementById("profilesTitle");
+
+const list=
+document.getElementById("profilesList");
+
+card.style.display="block";
+
+title.textContent=
+"👤 Saved Customers";
+
+if(!customers.length){
+
+list.innerHTML=
+"<p>कोई saved customer नहीं है।</p>";
+
+return;
+
+}
+
+list.innerHTML=
+customers.map((c,index)=>`
+
+<div class="profile">
+
+<b>👤 ${escapeHTML(c.name)}</b>
+
+<p>
+📞 ${escapeHTML(c.mobile||"-")}
+</p>
+
+<p>
+📍 ${escapeHTML(c.address||"-")}
+</p>
+
+<p>
+👨‍✈️ Delivery Boy:
+${escapeHTML(c.boy||"-")}
+</p>
+
+<button
+class="edit"
+onclick="editCustomer(${index})">
+
+✏️ Edit
+
+</button>
+
+<button
+class="delete"
+onclick="deleteCustomerProfile(${index})">
+
+🗑 Delete
+
+</button>
+
+</div>
+
+`).join("");
+
+}
+
+
+/* ================================
+   EDIT CUSTOMER
+================================ */
+
+function editCustomer(index){
+
+const customers=getCustomers();
+
+const c=customers[index];
+
+if(!c)return;
+
+document.getElementById("customer").value=
+c.name||"";
+
+document.getElementById("mobile").value=
+c.mobile||"";
+
+document.getElementById("address").value=
+c.address||"";
+
+document.getElementById("boy").value=
+c.boy||"";
+
+window.scrollTo({
+top:0,
+behavior:"smooth"
+});
+
+showMessage(
+"✏️ Customer details loaded. अब बदलकर Save / Update करें।"
+);
+
+}
+
+
+/* ================================
+   DELETE CUSTOMER PROFILE
+================================ */
+
+function deleteCustomerProfile(index){
+
+const customers=getCustomers();
+
+if(!confirm(
+"क्या इस saved customer को delete करना है?"
+)){
+
+return;
+
+}
+
+customers.splice(index,1);
+
+saveCustomers(customers);
+
+loadProfileLists();
+
+showCustomerProfiles();
+
+}
+
+
+/* ================================
+   MANAGE DELIVERY BOYS
+================================ */
+
+function showBoyProfiles(){
+
+const boys=getBoys();
+
+const card=
+document.getElementById("profilesCard");
+
+const title=
+document.getElementById("profilesTitle");
+
+const list=
+document.getElementById("profilesList");
+
+card.style.display="block";
+
+title.textContent=
+"👨‍✈️ Saved Delivery Boys";
+
+if(!boys.length){
+
+list.innerHTML=
+"<p>कोई saved delivery boy नहीं है।</p>";
+
+return;
+
+}
+
+list.innerHTML=
+boys.map((b,index)=>`
+
+<div class="profile">
+
+<b>👨‍✈️ ${escapeHTML(b.name)}</b>
+
+<br><br>
+
+<button
+class="edit"
+onclick="editBoy(${index})">
+
+✏️ Change Name
+
+</button>
+
+<button
+class="delete"
+onclick="deleteBoy(${index})">
+
+🗑 Delete
+
+</button>
+
+</div>
+
+`).join("");
+
+}
+
+
+/* ================================
+   EDIT DELIVERY BOY
+================================ */
+
+function editBoy(index){
+
+const boys=getBoys();
+
+const oldName=boys[index];
+
+if(!oldName)return;
+
+const newName=prompt(
+"Delivery Boy का नया नाम डालें:",
+oldName.name
+);
+
+if(!newName||!newName.trim()){
+
+return;
+
+}
+
+const name=newName.trim();
+
+const exists=boys.some(
+(b,i)=>
+i!==index &&
+b.name.toLowerCase()===name.toLowerCase()
+);
+
+if(exists){
+
+alert("यह Delivery Boy पहले से मौजूद है।");
+
+return;
+
+}
+
+boys[index].name=name;
+
+saveBoys(boys);
+
+loadProfileLists();
+
+document.getElementById("boy").value=name;
+
+showBoyProfiles();
+
+showMessage(
+"✅ Delivery Boy name changed successfully"
+);
+
+}
+
+
+/* ================================
+   DELETE DELIVERY BOY
+================================ */
+
+function deleteBoy(index){
+
+const boys=getBoys();
+
+if(!confirm(
+"क्या इस Delivery Boy को saved list से delete करना है?"
+)){
+
+return;
+
+}
+
+boys.splice(index,1);
+
+saveBoys(boys);
+
+loadProfileLists();
+
+showBoyProfiles();
+
+}
+
+
+/* ================================
+   MONEY CALCULATION
+================================ */
 
 function updateMoney(){
 
-const amount=Number(get("amount"))||0;
-const received=Number(get("received"))||0;
+const amount=
+Number(get("amount"))||0;
 
-document.getElementById("change").textContent=
-"₹"+Math.max(received-amount,0).toFixed(2);
+const received=
+Number(get("received"))||0;
 
-document.getElementById("balance").textContent=
-"₹"+Math.max(amount-received,0).toFixed(2);
+document.getElementById("change")
+.textContent=
+"₹"+Math.max(
+received-amount,
+0
+).toFixed(2);
+
+document.getElementById("balance")
+.textContent=
+"₹"+Math.max(
+amount-received,
+0
+).toFixed(2);
 
 }
 
-document.getElementById("amount").addEventListener("input",updateMoney);
-document.getElementById("received").addEventListener("input",updateMoney);
+
+document
+.getElementById("amount")
+.addEventListener(
+"input",
+updateMoney
+);
+
+document
+.getElementById("received")
+.addEventListener(
+"input",
+updateMoney
+);
+
+
+/* ================================
+   SAVE DELIVERY
+================================ */
 
 async function saveDelivery(){
 
@@ -240,61 +1254,169 @@ const boy=get("boy");
 const customer=get("customer");
 const mobile=get("mobile");
 const address=get("address");
-const amount=Number(get("amount"))||0;
-const received=Number(get("received"))||0;
+
+const amount=
+Number(get("amount"))||0;
+
+const received=
+Number(get("received"))||0;
+
 const type=get("newType");
-const selectedPayment=get("newPayment");
-const status=get("newStatus");
 
-if(!boy||!customer||!address||amount<=0){
+const selectedPayment=
+get("newPayment");
 
-alert("Please fill Delivery Boy, Customer, Address and Order Amount.");
+const status=
+get("newStatus");
+
+
+if(
+!boy||
+!customer||
+!address||
+amount<=0
+){
+
+alert(
+"Please fill Delivery Boy, Customer, Address and Order Amount."
+);
 
 return;
 
 }
 
-const balance=Math.max(amount-received,0);
-const change=Math.max(received-amount,0);
+
+const balance=
+Math.max(
+amount-received,
+0
+);
+
+const change=
+Math.max(
+received-amount,
+0
+);
+
 
 const paymentStatus=
-balance===0?"Paid":selectedPayment;
+balance===0
+?"Paid"
+:selectedPayment;
 
-await api("deliveries",{
+
+/* SAVE DELIVERY */
+
+await api(
+"deliveries",
+{
 
 method:"POST",
 
 body:JSON.stringify({
 
 delivery_boy_name:boy,
+
 customer_name:customer,
+
 customer_mobile:mobile,
+
 customer_address:address,
+
 order_amount:amount,
+
 total_amount:amount,
+
 received_amount:received,
+
 change_amount:change,
+
 payment_type:type,
+
 payment_status:paymentStatus,
+
 delivery_status:status,
+
 delivery_date:new Date().toISOString()
 
 })
 
+}
+);
+
+
+/* AUTOMATICALLY SAVE CUSTOMER */
+
+let customers=getCustomers();
+
+const customerIndex=
+customers.findIndex(c=>
+c.name.toLowerCase()===
+customer.toLowerCase()
+);
+
+const profile={
+name:customer,
+mobile:mobile,
+address:address,
+boy:boy
+};
+
+if(customerIndex>=0){
+
+customers[customerIndex]=profile;
+
+}else{
+
+customers.push(profile);
+
+}
+
+saveCustomers(customers);
+
+
+/* AUTOMATICALLY SAVE BOY */
+
+let boys=getBoys();
+
+const boyExists=boys.some(b=>
+b.name.toLowerCase()===
+boy.toLowerCase()
+);
+
+if(!boyExists){
+
+boys.push({
+name:boy
 });
 
-alert("✅ Delivery Saved Successfully");
+saveBoys(boys);
+
+}
+
+
+loadProfileLists();
+
+
+alert(
+"✅ Delivery Saved Successfully\n\nCustomer details automatically saved."
+);
+
+
+/* CLEAR */
 
 [
-"boy",
 "customer",
 "mobile",
 "address",
 "amount",
 "received"
 ].forEach(id=>{
+
 document.getElementById(id).value="";
+
 });
+
 
 updateMoney();
 
@@ -304,11 +1426,19 @@ await load();
 
 console.error(error);
 
-alert("❌ Save Error: "+error.message);
+alert(
+"❌ Save Error: "+
+error.message
+);
 
 }
 
 }
+
+
+/* ================================
+   LOAD DELIVERIES
+================================ */
 
 async function load(){
 
@@ -325,7 +1455,8 @@ show();
 console.error(error);
 
 document.getElementById("list").innerHTML=
-"<div class='error'>❌ Database Error<br><br>"+
+"<div class='error'>"+
+"❌ Database Error<br><br>"+
 error.message+
 "</div>";
 
@@ -333,15 +1464,30 @@ error.message+
 
 }
 
+
+/* ================================
+   SHOW DELIVERY LIST
+================================ */
+
 function show(){
 
-const search=get("search").toLowerCase();
-const date=get("date");
-const payment=get("payment");
-const type=get("type");
-const status=get("status");
+const search=
+get("search").toLowerCase();
 
-const filtered=deliveries.filter(d=>{
+const date=get("date");
+
+const payment=
+get("payment");
+
+const type=
+get("type");
+
+const status=
+get("status");
+
+
+const filtered=
+deliveries.filter(d=>{
 
 const text=(
 (d.customer_name||"")+" "+
@@ -349,30 +1495,61 @@ const text=(
 (d.customer_mobile||"")
 ).toLowerCase();
 
-if(search && !text.includes(search))return false;
+
+if(
+search &&
+!text.includes(search)
+)return false;
+
 
 if(date){
 
-const x=new Date(d.delivery_date);
+const x=
+new Date(d.delivery_date);
 
 const localDate=
 x.getFullYear()+"-"+
-String(x.getMonth()+1).padStart(2,"0")+"-"+
-String(x.getDate()).padStart(2,"0");
+String(
+x.getMonth()+1
+).padStart(2,"0")+"-"+
+String(
+x.getDate()
+).padStart(2,"0");
 
-if(localDate!==date)return false;
+
+if(localDate!==date)
+return false;
 
 }
 
-if(payment!=="All" && d.payment_status!==payment)return false;
 
-if(type!=="All" && d.payment_type!==type)return false;
+if(
+payment!=="All" &&
+d.payment_status!==payment
+)
+return false;
 
-if(status!=="All" && d.delivery_status!==status)return false;
+
+if(
+type!=="All" &&
+d.payment_type!==type
+)
+return false;
+
+
+if(
+status!=="All" &&
+d.delivery_status!==status
+)
+return false;
+
 
 return true;
 
 });
+
+
+/* SUMMARY */
 
 let total=0;
 let paid=0;
@@ -381,132 +1558,291 @@ let cash=0;
 let online=0;
 let credit=0;
 
+
 filtered.forEach(d=>{
 
-const amount=Number(
-d.total_amount||d.order_amount||0
+const amount=
+Number(
+d.total_amount||
+d.order_amount||
+0
 );
+
 
 total+=amount;
 
-if(d.payment_status==="Paid"){
+
+if(
+d.payment_status==="Paid"
+){
+
 paid+=amount;
+
 }else{
+
 unpaid+=amount;
+
 }
 
-if(d.payment_type==="Cash")cash+=amount;
-if(d.payment_type==="Online")online+=amount;
-if(d.payment_type==="Credit")credit+=amount;
+
+if(
+d.payment_type==="Cash"
+)cash+=amount;
+
+if(
+d.payment_type==="Online"
+)online+=amount;
+
+if(
+d.payment_type==="Credit"
+)credit+=amount;
 
 });
 
-document.getElementById("count").textContent=filtered.length;
-document.getElementById("total").textContent="₹"+total.toFixed(2);
-document.getElementById("paid").textContent="₹"+paid.toFixed(2);
-document.getElementById("unpaid").textContent="₹"+unpaid.toFixed(2);
-document.getElementById("cash").textContent="₹"+cash.toFixed(2);
-document.getElementById("online").textContent="₹"+online.toFixed(2);
-document.getElementById("credit").textContent="₹"+credit.toFixed(2);
+
+document.getElementById("count")
+.textContent=
+filtered.length;
+
+document.getElementById("total")
+.textContent=
+"₹"+total.toFixed(2);
+
+document.getElementById("paid")
+.textContent=
+"₹"+paid.toFixed(2);
+
+document.getElementById("unpaid")
+.textContent=
+"₹"+unpaid.toFixed(2);
+
+document.getElementById("cash")
+.textContent=
+"₹"+cash.toFixed(2);
+
+document.getElementById("online")
+.textContent=
+"₹"+online.toFixed(2);
+
+document.getElementById("credit")
+.textContent=
+"₹"+credit.toFixed(2);
+
 
 if(!filtered.length){
 
 document.getElementById("list").innerHTML=
-"<p style='text-align:center'>📦 No deliveries found</p>";
+"<p style='text-align:center'>"+
+"📦 No deliveries found"+
+"</p>";
 
 return;
 
 }
 
+
+/* DELIVERY CARDS */
+
 document.getElementById("list").innerHTML=
 
 filtered.map(d=>{
 
-const amount=Number(
-d.total_amount||d.order_amount||0
+const amount=
+Number(
+d.total_amount||
+d.order_amount||
+0
 );
 
-const received=Number(
-d.received_amount||0
+const received=
+Number(
+d.received_amount||
+0
 );
 
-const balance=Math.max(
-amount-received,0
+const balance=
+Math.max(
+amount-received,
+0
 );
 
-const date=d.delivery_date
-?new Date(d.delivery_date).toLocaleString("en-IN")
+const date=
+d.delivery_date
+?
+new Date(
+d.delivery_date
+).toLocaleString(
+"en-IN"
+)
 :"-";
+
 
 return `
 
 <div class="delivery">
 
-<h3>👤 ${escapeHTML(d.customer_name)}</h3>
+<h3>
+👤 ${escapeHTML(d.customer_name)}
+</h3>
 
-<p>👨‍✈️ Delivery Boy:
-<b>${escapeHTML(d.delivery_boy_name)}</b></p>
 
-<p>📞 ${escapeHTML(d.customer_mobile||"-")}</p>
-
-<p>📍 ${escapeHTML(d.customer_address||"-")}</p>
-
-<p>📅 ${date}</p>
-
-<p>💰 Order Amount:
-<b>₹${amount.toFixed(2)}</b></p>
-
-<p>💵 Received:
-<b>₹${received.toFixed(2)}</b></p>
-
-<p>🔄 Change:
-<b>₹${Number(d.change_amount||0).toFixed(2)}</b></p>
-
-<p>⚠️ Balance:
-<b>₹${balance.toFixed(2)}</b></p>
-
-<p>💳 Payment Status:
-<span class="badge ${
-d.payment_status==="Paid"?"paid":"unpaid"
-}">
-${escapeHTML(d.payment_status||"Unpaid")}
-</span>
+<p>
+👨‍✈️ Delivery Boy:
+<b>
+${escapeHTML(d.delivery_boy_name)}
+</b>
 </p>
 
-<p>💰 Payment Type:
-<b>${escapeHTML(d.payment_type||"Cash")}</b></p>
 
-<p>🚚 Delivery Status:
-<b>${escapeHTML(d.delivery_status||"Pending")}</b></p>
+<p>
+📞 ${escapeHTML(
+d.customer_mobile||"-"
+)}
+</p>
+
+
+<p>
+📍 ${escapeHTML(
+d.customer_address||"-"
+)}
+</p>
+
+
+<p>
+📅 ${date}
+</p>
+
+
+<p>
+💰 Order Amount:
+<b>
+₹${amount.toFixed(2)}
+</b>
+</p>
+
+
+<p>
+💵 Received:
+<b>
+₹${received.toFixed(2)}
+</b>
+</p>
+
+
+<p>
+🔄 Change:
+<b>
+₹${Number(
+d.change_amount||0
+).toFixed(2)}
+</b>
+</p>
+
+
+<p>
+⚠️ Balance:
+<b>
+₹${balance.toFixed(2)}
+</b>
+</p>
+
+
+<p>
+💳 Payment Status:
+
+<span class="badge ${
+d.payment_status==="Paid"
+?"paid"
+:"unpaid"
+}">
+
+${escapeHTML(
+d.payment_status||"Unpaid"
+)}
+
+</span>
+
+</p>
+
+
+<p>
+💰 Payment Type:
+<b>
+${escapeHTML(
+d.payment_type||"Cash"
+)}
+</b>
+</p>
+
+
+<p>
+🚚 Delivery Status:
+<b>
+${escapeHTML(
+d.delivery_status||"Pending"
+)}
+</b>
+</p>
+
 
 <div class="actions">
 
-<button class="call"
-onclick="callCustomer('${escapeJS(d.customer_mobile||"")}')">
+
+<button
+class="call"
+onclick="callCustomer('${escapeJS(
+d.customer_mobile||""
+)}')">
+
 📞 Call
+
 </button>
 
-<button class="map"
-onclick="openMap('${escapeJS(d.customer_address||"")}')">
+
+<button
+class="map"
+onclick="openMap('${escapeJS(
+d.customer_address||""
+)}')">
+
 📍 Map
+
 </button>
+
 
 ${
 d.delivery_status!=="Delivered"
 ?
-`<button class="done"
-onclick="markDelivered('${escapeJS(d.id)}')">
+`
+
+<button
+class="done"
+onclick="markDelivered('${escapeJS(
+d.id
+)}')">
+
 ✅ Delivered
-</button>`
+
+</button>
+
+`
 :""
 }
 
-<button class="delete"
-onclick="deleteDelivery('${escapeJS(d.id)}')">
+
+<button
+class="delete"
+onclick="deleteDelivery('${escapeJS(
+d.id
+)}')">
+
 🗑 Delete
+
 </button>
 
+
 </div>
+
 
 </div>
 
@@ -516,35 +1852,26 @@ onclick="deleteDelivery('${escapeJS(d.id)}')">
 
 }
 
-function escapeHTML(value){
 
-return String(value||"")
-.replace(/&/g,"&amp;")
-.replace(/</g,"&lt;")
-.replace(/>/g,"&gt;")
-.replace(/"/g,"&quot;")
-.replace(/'/g,"&#039;");
-
-}
-
-function escapeJS(value){
-
-return String(value||"")
-.replace(/\\/g,"\\\\")
-.replace(/'/g,"\\'")
-.replace(/\n/g," ");
-
-}
+/* ================================
+   CALL
+================================ */
 
 function callCustomer(number){
 
 if(number){
 
-window.location.href="tel:"+number;
+window.location.href=
+"tel:"+number;
 
 }
 
 }
+
+
+/* ================================
+   MAP
+================================ */
 
 function openMap(address){
 
@@ -556,96 +1883,165 @@ encodeURIComponent(address),
 
 }
 
+
+/* ================================
+   MARK DELIVERED
+================================ */
+
 async function markDelivered(id){
 
 try{
 
 await api(
-"deliveries?id=eq."+encodeURIComponent(id),
+"deliveries?id=eq."+
+encodeURIComponent(id),
+
 {
+
 method:"PATCH",
+
 body:JSON.stringify({
+
 delivery_status:"Delivered"
+
 })
+
 }
+
 );
 
-alert("✅ Delivery marked as Delivered");
+alert(
+"✅ Delivery marked as Delivered"
+);
 
 await load();
 
 }catch(error){
 
-alert("❌ "+error.message);
+alert(
+"❌ "+error.message
+);
 
 }
 
 }
+
+
+/* ================================
+   DELETE DELIVERY
+================================ */
 
 async function deleteDelivery(id){
 
-if(!confirm("क्या आप यह delivery delete करना चाहते हैं?")){
+if(
+!confirm(
+"क्या आप यह delivery delete करना चाहते हैं?"
+)
+){
+
 return;
+
 }
+
 
 try{
 
 await api(
-"deliveries?id=eq."+encodeURIComponent(id),
+"deliveries?id=eq."+
+encodeURIComponent(id),
+
 {
+
 method:"DELETE"
+
 }
+
 );
 
 await load();
 
 }catch(error){
 
-alert("❌ Delete Error: "+error.message);
+alert(
+"❌ Delete Error: "+
+error.message
+);
 
 }
 
 }
+
+
+/* ================================
+   DATE FILTER
+================================ */
+
+function formatDate(d){
+
+return d.getFullYear()+"-"+
+String(
+d.getMonth()+1
+).padStart(2,"0")+"-"+
+String(
+d.getDate()
+).padStart(2,"0");
+
+}
+
 
 function setToday(){
 
 const d=new Date();
 
-document.getElementById("date").value=
-d.getFullYear()+"-"+
-String(d.getMonth()+1).padStart(2,"0")+"-"+
-String(d.getDate()).padStart(2,"0");
+document.getElementById("date")
+.value=formatDate(d);
 
 show();
 
 }
+
 
 function setYesterday(){
 
 const d=new Date();
 
-d.setDate(d.getDate()-1);
+d.setDate(
+d.getDate()-1
+);
 
-document.getElementById("date").value=
-d.getFullYear()+"-"+
-String(d.getMonth()+1).padStart(2,"0")+"-"+
-String(d.getDate()).padStart(2,"0");
+document.getElementById("date")
+.value=formatDate(d);
 
 show();
 
 }
+
 
 function resetFilter(){
 
-document.getElementById("date").value="";
-document.getElementById("payment").value="All";
-document.getElementById("type").value="All";
-document.getElementById("status").value="All";
-document.getElementById("search").value="";
+document.getElementById("date")
+.value="";
+
+document.getElementById("payment")
+.value="All";
+
+document.getElementById("type")
+.value="All";
+
+document.getElementById("status")
+.value="All";
+
+document.getElementById("search")
+.value="";
 
 show();
 
 }
+
+
+/* ================================
+   FILTER EVENTS
+================================ */
 
 [
 "date",
@@ -655,24 +2051,45 @@ show();
 "search"
 ].forEach(id=>{
 
-document.getElementById(id).addEventListener(
+document
+.getElementById(id)
+.addEventListener(
 "input",
 show
 );
 
 });
 
-if("serviceWorker" in navigator){
 
-window.addEventListener("load",()=>{
+/* ================================
+   SERVICE WORKER
+================================ */
+
+if(
+"serviceWorker" in navigator
+){
+
+window.addEventListener(
+"load",
+()=>{
 
 navigator.serviceWorker
 .register("./sw.js")
-.catch(error=>console.log(error));
+.catch(
+error=>
+console.log(error)
+);
 
 });
 
 }
+
+
+/* ================================
+   START
+================================ */
+
+loadProfileLists();
 
 load();
 
