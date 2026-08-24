@@ -10,233 +10,240 @@
 
 <style>
 *{box-sizing:border-box}
-
 body{
-margin:0;
-font-family:Arial,sans-serif;
-background:#f3f6f9;
-color:#222
+ margin:0;
+ font-family:Arial,sans-serif;
+ background:#f3f6f9;
+ color:#222
 }
-
 header{
-background:#1769aa;
-color:white;
-text-align:center;
-padding:18px
+ background:#1769aa;
+ color:#fff;
+ text-align:center;
+ padding:18px
 }
-
-.container{
-max-width:900px;
-margin:auto;
-padding:12px
-}
-
+header h1{margin:0 0 5px}
+.container{max-width:950px;margin:auto;padding:12px}
 .card{
-background:white;
-padding:16px;
-margin:12px 0;
-border-radius:12px;
-box-shadow:0 2px 8px #ccc
+ background:#fff;
+ padding:16px;
+ margin:12px 0;
+ border-radius:12px;
+ box-shadow:0 2px 8px #ccc
 }
-
+.login{
+ max-width:450px;
+ margin:50px auto
+}
 .stats{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:10px
+ display:grid;
+ grid-template-columns:1fr 1fr;
+ gap:10px
 }
-
 .stat{
-text-align:center;
-padding:15px;
-background:white;
-border-radius:10px;
-box-shadow:0 2px 6px #ddd
+ text-align:center;
+ padding:15px;
+ background:#fff;
+ border-radius:10px;
+ box-shadow:0 2px 6px #ddd
 }
-
 .stat b{
-display:block;
-font-size:21px;
-margin-top:5px
+ display:block;
+ font-size:21px;
+ margin-top:5px
 }
-
 .summary{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:8px
+ display:grid;
+ grid-template-columns:repeat(3,1fr);
+ gap:8px
 }
-
 .summary div{
-background:#f1f3f5;
-padding:12px;
-text-align:center;
-border-radius:8px
+ background:#f1f3f5;
+ padding:12px;
+ text-align:center;
+ border-radius:8px
 }
-
 .grid{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:10px
+ display:grid;
+ grid-template-columns:1fr 1fr;
+ gap:10px
 }
-
 label{
-display:block;
-font-weight:bold;
-margin-top:10px
+ display:block;
+ font-weight:bold;
+ margin-top:10px
 }
-
 input,select,textarea{
-width:100%;
-padding:12px;
-margin-top:5px;
-border:1px solid #ccc;
-border-radius:8px;
-font-size:16px
+ width:100%;
+ padding:12px;
+ margin-top:5px;
+ border:1px solid #ccc;
+ border-radius:8px;
+ font-size:16px
 }
-
-textarea{
-min-height:80px
-}
-
+textarea{min-height:80px}
 button{
-border:0;
-border-radius:8px;
-padding:11px 14px;
-margin:4px;
-cursor:pointer
+ border:0;
+ border-radius:8px;
+ padding:11px 14px;
+ margin:4px;
+ cursor:pointer;
+ font-weight:bold
 }
-
-.save{
-width:100%;
-background:#1769aa;
-color:white;
-font-size:17px;
-margin-top:15px
+.primary{
+ width:100%;
+ background:#1769aa;
+ color:#fff;
+ font-size:17px;
+ margin-top:15px
 }
-
-.today{
-background:#1769aa;
-color:white
-}
-
-.reset{
-background:#666;
-color:white
-}
-
+.green{background:#198754;color:#fff}
+.blue{background:#1769aa;color:#fff}
+.orange{background:#ff9800;color:#fff}
+.red{background:#dc3545;color:#fff}
+.gray{background:#666;color:#fff}
+.whatsapp{background:#25d366;color:#fff}
+.today{background:#1769aa;color:#fff}
 .delivery{
-border-top:1px solid #ddd;
-padding:15px 0
+ border-top:1px solid #ddd;
+ padding:15px 0
 }
-
-.delivery:first-child{
-border-top:0
-}
-
+.delivery:first-child{border-top:0}
 .badge{
-display:inline-block;
-padding:5px 8px;
-border-radius:6px;
-background:#eee
+ display:inline-block;
+ padding:5px 8px;
+ border-radius:6px;
+ background:#eee
 }
-
 .paid{
-background:#d1e7dd;
-color:#075c35
+ background:#d1e7dd;
+ color:#075c35
 }
-
 .unpaid{
-background:#fff0c2;
-color:#6b5200
+ background:#fff0c2;
+ color:#6b5200
 }
-
-.call{
-background:#25d366;
-color:white
-}
-
-.map{
-background:#4285f4;
-color:white
-}
-
-.delete{
-background:#dc3545;
-color:white
-}
-
-.done{
-background:#198754;
-color:white
-}
-
-.pay{
-background:#ff9800;
-color:white;
-font-weight:bold
-}
-
-.payBox{
-background:#fff8e1;
-border:1px solid #ffc107;
-padding:12px;
-border-radius:10px;
-margin-top:12px
-}
-
-.payBox button{
-font-weight:bold
-}
-
-.cashPay{
-background:#198754;
-color:white
-}
-
-.onlinePay{
-background:#1769aa;
-color:white
-}
-
-.cancelPay{
-background:#666;
-color:white
-}
-
 .error{
-background:#ffe5e5;
-color:#a00;
-padding:12px;
-border-radius:8px
+ background:#ffe5e5;
+ color:#a00;
+ padding:12px;
+ border-radius:8px
 }
-
-.actions{
-margin-top:10px
+.success{
+ background:#d1e7dd;
+ color:#075c35;
+ padding:12px;
+ border-radius:8px
 }
+.actions{margin-top:10px}
+.topbar{
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+ gap:10px;
+ flex-wrap:wrap
+}
+.small{
+ color:#666;
+ font-size:13px
+}
+.hidden{display:none!important}
 
 @media(max-width:600px){
-
-.grid,
-.summary{
-grid-template-columns:1fr
-}
-
-.stats{
-grid-template-columns:1fr 1fr
-}
-
+ .grid,.summary{grid-template-columns:1fr}
+ .stats{grid-template-columns:1fr 1fr}
 }
 </style>
 </head>
 
 <body>
 
+<!-- ================= LOGIN ================= -->
+
+<div id="loginPage">
+
 <header>
 <h1>🚚 Plus Medico Delivery</h1>
+<p>🔐 Secure Login</p>
 </header>
 
 <div class="container">
 
-<!-- DASHBOARD -->
+<div class="card login">
+
+<h2>📧 Login</h2>
+
+<label>Email</label>
+<input
+ id="loginEmail"
+ type="email"
+ placeholder="Enter email"
+ autocomplete="email">
+
+<label>Password</label>
+<input
+ id="loginPassword"
+ type="password"
+ placeholder="Enter password"
+ autocomplete="current-password">
+
+<button
+ class="primary"
+ onclick="login()">
+🔐 Login
+</button>
+
+<button
+ class="gray"
+ style="width:100%"
+ onclick="signup()">
+➕ Create Account
+</button>
+
+<button
+ class="orange"
+ style="width:100%"
+ onclick="resetPassword()">
+🔑 Forgot Password
+</button>
+
+<div id="loginMessage"></div>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- ================= APP ================= -->
+
+<div id="appPage" class="hidden">
+
+<header>
+
+<div class="topbar">
+
+<div>
+<h1>🚚 Plus Medico Delivery</h1>
+<div id="userEmail" class="small" style="color:#fff"></div>
+</div>
+
+<button
+class="red"
+onclick="logout()">
+🚪 Logout
+</button>
+
+</div>
+
+</header>
+
+
+<div class="container">
+
+
+<!-- STATS -->
 
 <div class="stats">
 
@@ -247,20 +254,21 @@ grid-template-columns:1fr 1fr
 
 <div class="stat">
 💰 Total Amount
-<b id="total">₹0</b>
+<b id="total">₹0.00</b>
 </div>
 
 <div class="stat">
 ✅ Paid
-<b id="paid">₹0</b>
+<b id="paid">₹0.00</b>
 </div>
 
 <div class="stat">
 ⚠️ Unpaid
-<b id="unpaid">₹0</b>
+<b id="unpaid">₹0.00</b>
 </div>
 
 </div>
+
 
 <!-- PAYMENT SUMMARY -->
 
@@ -272,22 +280,23 @@ grid-template-columns:1fr 1fr
 
 <div>
 💵 Cash
-<b id="cash">₹0</b>
+<b id="cash">₹0.00</b>
 </div>
 
 <div>
 📱 Online
-<b id="online">₹0</b>
+<b id="online">₹0.00</b>
 </div>
 
 <div>
 📒 Credit
-<b id="credit">₹0</b>
+<b id="credit">₹0.00</b>
 </div>
 
 </div>
 
 </div>
+
 
 <!-- FILTER -->
 
@@ -298,58 +307,38 @@ grid-template-columns:1fr 1fr
 <div class="grid">
 
 <div>
-
 <label>📅 Date</label>
-
-<input
-type="date"
-id="date">
-
+<input type="date" id="date">
 </div>
 
 <div>
-
 <label>💳 Payment Status</label>
-
 <select id="payment">
-
 <option value="All">All</option>
 <option value="Paid">Paid</option>
 <option value="Unpaid">Unpaid</option>
-
 </select>
-
 </div>
 
 <div>
-
 <label>💰 Payment Type</label>
-
 <select id="type">
-
 <option value="All">All</option>
 <option value="Cash">Cash</option>
 <option value="Online">Online</option>
 <option value="Credit">Credit</option>
-
 </select>
-
 </div>
 
 <div>
-
 <label>🚚 Delivery Status</label>
-
 <select id="status">
-
 <option value="All">All</option>
 <option value="Pending">Pending</option>
 <option value="Out for Delivery">Out for Delivery</option>
 <option value="Delivered">Delivered</option>
 <option value="Cancelled">Cancelled</option>
-
 </select>
-
 </div>
 
 </div>
@@ -364,11 +353,12 @@ id="date">
 ⬅️ Yesterday
 </button>
 
-<button class="reset" onclick="resetFilter()">
+<button class="gray" onclick="resetFilter()">
 🔄 Reset
 </button>
 
 </div>
+
 
 <!-- NEW DELIVERY -->
 
@@ -377,72 +367,152 @@ id="date">
 <h2>➕ New Delivery</h2>
 
 <label>Delivery Boy Name</label>
-<input id="boy" placeholder="Delivery boy name">
+
+<input
+id="boy"
+list="boyList"
+placeholder="Delivery boy name"
+autocomplete="off">
+
+<datalist id="boyList"></datalist>
+
 
 <label>Customer Name</label>
-<input id="customer" placeholder="Customer name">
+
+<input
+id="customer"
+list="customerList"
+placeholder="Customer name"
+autocomplete="off">
+
+<datalist id="customerList"></datalist>
+
 
 <label>Customer Mobile</label>
-<input id="mobile" placeholder="Mobile number">
+
+<input
+id="mobile"
+list="mobileList"
+placeholder="Mobile number"
+type="tel"
+autocomplete="off">
+
+<datalist id="mobileList"></datalist>
+
 
 <label>Customer Address</label>
-<textarea id="address" placeholder="Customer address"></textarea>
+
+<textarea
+id="address"
+placeholder="Customer address"></textarea>
+
 
 <label>Order Amount</label>
-<input id="amount" type="number" placeholder="₹ Order amount">
+
+<input
+id="amount"
+type="number"
+step="0.01"
+placeholder="₹ Order amount">
+
 
 <label>Customer Se Received Amount</label>
-<input id="received" type="number" placeholder="₹ Received amount">
+
+<input
+id="received"
+type="number"
+step="0.01"
+placeholder="₹ Received amount">
+
 
 <p>
 🔄 Change to Give:
-<b id="change">₹0</b>
+<b id="change">₹0.00</b>
 </p>
 
 <p>
 ⚠️ Balance / Unpaid:
-<b id="balance">₹0</b>
+<b id="balance">₹0.00</b>
 </p>
+
 
 <label>Payment Type</label>
 
 <select id="newType">
-
 <option value="Cash">💵 Cash</option>
 <option value="Online">📱 Online</option>
 <option value="Credit">📒 Credit</option>
-
 </select>
+
 
 <label>Payment Status</label>
 
 <select id="newPayment">
-
 <option value="Unpaid">Unpaid</option>
 <option value="Paid">Paid</option>
-
 </select>
+
 
 <label>Delivery Status</label>
 
 <select id="newStatus">
-
 <option value="Pending">Pending</option>
 <option value="Out for Delivery">Out for Delivery</option>
 <option value="Delivered">Delivered</option>
 <option value="Cancelled">Cancelled</option>
-
 </select>
 
+
 <button
-class="save"
+class="primary"
 onclick="saveDelivery()">
-
 💾 Save Delivery
-
 </button>
 
 </div>
+
+
+<!-- BACKUP -->
+
+<div class="card">
+
+<h2>💾 Backup & Restore</h2>
+
+<p class="small">
+Backup आपकी deliveries की copy है। इसे सुरक्षित जगह रखें।
+</p>
+
+<button
+class="blue"
+onclick="downloadBackup()">
+📥 Download Backup
+</button>
+
+<button
+class="green"
+onclick="emailBackup()">
+📧 Email Backup
+</button>
+
+<label>
+♻️ Restore Backup
+</label>
+
+<input
+type="file"
+id="restoreFile"
+accept=".json,application/json">
+
+<button
+class="orange"
+onclick="restoreBackup()">
+♻️ Restore Backup
+</button>
+
+<div id="backupMessage"></div>
+
+</div>
+
 
 <!-- DELIVERY LIST -->
 
@@ -460,9 +530,16 @@ Loading...
 
 </div>
 
+
+</div>
 </div>
 
+
 <script>
+
+/* =====================================================
+   SUPABASE
+===================================================== */
 
 const SUPABASE_URL =
 "https://rnqxgovsabngikhvbeal.supabase.co";
@@ -470,7 +547,13 @@ const SUPABASE_URL =
 const SUPABASE_KEY =
 "sb_publishable_a8jbA7w9mCgHhM_6Q_bCRQ_CXUss_5b";
 
+
 let deliveries=[];
+
+
+/* =====================================================
+   SUPABASE API
+===================================================== */
 
 async function api(path,options={}){
 
@@ -478,35 +561,319 @@ const response=await fetch(
 SUPABASE_URL+"/rest/v1/"+path,
 {
 ...options,
-
 headers:{
 "apikey":SUPABASE_KEY,
-"Authorization":"Bearer "+SUPABASE_KEY,
-"Content-Type":"application/json",
-"Prefer":"return=representation"
+"Authorization":
+"Bearer "+SUPABASE_KEY,
+"Content-Type":
+"application/json",
+"Prefer":
+"return=representation",
+...(options.headers||{})
 }
-
-});
+}
+);
 
 const text=await response.text();
 
 if(!response.ok){
-
 throw new Error(text);
-
 }
 
 return text?JSON.parse(text):[];
 
 }
 
-function get(id){
 
-return document.getElementById(id).value.trim();
+/* =====================================================
+   SUPABASE AUTH
+===================================================== */
+
+let accessToken=null;
+
+async function authRequest(url,options={}){
+
+const response=await fetch(
+SUPABASE_URL+"/auth/v1/"+url,
+{
+...options,
+headers:{
+"apikey":SUPABASE_KEY,
+"Content-Type":
+"application/json",
+...(options.headers||{})
+}
+}
+);
+
+const data=await response.json();
+
+if(!response.ok){
+throw new Error(
+data.error_description ||
+data.msg ||
+data.message ||
+"Authentication error"
+);
+}
+
+return data;
 
 }
 
-/* MONEY CALCULATION */
+
+async function login(){
+
+const email=
+document.getElementById(
+"loginEmail"
+).value.trim();
+
+const password=
+document.getElementById(
+"loginPassword"
+).value;
+
+if(!email||!password){
+
+showLoginMessage(
+"❌ Email और password भरें.",
+"error"
+);
+
+return;
+
+}
+
+try{
+
+const data=
+await authRequest(
+"token?grant_type=password",
+{
+method:"POST",
+body:JSON.stringify({
+email:email,
+password:password
+})
+}
+);
+
+accessToken=
+data.access_token;
+
+localStorage.setItem(
+"pm_access_token",
+accessToken
+);
+
+localStorage.setItem(
+"pm_user_email",
+email
+);
+
+showApp(email);
+
+}catch(error){
+
+showLoginMessage(
+"❌ "+error.message,
+"error"
+);
+
+}
+
+}
+
+
+async function signup(){
+
+const email=
+document.getElementById(
+"loginEmail"
+).value.trim();
+
+const password=
+document.getElementById(
+"loginPassword"
+).value;
+
+if(!email||!password){
+
+showLoginMessage(
+"❌ Email और password भरें.",
+"error"
+);
+
+return;
+
+}
+
+if(password.length<6){
+
+showLoginMessage(
+"❌ Password कम से कम 6 characters का रखें.",
+"error"
+);
+
+return;
+
+}
+
+try{
+
+await authRequest(
+"signup",
+{
+method:"POST",
+body:JSON.stringify({
+email:email,
+password:password
+})
+}
+);
+
+showLoginMessage(
+"✅ Account बन गया। अगर email confirmation enabled है तो पहले email verify करें, फिर Login करें.",
+"success"
+);
+
+}catch(error){
+
+showLoginMessage(
+"❌ "+error.message,
+"error"
+);
+
+}
+
+}
+
+
+async function resetPassword(){
+
+const email=
+document.getElementById(
+"loginEmail"
+).value.trim();
+
+if(!email){
+
+showLoginMessage(
+"❌ पहले अपना email डालें.",
+"error"
+);
+
+return;
+
+}
+
+try{
+
+await authRequest(
+"recover",
+{
+method:"POST",
+body:JSON.stringify({
+email:email
+})
+}
+);
+
+showLoginMessage(
+"📧 Password reset email भेज दिया गया.",
+"success"
+);
+
+}catch(error){
+
+showLoginMessage(
+"❌ "+error.message,
+"error"
+);
+
+}
+
+}
+
+
+async function logout(){
+
+accessToken=null;
+
+localStorage.removeItem(
+"pm_access_token"
+);
+
+localStorage.removeItem(
+"pm_user_email"
+);
+
+document.getElementById(
+"appPage"
+).classList.add("hidden");
+
+document.getElementById(
+"loginPage"
+).classList.remove("hidden");
+
+}
+
+
+function showLoginMessage(message,type){
+
+const box=
+document.getElementById(
+"loginMessage"
+);
+
+box.className=
+type==="error"?
+"error":
+"success";
+
+box.textContent=message;
+
+}
+
+
+function showApp(email){
+
+document.getElementById(
+"loginPage"
+).classList.add("hidden");
+
+document.getElementById(
+"appPage"
+).classList.remove("hidden");
+
+document.getElementById(
+"userEmail"
+).textContent=
+"📧 "+email;
+
+load();
+
+}
+
+
+/* =====================================================
+   GET VALUE
+===================================================== */
+
+function get(id){
+
+return document
+.getElementById(id)
+.value
+.trim();
+
+}
+
+
+/* =====================================================
+   MONEY
+===================================================== */
 
 function updateMoney(){
 
@@ -516,24 +883,43 @@ Number(get("amount"))||0;
 const received=
 Number(get("received"))||0;
 
-document.getElementById("change").textContent=
-"₹"+Math.max(received-amount,0).toFixed(2);
+document.getElementById(
+"change"
+).textContent=
+"₹"+
+Math.max(
+received-amount,0
+).toFixed(2);
 
-document.getElementById("balance").textContent=
-"₹"+Math.max(amount-received,0).toFixed(2);
+document.getElementById(
+"balance"
+).textContent=
+"₹"+
+Math.max(
+amount-received,0
+).toFixed(2);
 
 }
 
+
 document
 .getElementById("amount")
-.addEventListener("input",updateMoney);
+.addEventListener(
+"input",
+updateMoney
+);
 
 document
 .getElementById("received")
-.addEventListener("input",updateMoney);
+.addEventListener(
+"input",
+updateMoney
+);
 
 
-/* SAVE NEW DELIVERY */
+/* =====================================================
+   SAVE DELIVERY
+===================================================== */
 
 async function saveDelivery(){
 
@@ -551,7 +937,9 @@ const received=
 Number(get("received"))||0;
 
 const type=get("newType");
-const selectedPayment=get("newPayment");
+const selectedPayment=
+get("newPayment");
+
 const status=get("newStatus");
 
 if(
@@ -562,7 +950,7 @@ amount<=0
 ){
 
 alert(
-"Please fill Delivery Boy, Customer, Address and Order Amount."
+"❌ Delivery Boy, Customer, Address और Order Amount भरें."
 );
 
 return;
@@ -570,13 +958,19 @@ return;
 }
 
 const balance=
-Math.max(amount-received,0);
+Math.max(
+amount-received,0
+);
 
 const change=
-Math.max(received-amount,0);
+Math.max(
+received-amount,0
+);
 
 const paymentStatus=
-balance===0?"Paid":selectedPayment;
+balance===0?
+"Paid":
+selectedPayment;
 
 await api(
 "deliveries",
@@ -603,33 +997,59 @@ change_amount:change,
 
 payment_type:type,
 
-payment_status:paymentStatus,
+payment_status:
+paymentStatus,
 
 delivery_status:status,
 
-delivery_date:new Date().toISOString()
+delivery_date:
+new Date().toISOString()
 
 })
-
 }
 );
+
 
 alert(
 "✅ Delivery Saved Successfully"
 );
 
+
+/* Keep frequently used details */
+
+localStorage.setItem(
+"last_boy",
+boy
+);
+
+localStorage.setItem(
+"last_customer",
+customer
+);
+
+localStorage.setItem(
+"last_mobile",
+mobile
+);
+
+localStorage.setItem(
+"last_address",
+address
+);
+
+
+/* Clear only new transaction fields */
+
 [
-"boy",
 "customer",
 "mobile",
 "address",
 "amount",
 "received"
 ].forEach(id=>{
-
 document.getElementById(id).value="";
-
 });
+
 
 updateMoney();
 
@@ -640,7 +1060,8 @@ await load();
 console.error(error);
 
 alert(
-"❌ Save Error: "+error.message
+"❌ Save Error: "+
+error.message
 );
 
 }
@@ -648,15 +1069,20 @@ alert(
 }
 
 
-/* LOAD */
+/* =====================================================
+   LOAD
+===================================================== */
 
 async function load(){
 
 try{
 
-deliveries=await api(
+deliveries=
+await api(
 "deliveries?select=*&order=delivery_date.desc"
 );
+
+createSuggestions();
 
 show();
 
@@ -664,8 +1090,9 @@ show();
 
 console.error(error);
 
-document.getElementById("list").innerHTML=
-
+document.getElementById(
+"list"
+).innerHTML=
 "<div class='error'>"+
 "❌ Database Error<br><br>"+
 error.message+
@@ -676,7 +1103,69 @@ error.message+
 }
 
 
-/* SHOW LIST */
+/* =====================================================
+   CUSTOMER / BOY SUGGESTIONS
+===================================================== */
+
+function createSuggestions(){
+
+const boys=
+[
+...new Set(
+deliveries
+.map(d=>d.delivery_boy_name)
+.filter(Boolean)
+)
+];
+
+const customers=
+[
+...new Set(
+deliveries
+.map(d=>d.customer_name)
+.filter(Boolean)
+)
+];
+
+const mobiles=
+[
+...new Set(
+deliveries
+.map(d=>d.customer_mobile)
+.filter(Boolean)
+)
+];
+
+
+document.getElementById(
+"boyList"
+).innerHTML=
+boys.map(x=>
+`<option value="${escapeHTML(x)}"></option>`
+).join("");
+
+
+document.getElementById(
+"customerList"
+).innerHTML=
+customers.map(x=>
+`<option value="${escapeHTML(x)}"></option>`
+).join("");
+
+
+document.getElementById(
+"mobileList"
+).innerHTML=
+mobiles.map(x=>
+`<option value="${escapeHTML(x)}"></option>`
+).join("");
+
+}
+
+
+/* =====================================================
+   SHOW LIST
+===================================================== */
 
 function show(){
 
@@ -685,17 +1174,19 @@ get("search").toLowerCase();
 
 const date=get("date");
 
-const payment=get("payment");
+const payment=
+get("payment");
 
 const type=get("type");
 
-const status=get("status");
+const status=
+get("status");
+
 
 const filtered=
 deliveries.filter(d=>{
 
 const text=
-
 (
 (d.customer_name||"")+" "+
 (d.delivery_boy_name||"")+" "+
@@ -707,43 +1198,49 @@ search &&
 !text.includes(search)
 )return false;
 
+
 if(date){
 
 const x=
 new Date(d.delivery_date);
 
 const localDate=
-
 x.getFullYear()+"-"+
-String(x.getMonth()+1).padStart(2,"0")+"-"+
-String(x.getDate()).padStart(2,"0");
+String(
+x.getMonth()+1
+).padStart(2,"0")+"-"+
+String(
+x.getDate()
+).padStart(2,"0");
 
 if(localDate!==date)
 return false;
 
 }
 
+
 if(
 payment!=="All" &&
 d.payment_status!==payment
 )return false;
+
 
 if(
 type!=="All" &&
 d.payment_type!==type
 )return false;
 
+
 if(
 status!=="All" &&
 d.delivery_status!==status
 )return false;
 
+
 return true;
 
 });
 
-
-/* TOTALS */
 
 let total=0;
 let paid=0;
@@ -751,6 +1248,7 @@ let unpaid=0;
 let cash=0;
 let online=0;
 let credit=0;
+
 
 filtered.forEach(d=>{
 
@@ -775,6 +1273,7 @@ unpaid+=amount;
 
 }
 
+
 if(d.payment_type==="Cash")
 cash+=amount;
 
@@ -787,38 +1286,47 @@ credit+=amount;
 });
 
 
-document.getElementById("count")
-.textContent=filtered.length;
+document.getElementById(
+"count"
+).textContent=
+filtered.length;
 
-document.getElementById("total")
-.textContent=
+document.getElementById(
+"total"
+).textContent=
 "₹"+total.toFixed(2);
 
-document.getElementById("paid")
-.textContent=
+document.getElementById(
+"paid"
+).textContent=
 "₹"+paid.toFixed(2);
 
-document.getElementById("unpaid")
-.textContent=
+document.getElementById(
+"unpaid"
+).textContent=
 "₹"+unpaid.toFixed(2);
 
-document.getElementById("cash")
-.textContent=
+document.getElementById(
+"cash"
+).textContent=
 "₹"+cash.toFixed(2);
 
-document.getElementById("online")
-.textContent=
+document.getElementById(
+"online"
+).textContent=
 "₹"+online.toFixed(2);
 
-document.getElementById("credit")
-.textContent=
+document.getElementById(
+"credit"
+).textContent=
 "₹"+credit.toFixed(2);
 
 
 if(!filtered.length){
 
-document.getElementById("list").innerHTML=
-
+document.getElementById(
+"list"
+).innerHTML=
 "<p style='text-align:center'>"+
 "📦 No deliveries found"+
 "</p>";
@@ -828,9 +1336,9 @@ return;
 }
 
 
-/* DELIVERY CARDS */
-
-document.getElementById("list").innerHTML=
+document.getElementById(
+"list"
+).innerHTML=
 
 filtered.map(d=>{
 
@@ -849,23 +1357,15 @@ d.received_amount||
 
 const balance=
 Math.max(
-amount-received,
-0
-);
-
-const change=
-Number(
-d.change_amount||
-0
+amount-received,0
 );
 
 const date=
-d.delivery_date
-?
+d.delivery_date?
 new Date(
 d.delivery_date
-).toLocaleString("en-IN")
-:"-";
+).toLocaleString("en-IN"):
+"-";
 
 
 return `
@@ -873,14 +1373,16 @@ return `
 <div class="delivery">
 
 <h3>
-👤 ${escapeHTML(d.customer_name)}
+👤 ${escapeHTML(
+d.customer_name
+)}
 </h3>
 
 <p>
 👨‍✈️ Delivery Boy:
-<b>
-${escapeHTML(d.delivery_boy_name)}
-</b>
+<b>${escapeHTML(
+d.delivery_boy_name
+)}</b>
 </p>
 
 <p>
@@ -911,7 +1413,9 @@ d.customer_address||"-"
 
 <p>
 🔄 Change:
-<b>₹${change.toFixed(2)}</b>
+<b>₹${Number(
+d.change_amount||0
+).toFixed(2)}</b>
 </p>
 
 <p>
@@ -921,166 +1425,110 @@ d.customer_address||"-"
 
 <p>
 💳 Payment Status:
-
 <span class="badge ${
 d.payment_status==="Paid"
-?"paid"
-:"unpaid"
+?"paid":"unpaid"
 }">
-
 ${escapeHTML(
 d.payment_status||"Unpaid"
 )}
-
 </span>
-
 </p>
 
 <p>
 💰 Payment Type:
-<b>
-${escapeHTML(
+<b>${escapeHTML(
 d.payment_type||"Cash"
-)}
-</b>
+)}</b>
 </p>
 
 <p>
 🚚 Delivery Status:
-<b>
-${escapeHTML(
+<b>${escapeHTML(
 d.delivery_status||"Pending"
-)}
-</b>
+)}</b>
 </p>
-
-
-<!-- PAYMENT BUTTON -->
-
-${
-balance>0
-?
-`
-
-<div
-class="payBox"
-id="paybox-${escapeJS(d.id)}"
->
-
-<b>💰 Payment Pending</b>
-
-<br>
-
-<p>
-Remaining:
-<strong>
-₹${balance.toFixed(2)}
-</strong>
-</p>
-
-<label>
-Payment Amount
-</label>
-
-<input
-type="number"
-id="payamount-${escapeJS(d.id)}"
-value="${balance}"
-min="1"
-max="${balance}"
->
-
-<label>
-Payment Type
-</label>
-
-<select
-id="paytype-${escapeJS(d.id)}"
->
-
-<option value="Cash">
-💵 Cash
-</option>
-
-<option value="Online">
-📱 Online
-</option>
-
-</select>
-
-<br>
-
-<button
-class="pay"
-onclick="receivePayment('${escapeJS(d.id)}')"
->
-
-💰 Receive Payment
-
-</button>
-
-</div>
-
-`
-:""
-
-}
 
 
 <div class="actions">
 
 <button
-class="call"
-onclick="callCustomer('${escapeJS(
+class="whatsapp"
+onclick="whatsappCustomer(
+'${escapeJS(
 d.customer_mobile||""
-)}')"
->
-
-📞 Call
-
+)}'
+)">
+💬 WhatsApp
 </button>
-
 
 <button
-class="map"
-onclick="openMap('${escapeJS(
-d.customer_address||""
-)}')"
->
-
-📍 Map
-
+style="background:#25d366;color:white"
+onclick="callCustomer(
+'${escapeJS(
+d.customer_mobile||""
+)}'
+)">
+📞 Call
 </button>
+
+<button
+style="background:#4285f4;color:white"
+onclick="openMap(
+'${escapeJS(
+d.customer_address||""
+)}'
+)">
+📍 Map
+</button>
+
+
+${
+d.payment_status!=="Paid"
+?
+`
+<button
+class="green"
+onclick="openPayment(
+'${escapeJS(
+d.id
+)}',
+${amount},
+${received}
+)">
+💰 Mark Paid
+</button>
+`
+:""
+}
 
 
 ${
 d.delivery_status!=="Delivered"
 ?
-
 `
-
 <button
-class="done"
-onclick="markDelivered('${escapeJS(d.id)}')"
->
-
+class="green"
+onclick="markDelivered(
+'${escapeJS(
+d.id
+)}'
+)">
 ✅ Delivered
-
 </button>
-
 `
-
 :""
 }
 
 
 <button
-class="delete"
-onclick="deleteDelivery('${escapeJS(d.id)}')"
->
-
+class="red"
+onclick="deleteDelivery(
+'${escapeJS(
+d.id
+)}'
+)">
 🗑 Delete
-
 </button>
 
 </div>
@@ -1094,37 +1542,15 @@ onclick="deleteDelivery('${escapeJS(d.id)}')"
 }
 
 
-/* RECEIVE PAYMENT */
+/* =====================================================
+   MARK PAID
+===================================================== */
 
-async function receivePayment(id){
-
-try{
-
-const delivery=
-deliveries.find(
-d=>String(d.id)===String(id)
-);
-
-if(!delivery){
-
-alert("Delivery not found");
-
-return;
-
-}
-
-const amount=
-Number(
-delivery.total_amount||
-delivery.order_amount||
-0
-);
-
-const oldReceived=
-Number(
-delivery.received_amount||
-0
-);
+async function openPayment(
+id,
+amount,
+oldReceived
+){
 
 const remaining=
 Math.max(
@@ -1132,112 +1558,114 @@ amount-oldReceived,
 0
 );
 
-const paymentInput=
-document.getElementById(
-"payamount-"+id
+let received=prompt(
+"कितना payment मिला?\n\n"+
+"Remaining: ₹"+
+remaining,
+remaining
 );
 
-const typeInput=
-document.getElementById(
-"paytype-"+id
-);
+if(
+received===null
+)return;
 
-const paymentAmount=
-Number(
-paymentInput.value
-)||0;
+received=
+Number(received);
 
-const paymentType=
-typeInput.value;
-
-if(paymentAmount<=0){
+if(
+isNaN(received)||
+received<0
+){
 
 alert(
-"Please enter payment amount."
+"❌ सही amount डालें."
 );
 
 return;
 
 }
 
-if(paymentAmount>remaining){
+
+const type=
+prompt(
+"Payment Type लिखें:\n\n"+
+"Cash\nOnline\nCredit",
+"Cash"
+);
+
+if(!type)
+return;
+
+const cleanType=
+type.trim();
+
+if(
+!["Cash","Online","Credit"]
+.includes(cleanType)
+){
 
 alert(
-"Payment amount cannot be more than ₹"+
-remaining.toFixed(2)
+"❌ Payment Type केवल Cash, Online या Credit होना चाहिए."
 );
 
 return;
 
 }
 
-const newReceived=
-oldReceived+paymentAmount;
 
-const newBalance=
+const totalReceived=
+oldReceived+
+received;
+
+const balance=
 Math.max(
-amount-newReceived,
+amount-totalReceived,
 0
 );
 
-const newStatus=
-newBalance===0
-?"Paid"
-:"Unpaid";
+const change=
+Math.max(
+totalReceived-amount,
+0
+);
 
+try{
 
 await api(
-
 "deliveries?id=eq."+
 encodeURIComponent(id),
-
 {
-
 method:"PATCH",
 
 body:JSON.stringify({
 
-received_amount:newReceived,
+received_amount:
+totalReceived,
 
-change_amount:0,
+change_amount:
+change,
 
-payment_type:paymentType,
+payment_type:
+cleanType,
 
-payment_status:newStatus,
-
-payment_received_date:
-new Date().toISOString()
+payment_status:
+balance===0?
+"Paid":
+"Unpaid"
 
 })
-
 }
-
 );
-
-
-if(newStatus==="Paid"){
 
 alert(
-"✅ Payment Received Successfully!\n"+
-"₹"+paymentAmount.toFixed(2)+
-" via "+paymentType
+balance===0?
+"✅ Payment Paid Successfully":
+"⚠️ Partial payment saved."
 );
-
-}else{
-
-alert(
-"✅ Payment Updated!\n"+
-"Remaining: ₹"+
-newBalance.toFixed(2)
-);
-
-}
 
 await load();
 
 }catch(error){
-
-console.error(error);
 
 alert(
 "❌ Payment Error: "+
@@ -1249,63 +1677,24 @@ error.message
 }
 
 
-/* CALL */
-
-function callCustomer(number){
-
-if(number){
-
-window.location.href=
-"tel:"+number;
-
-}
-
-}
-
-
-/* MAP */
-
-function openMap(address){
-
-window.open(
-
-"https://www.google.com/maps/search/?api=1&query="+
-encodeURIComponent(address),
-
-"_blank"
-
-);
-
-}
-
-
-/* DELIVERED */
+/* =====================================================
+   DELIVERED
+===================================================== */
 
 async function markDelivered(id){
 
 try{
 
 await api(
-
 "deliveries?id=eq."+
 encodeURIComponent(id),
-
 {
-
 method:"PATCH",
 
 body:JSON.stringify({
-
 delivery_status:"Delivered"
-
 })
-
 }
-
-);
-
-alert(
-"✅ Delivery marked as Delivered"
 );
 
 await load();
@@ -1321,7 +1710,9 @@ alert(
 }
 
 
-/* DELETE */
+/* =====================================================
+   DELETE
+===================================================== */
 
 async function deleteDelivery(id){
 
@@ -1338,16 +1729,11 @@ return;
 try{
 
 await api(
-
 "deliveries?id=eq."+
 encodeURIComponent(id),
-
 {
-
 method:"DELETE"
-
 }
-
 );
 
 await load();
@@ -1364,24 +1750,78 @@ error.message
 }
 
 
-/* TODAY */
+/* =====================================================
+   CALL
+===================================================== */
+
+function callCustomer(number){
+
+if(number){
+
+window.location.href=
+"tel:"+number;
+
+}
+
+}
+
+
+/* =====================================================
+   WHATSAPP
+===================================================== */
+
+function whatsappCustomer(number){
+
+if(!number)return;
+
+window.open(
+"https://wa.me/"+
+number.replace(/\D/g,""),
+"_blank"
+);
+
+}
+
+
+/* =====================================================
+   MAP
+===================================================== */
+
+function openMap(address){
+
+window.open(
+"https://www.google.com/maps/search/?api=1&query="+
+encodeURIComponent(address),
+"_blank"
+);
+
+}
+
+
+/* =====================================================
+   FILTERS
+===================================================== */
 
 function setToday(){
 
 const d=new Date();
 
-document.getElementById("date").value=
+document.getElementById(
+"date"
+).value=
 
 d.getFullYear()+"-"+
-String(d.getMonth()+1).padStart(2,"0")+"-"+
-String(d.getDate()).padStart(2,"0");
+String(
+d.getMonth()+1
+).padStart(2,"0")+"-"+
+String(
+d.getDate()
+).padStart(2,"0");
 
 show();
 
 }
 
-
-/* YESTERDAY */
 
 function setYesterday(){
 
@@ -1391,37 +1831,49 @@ d.setDate(
 d.getDate()-1
 );
 
-document.getElementById("date").value=
+document.getElementById(
+"date"
+).value=
 
 d.getFullYear()+"-"+
-String(d.getMonth()+1).padStart(2,"0")+"-"+
-String(d.getDate()).padStart(2,"0");
+String(
+d.getMonth()+1
+).padStart(2,"0")+"-"+
+String(
+d.getDate()
+).padStart(2,"0");
 
 show();
 
 }
 
-
-/* RESET */
 
 function resetFilter(){
 
-document.getElementById("date").value="";
+document.getElementById(
+"date"
+).value="";
 
-document.getElementById("payment").value="All";
+document.getElementById(
+"payment"
+).value="All";
 
-document.getElementById("type").value="All";
+document.getElementById(
+"type"
+).value="All";
 
-document.getElementById("status").value="All";
+document.getElementById(
+"status"
+).value="All";
 
-document.getElementById("search").value="";
+document.getElementById(
+"search"
+).value="";
 
 show();
 
 }
 
-
-/* FILTER EVENTS */
 
 [
 "date",
@@ -1431,9 +1883,9 @@ show();
 "search"
 ].forEach(id=>{
 
-document
-.getElementById(id)
-.addEventListener(
+document.getElementById(
+id
+).addEventListener(
 "input",
 show
 );
@@ -1441,12 +1893,325 @@ show
 });
 
 
-/* SECURITY */
+/* =====================================================
+   BACKUP
+===================================================== */
+
+function createBackup(){
+
+return {
+
+app:
+"Plus Medico Delivery",
+
+backup_version:
+"2.0",
+
+backup_date:
+new Date().toISOString(),
+
+total_records:
+deliveries.length,
+
+deliveries:
+deliveries
+
+};
+
+}
+
+
+function downloadBackup(){
+
+if(
+!deliveries.length
+){
+
+alert(
+"❌ कोई delivery record नहीं मिला."
+);
+
+return;
+
+}
+
+const backup=
+createBackup();
+
+const json=
+JSON.stringify(
+backup,
+null,
+2
+);
+
+const blob=
+new Blob(
+[json],
+{
+type:
+"application/json"
+}
+);
+
+const url=
+URL.createObjectURL(
+blob
+);
+
+const a=
+document.createElement("a");
+
+const d=new Date();
+
+const filename=
+"plus-medico-backup-"+
+d.getFullYear()+"-"+
+String(
+d.getMonth()+1
+).padStart(2,"0")+"-"+
+String(
+d.getDate()
+).padStart(2,"0")+
+".json";
+
+a.href=url;
+
+a.download=filename;
+
+document.body.appendChild(a);
+
+a.click();
+
+a.remove();
+
+URL.revokeObjectURL(url);
+
+document.getElementById(
+"backupMessage"
+).className="success";
+
+document.getElementById(
+"backupMessage"
+).textContent=
+"✅ Backup downloaded.";
+
+}
+
+
+/* =====================================================
+   EMAIL BACKUP
+===================================================== */
+
+async function emailBackup(){
+
+if(
+!deliveries.length
+){
+
+alert(
+"❌ कोई delivery record नहीं मिला."
+);
+
+return;
+
+}
+
+
+/*
+ Download first
+*/
+
+downloadBackup();
+
+
+const subject=
+encodeURIComponent(
+"Plus Medico Delivery Backup"
+);
+
+const body=
+encodeURIComponent(
+"Plus Medico Delivery backup created on "+
+new Date().toLocaleString("en-IN")+
+".\n\n"+
+"Backup JSON file आपके Downloads में save हो गई है.\n"+
+"इसे Gmail में attachment के रूप में attach करके भेजें."
+);
+
+
+setTimeout(()=>{
+
+window.location.href=
+"mailto:?subject="+
+subject+
+"&body="+
+body;
+
+},500);
+
+
+}
+
+
+/* =====================================================
+   RESTORE
+===================================================== */
+
+async function restoreBackup(){
+
+const input=
+document.getElementById(
+"restoreFile"
+);
+
+const file=
+input.files[0];
+
+if(!file){
+
+alert(
+"❌ पहले backup JSON file select करें."
+);
+
+return;
+
+}
+
+
+if(
+!confirm(
+"⚠️ Backup restore होगा। Existing records duplicate होने पर skip किए जाएंगे. Continue?"
+)
+){
+
+return;
+
+}
+
+
+try{
+
+const text=
+await file.text();
+
+const backup=
+JSON.parse(text);
+
+if(
+!backup.deliveries||
+!Array.isArray(
+backup.deliveries
+)
+){
+
+throw new Error(
+"Invalid backup file."
+);
+
+}
+
+
+let added=0;
+let skipped=0;
+
+
+for(
+const delivery
+of backup.deliveries
+){
+
+/*
+ Existing ID check
+*/
+
+const existing=
+deliveries.find(
+d=>
+String(d.id)===
+String(delivery.id)
+);
+
+
+if(existing){
+
+skipped++;
+
+continue;
+
+}
+
+
+const restored={
+...delivery
+};
+
+delete restored.id;
+
+delete restored.created_at;
+
+delete restored.updated_at;
+
+
+try{
+
+await api(
+"deliveries",
+{
+method:"POST",
+body:JSON.stringify(
+restored
+)
+}
+);
+
+added++;
+
+}catch(error){
+
+console.error(error);
+
+skipped++;
+
+}
+
+}
+
+
+await load();
+
+
+alert(
+"✅ Restore Complete\n\n"+
+"Added: "+added+
+"\nSkipped: "+skipped
+);
+
+
+input.value="";
+
+
+}catch(error){
+
+console.error(error);
+
+alert(
+"❌ Restore Error: "+
+error.message
+);
+
+}
+
+}
+
+
+/* =====================================================
+   ESCAPE
+===================================================== */
 
 function escapeHTML(value){
 
 return String(value||"")
-
 .replace(/&/g,"&amp;")
 .replace(/</g,"&lt;")
 .replace(/>/g,"&gt;")
@@ -1459,7 +2224,6 @@ return String(value||"")
 function escapeJS(value){
 
 return String(value||"")
-
 .replace(/\\/g,"\\\\")
 .replace(/'/g,"\\'")
 .replace(/\n/g," ");
@@ -1467,7 +2231,54 @@ return String(value||"")
 }
 
 
-/* SERVICE WORKER */
+/* =====================================================
+   AUTO LOGIN SESSION
+===================================================== */
+
+async function checkLogin(){
+
+const token=
+localStorage.getItem(
+"pm_access_token"
+);
+
+const email=
+localStorage.getItem(
+"pm_user_email"
+);
+
+
+if(
+token &&
+email
+){
+
+accessToken=token;
+
+showApp(email);
+
+}else{
+
+document.getElementById(
+"loginPage"
+).classList.remove(
+"hidden"
+);
+
+document.getElementById(
+"appPage"
+).classList.add(
+"hidden"
+);
+
+}
+
+}
+
+
+/* =====================================================
+   SERVICE WORKER
+===================================================== */
 
 if(
 "serviceWorker" in navigator
@@ -1478,12 +2289,13 @@ window.addEventListener(
 ()=>{
 
 navigator.serviceWorker
-
 .register("./sw.js")
-
 .catch(
 error=>
-console.log(error)
+console.log(
+"SW Error:",
+error
+)
 );
 
 });
@@ -1493,7 +2305,7 @@ console.log(error)
 
 /* START */
 
-load();
+checkLogin();
 
 </script>
 
