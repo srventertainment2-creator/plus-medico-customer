@@ -8,25 +8,153 @@
 
 <style>
 *{box-sizing:border-box}
-body{margin:0;font-family:Arial;background:#f4fbfa;color:#123}
-header{background:#087f73;color:white;text-align:center;padding:22px}
-header h1{margin:0;font-size:28px}
-header p{margin:7px 0 0}
-.info{text-align:center;background:white;padding:18px}
-.buttons{text-align:center;padding:10px;background:white}
-.btn{display:inline-block;padding:12px 20px;margin:5px;border-radius:8px;color:white;text-decoration:none;font-weight:bold}
+
+body{
+  margin:0;
+  font-family:Arial,sans-serif;
+  background:#f4fbfa;
+  color:#123;
+}
+
+header{
+  background:#087f73;
+  color:white;
+  text-align:center;
+  padding:22px 15px;
+}
+
+header h1{
+  margin:0;
+  font-size:28px;
+}
+
+header p{
+  margin:7px 0 0;
+}
+
+.buttons{
+  background:white;
+  text-align:center;
+  padding:12px;
+}
+
+.btn{
+  display:inline-block;
+  padding:11px 18px;
+  margin:4px;
+  border-radius:8px;
+  color:white;
+  text-decoration:none;
+  font-weight:bold;
+}
+
 .call{background:#087f73}
 .whatsapp{background:#159447}
-.search{padding:15px;background:white}
-.search input{width:100%;padding:14px;border:1px solid #ccc;border-radius:10px;font-size:16px}
-.products{padding:15px;max-width:1100px;margin:auto}
-.product{background:white;padding:18px;border-radius:12px;margin-bottom:15px;box-shadow:0 2px 8px #ddd}
-.product h2{margin:5px 0}
-.category{color:#087f73}
-.price{font-size:22px;font-weight:bold;margin:10px 0}
-.stock{color:#168a45;font-weight:bold}
-.order{display:block;text-align:center;background:#159447;color:white;padding:12px;border-radius:8px;text-decoration:none;font-weight:bold;margin-top:12px}
-footer{background:#087f73;color:white;text-align:center;padding:20px;margin-top:25px}
+
+.info{
+  background:white;
+  text-align:center;
+  padding:15px;
+}
+
+.info p{
+  margin:7px 0;
+}
+
+.search{
+  background:white;
+  padding:15px;
+}
+
+.search input{
+  width:100%;
+  padding:14px;
+  border:1px solid #ccc;
+  border-radius:10px;
+  font-size:16px;
+}
+
+.products{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:15px;
+  padding:15px;
+  max-width:1100px;
+  margin:auto;
+}
+
+.product{
+  background:white;
+  padding:15px;
+  border-radius:12px;
+  box-shadow:0 2px 8px #ddd;
+}
+
+.product img{
+  width:100%;
+  height:170px;
+  object-fit:contain;
+  border-radius:8px;
+  background:#f5f5f5;
+}
+
+.product h2{
+  margin:10px 0 5px;
+  font-size:20px;
+}
+
+.category{
+  color:#087f73;
+  font-size:14px;
+  font-weight:bold;
+}
+
+.brand{
+  color:#666;
+  margin-top:5px;
+}
+
+.price{
+  font-size:22px;
+  font-weight:bold;
+  margin:10px 0;
+}
+
+.mrp{
+  color:#777;
+  font-size:14px;
+}
+
+.stock{
+  color:#168a45;
+  font-weight:bold;
+}
+
+.order{
+  display:block;
+  text-align:center;
+  background:#159447;
+  color:white;
+  padding:12px;
+  border-radius:8px;
+  text-decoration:none;
+  font-weight:bold;
+  margin-top:12px;
+}
+
+.status{
+  text-align:center;
+  padding:25px;
+  font-weight:bold;
+}
+
+footer{
+  background:#087f73;
+  color:white;
+  text-align:center;
+  padding:20px;
+  margin-top:25px;
+}
 </style>
 </head>
 
@@ -39,7 +167,9 @@ footer{background:#087f73;color:white;text-align:center;padding:20px;margin-top:
 
 <div class="buttons">
 <a class="btn call" href="tel:+917448662222">📞 Call</a>
-<a class="btn whatsapp" href="https://wa.me/917448662222" target="_blank">💬 WhatsApp</a>
+<a class="btn whatsapp" href="https://wa.me/917448662222" target="_blank">
+💬 WhatsApp
+</a>
 </div>
 
 <div class="info">
@@ -50,14 +180,15 @@ footer{background:#087f73;color:white;text-align:center;padding:20px;margin-top:
 </div>
 
 <div class="search">
-<input id="search" type="search" placeholder="Search medicines, vitamins, devices...">
+<input
+id="search"
+type="search"
+placeholder="Search medicines, vitamins, devices..."
+>
 </div>
 
-<div class="products" id="products">
-<div class="product">
-<h2>Loading products...</h2>
-<p>Please wait.</p>
-</div>
+<div id="products" class="products">
+<div class="status">Loading products...</div>
 </div>
 
 <footer>
@@ -67,53 +198,186 @@ Lulla Nagar, Kubera Park, Kondhwa, Pune<br>
 </footer>
 
 <script>
-const SUPABASE_URL="https://qoxigoihzffmdmdflwnm.supabase.co";
-const SUPABASE_KEY="sb_publishable_A2mTyIPD2762DJLFjDxc9w_8LxRqvXh";
-/*
-  Temporary demo product.
-  We will connect your existing Supabase products
-  in the next step.
-*/
 
-let products=[
-{
-name:"Dolo 650",
-category:"Allopathic",
-price:"30",
-stock:"In Stock"
+const SUPABASE_URL =
+"https://qoxigoihzffmdmdflwnm.supabase.co";
+
+const SUPABASE_KEY =
+"sb_publishable_A2mTyIPD2762DJLFjDxc9w_8LxRqvXh";
+
+let allProducts = [];
+
+const productsBox = document.getElementById("products");
+const searchBox = document.getElementById("search");
+
+async function loadProducts(){
+
+  productsBox.innerHTML =
+    '<div class="status">Loading products...</div>';
+
+  try{
+
+    const response = await fetch(
+      SUPABASE_URL +
+      "/rest/v1/products?select=*",
+      {
+        method:"GET",
+        headers:{
+          "apikey":SUPABASE_KEY,
+          "Authorization":"Bearer " + SUPABASE_KEY
+        }
+      }
+    );
+
+    if(!response.ok){
+      throw new Error("Supabase connection failed");
+    }
+
+    allProducts = await response.json();
+
+    console.log("Products:", allProducts);
+
+    displayProducts(allProducts);
+
+  }catch(error){
+
+    console.error(error);
+
+    productsBox.innerHTML = `
+      <div class="status">
+        <h3>We couldn't load the products</h3>
+        <p>Please check the Supabase connection and try again.</p>
+        <button onclick="loadProducts()">
+          Try again
+        </button>
+      </div>
+    `;
+  }
 }
-];
 
-const box=document.getElementById("products");
-const search=document.getElementById("search");
+function displayProducts(products){
 
-function showProducts(list){
-if(!list.length){
-box.innerHTML='<div class="product"><h2>No products found</h2></div>';
-return;
+  if(!products || products.length === 0){
+
+    productsBox.innerHTML = `
+      <div class="status">
+        <h3>No products found</h3>
+        <p>Please add products in Supabase.</p>
+      </div>
+    `;
+
+    return;
+  }
+
+  productsBox.innerHTML = products.map(product => {
+
+    const name = product.name || "Product";
+    const brand = product.brand || "";
+    const category = product.category || "";
+    const price =
+      product.selling_price ??
+      product.mrp ??
+      "0";
+
+    const mrp = product.mrp ?? "";
+    const stock = product.stock_status || "In Stock";
+    const image = product.image_url || "";
+    const description = product.description || "";
+
+    const whatsappMessage =
+      "Hello PLUS MEDICO, I want to order " +
+      name +
+      " - ₹" +
+      price;
+
+    return `
+
+      <div class="product">
+
+        ${
+          image
+          ? `<img src="${image}" alt="${name}">`
+          : ""
+        }
+
+        <h2>${name}</h2>
+
+        ${
+          brand
+          ? `<div class="brand">Brand: ${brand}</div>`
+          : ""
+        }
+
+        ${
+          category
+          ? `<div class="category">${category}</div>`
+          : ""
+        }
+
+        <div class="price">
+          ₹${price}
+        </div>
+
+        ${
+          mrp && String(mrp) !== String(price)
+          ? `<div class="mrp">MRP ₹${mrp}</div>`
+          : ""
+        }
+
+        <div class="stock">
+          ● ${stock}
+        </div>
+
+        ${
+          description
+          ? `<p>${description}</p>`
+          : ""
+        }
+
+        <a
+          class="order"
+          href="https://wa.me/917448662222?text=${encodeURIComponent(whatsappMessage)}"
+          target="_blank"
+        >
+          💬 WhatsApp Order
+        </a>
+
+      </div>
+
+    `;
+
+  }).join("");
 }
 
-box.innerHTML=list.map(p=>`
-<div class="product">
-<h2>${p.name}</h2>
-<div class="category">${p.category}</div>
-<div class="price">₹${p.price}</div>
-<div class="stock">● ${p.stock}</div>
-<a class="order"
-href="https://wa.me/917448662222?text=${encodeURIComponent("Hello PLUS MEDICO, I want to order "+p.name+" - ₹"+p.price)}"
-target="_blank">
-💬 WhatsApp Order
-</a>
-</div>
-`).join("");
-}
+searchBox.addEventListener("input", function(){
 
-search.addEventListener("input",()=>{
-const q=search.value.toLowerCase();
-showProducts(products.filter(p=>p.name.toLowerCase().includes(q)));
+  const query = this.value.toLowerCase().trim();
+
+  const filtered = allProducts.filter(product => {
+
+    const name =
+      String(product.name || "").toLowerCase();
+
+    const brand =
+      String(product.brand || "").toLowerCase();
+
+    const category =
+      String(product.category || "").toLowerCase();
+
+    return (
+      name.includes(query) ||
+      brand.includes(query) ||
+      category.includes(query)
+    );
+
+  });
+
+  displayProducts(filtered);
+
 });
 
-showProducts(products);
+loadProducts();
+
 </script>
 
 </body>
